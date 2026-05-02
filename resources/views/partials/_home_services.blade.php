@@ -1,8 +1,8 @@
       <section class="section wrap reveal" id="services">
         <div class="section-head">
-          <span class="chip">Услуги</span>
-          <h2 class="display-sm">Четкие решения,<br />сильный результат</h2>
-          <p class="lead">Инженерные решения с упором на рост продукта и бизнеса</p>
+          <span class="chip">{{ __('site.services.chip') }}</span>
+          <h2 class="display-sm">{!! nl2br(e(__('site.services.h2'))) !!}</h2>
+          <p class="lead">{{ __('site.services.lead') }}</p>
         </div>
         <div class="services-grid">
           <article class="service-card">
@@ -13,7 +13,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/website-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>Веб-разработка</h3>
+            <h3>{{ __('site.services.web') }}</h3>
           </article>
           <article class="service-card">
             <div class="service-thumb folder-preview">
@@ -23,7 +23,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/app-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>Мобайл-разработка</h3>
+            <h3>{{ __('site.services.mobile') }}</h3>
           </article>
           <article class="service-card">
             <div class="service-thumb folder-preview">
@@ -33,7 +33,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/framer-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>Frontend разработка</h3>
+            <h3>{{ __('site.services.frontend') }}</h3>
           </article>
           <article class="service-card">
             <div class="service-thumb folder-preview">
@@ -43,7 +43,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/branding-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>Брендинг</h3>
+            <h3>{{ __('site.services.branding') }}</h3>
           </article>
           <article class="service-card">
             <div class="service-thumb folder-preview">
@@ -53,7 +53,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/mvp-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>MVP и прототипы</h3>
+            <h3>{{ __('site.services.mvp') }}</h3>
           </article>
           <article class="service-card">
             <div class="service-thumb folder-preview">
@@ -63,7 +63,7 @@
               <img class="folder-file file-3" src="{{ asset('assets/img/services/logos-3.png') }}" alt="" />
               <span class="folder-front"></span>
             </div>
-            <h3>Логотипы</h3>
+            <h3>{{ __('site.services.logos') }}</h3>
           </article>
         </div>
       </section>

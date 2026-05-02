@@ -29,6 +29,7 @@ class ProjectController extends Controller
         $data = $this->validated($request);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
         $data['features'] = $this->parseFeatures($request->input('features_text', ''));
+        $data['features_en'] = $this->parseFeatures($request->input('features_text_en', ''));
         $data['is_published'] = $request->boolean('is_published');
         $data['sort_order'] = (int) $request->input('sort_order', 0);
 
@@ -50,6 +51,7 @@ class ProjectController extends Controller
         $data = $this->validated($request, $project->id);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
         $data['features'] = $this->parseFeatures($request->input('features_text', ''));
+        $data['features_en'] = $this->parseFeatures($request->input('features_text_en', ''));
         $data['is_published'] = $request->boolean('is_published');
         $data['sort_order'] = (int) $request->input('sort_order', 0);
 
@@ -90,6 +92,17 @@ class ProjectController extends Controller
             'overview_p3' => 'nullable|string',
             'accent_line' => 'nullable|string|max:2000',
             'live_url' => 'nullable|url|max:2000',
+            'name_en' => 'nullable|string|max:255',
+            'tagline_en' => 'nullable|string|max:2000',
+            'meta_client_en' => 'nullable|string|max:255',
+            'meta_service_en' => 'nullable|string|max:2000',
+            'meta_date_en' => 'nullable|string|max:255',
+            'overview_p1_en' => 'nullable|string',
+            'overview_p2_en' => 'nullable|string',
+            'overview_p3_en' => 'nullable|string',
+            'accent_line_en' => 'nullable|string|max:2000',
+            'seo_title_en' => 'nullable|string|max:255',
+            'seo_description_en' => 'nullable|string|max:2000',
         ]);
     }
 

@@ -1,6 +1,6 @@
 @php
-  $title = $seoTitle ?? config('portfolio.seo.site_title', config('app.name'));
-  $desc = $seoDescription ?? config('portfolio.seo.meta_description', '');
+  $title = $seoTitle ?? __('site.seo.home_title');
+  $desc = $seoDescription ?? __('site.seo.home_description');
   $canonical = url()->current();
   $og = $seoOgImage ?? asset(config('portfolio.seo.default_og_image'));
 @endphp
@@ -12,7 +12,7 @@
 <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($desc), 300) }}">
 <meta property="og:url" content="{{ $canonical }}">
 <meta property="og:image" content="{{ $og }}">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:locale" content="{{ app()->isLocale('en') ? __('site.seo.og_locale_en') : __('site.seo.og_locale_ru') }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($desc), 200) }}">

@@ -5,6 +5,7 @@
 @section('body')
 @php
   $featuresText = old('features_text', ($project->exists && $project->features) ? implode("\n", $project->features) : '');
+  $featuresTextEn = old('features_text_en', ($project->exists && $project->features_en) ? implode("\n", $project->features_en) : '');
 @endphp
 <div class="admin-card">
   <h1>{{ $mode === 'create' ? 'Новый проект' : 'Редактировать: '.$project->name }}</h1>
@@ -71,6 +72,57 @@
       <label for="accent_line">Акцент (последняя строка)</label>
       <textarea id="accent_line" name="accent_line" rows="2">{{ old('accent_line', $project->accent_line) }}</textarea>
     </div>
+
+    <h2 style="margin:1.5rem 0 0.75rem;font-size:1rem;color:rgba(255,255,255,.7)">English (на сайте при locale=en)</h2>
+    <div class="admin-field">
+      <label for="name_en">Title (EN)</label>
+      <input id="name_en" type="text" name="name_en" value="{{ old('name_en', $project->name_en) }}" />
+    </div>
+    <div class="admin-field">
+      <label for="tagline_en">Подзаголовок (EN)</label>
+      <textarea id="tagline_en" name="tagline_en" rows="2">{{ old('tagline_en', $project->tagline_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="meta_client_en">Клиент (EN)</label>
+      <input id="meta_client_en" type="text" name="meta_client_en" value="{{ old('meta_client_en', $project->meta_client_en) }}" />
+    </div>
+    <div class="admin-field">
+      <label for="meta_service_en">Услуга (EN)</label>
+      <textarea id="meta_service_en" name="meta_service_en" rows="2">{{ old('meta_service_en', $project->meta_service_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="meta_date_en">Дата (EN)</label>
+      <input id="meta_date_en" type="text" name="meta_date_en" value="{{ old('meta_date_en', $project->meta_date_en) }}" />
+    </div>
+    <div class="admin-field">
+      <label for="overview_p1_en">Абзац 1 (EN)</label>
+      <textarea id="overview_p1_en" name="overview_p1_en" rows="4">{{ old('overview_p1_en', $project->overview_p1_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="overview_p2_en">Абзац 2 (EN)</label>
+      <textarea id="overview_p2_en" name="overview_p2_en" rows="4">{{ old('overview_p2_en', $project->overview_p2_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="features_text_en">Ключевые особенности (EN), строка = пункт</label>
+      <textarea id="features_text_en" name="features_text_en" rows="6">{{ $featuresTextEn }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="overview_p3_en">Абзац после списка (EN)</label>
+      <textarea id="overview_p3_en" name="overview_p3_en" rows="3">{{ old('overview_p3_en', $project->overview_p3_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="accent_line_en">Акцент (EN)</label>
+      <textarea id="accent_line_en" name="accent_line_en" rows="2">{{ old('accent_line_en', $project->accent_line_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="seo_title_en">SEO title (EN), опционально</label>
+      <input id="seo_title_en" type="text" name="seo_title_en" value="{{ old('seo_title_en', $project->seo_title_en) }}" />
+    </div>
+    <div class="admin-field">
+      <label for="seo_description_en">SEO description (EN)</label>
+      <textarea id="seo_description_en" name="seo_description_en" rows="2">{{ old('seo_description_en', $project->seo_description_en) }}</textarea>
+    </div>
+
     <div class="admin-field">
       <label for="live_url">Ссылка «Посмотреть проект»</label>
       <input id="live_url" type="url" name="live_url" value="{{ old('live_url', $project->live_url) }}" placeholder="https://..." />

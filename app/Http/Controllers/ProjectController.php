@@ -15,12 +15,27 @@ class ProjectController extends Controller
         }
 
         $brand = config('portfolio.seo.brand_name', 'Фалькин Роман');
-        $seoTitle = $project->name.' — кейс | '.$brand;
-        $plain = strip_tags((string) ($project->tagline ?: $project->overview_p1 ?: ''));
-        $seoDescription = Str::limit(
-            $plain !== '' ? $plain : (string) config('portfolio.seo.meta_description', ''),
-            180
-        );
+        $name = (string) $project->display('name');
+        $customTitle = app()->isLocale('en')
+            ? ($project->seo_title_en ?: null)
+            : ($project->seo_title ?: null);
+        if ($customTitle) {
+            $seoTitle = $customTitle.' | '.$brand;
+        } else {
+            $seoTitle = $name.' — '.__('site.project.case_suffix').' | '.$brand;
+        }
+        $customDesc = app()->isLocale('en')
+            ? ($project->seo_description_en ?: null)
+            : ($project->seo_description ?: null);
+        if ($customDesc) {
+            $seoDescription = Str::limit(strip_tags((string) $customDesc), 180);
+        } else {
+            $plain = strip_tags((string) ($project->display('tagline') ?: $project->display('overview_p1') ?: ''));
+            $seoDescription = Str::limit(
+                $plain !== '' ? $plain : (string) config('portfolio.seo.meta_description', ''),
+                180
+            );
+        }
         $seoOgImage = $project->publicUrl($project->banner_image ?: $project->card_image)
             ?: asset(config('portfolio.seo.default_og_image'));
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,7 @@
 <div class="page" id="top">
   @yield('content')
 </div>
+@include('partials.i18n_portfolio')
 <script src="{{ asset('js/portfolio.js') }}" defer></script>
 @stack('scripts')
 </body>

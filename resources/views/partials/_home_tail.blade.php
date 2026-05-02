@@ -1,9 +1,9 @@
 @php($T = asset('assets/img/home'))
       <section class="section wrap reveal" id="testimonials">
         <div class="section-head">
-          <span class="chip">Отзывы</span>
-          <h2 class="display-sm">Реальный опыт<br />в работе со мной</h2>
-          <p class="lead">Отзывы тех, кто превратил идеи в продукты и измеримый результат</p>
+          <span class="chip">{{ __('site.testimonials.chip') }}</span>
+          <h2 class="display-sm">{!! nl2br(e(__('site.testimonials.h2'))) !!}</h2>
+          <p class="lead">{{ __('site.testimonials.lead') }}</p>
         </div>
         <div class="clients-row">
           <div class="client-avatars">
@@ -11,8 +11,8 @@
             <div class="av"><img src="{{ $T }}/clients-2.png" alt="" /></div>
             <div class="av"><img src="{{ $T }}/clients-3.png" alt="" /></div>
           </div>
-          <h3>С кем уже работал</h3>
-          <p>Команды выбирают прозрачный процесс и предсказуемый результат</p>
+          <h3>{{ __('site.testimonials.clients_h') }}</h3>
+          <p>{{ __('site.testimonials.clients_p') }}</p>
         </div>
         <div class="testimonial-shell">
           <div class="testimonial-viewport">
@@ -20,9 +20,9 @@
               <article class="testimonial-slide">
                 <div class="t-meta">
                   <div class="t-avatar"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
-                  <div><h3>Ирина Соколова</h3><p>основатель, студия digital</p></div>
+                  <div><h3>{{ __('site.testimonials.t1_name') }}</h3><p>{{ __('site.testimonials.t1_role') }}</p></div>
                 </div>
-                <div class="t-body">Закрывали вместе веб-платформу под заявки и личный кабинет: стек, архитектура API и сроки были проговорены до кода. Релиз прошёл без сюрпризов, после запуска доработки шли итерациями — как в нормальной продуктовой разработке, а не «как получится».</div>
+                <div class="t-body">{{ __('site.testimonials.t1_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
                   <img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" />
                 </div>
@@ -30,9 +30,9 @@
               <article class="testimonial-slide">
                 <div class="t-meta">
                   <div class="t-avatar"><img src="{{ $T }}/t-avatar-2.png" alt="" /></div>
-                  <div><h3>София Мартинес</h3><p>продакт-лид, B2B SaaS</p></div>
+                  <div><h3>{{ __('site.testimonials.t2_name') }}</h3><p>{{ __('site.testimonials.t2_role') }}</p></div>
                 </div>
-                <div class="t-body">Вели фичи в React и мобильный клиент на React Native из одной кодовой базы по сути — меньше расхождений между вебом и приложением. Всегда понятно, что в спринте, что в бэклоге; баги после релиза закрывались быстро, без бесконечных «уточним позже».</div>
+                <div class="t-body">{{ __('site.testimonials.t2_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
                   <img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" />
                 </div>
@@ -40,9 +40,9 @@
               <article class="testimonial-slide">
                 <div class="t-meta">
                   <div class="t-avatar"><img src="{{ $T }}/t-avatar-3.png" alt="" /></div>
-                  <div><h3>Михаил Томпсон</h3><p>CEO, Northwind</p></div>
+                  <div><h3>{{ __('site.testimonials.t3_name') }}</h3><p>{{ __('site.testimonials.t3_role') }}</p></div>
                 </div>
-                <div class="t-body">Нужны были стабильный бэкенд, интеграции и понятный деплой — Роман разложил по этапам: контракт API, окружения, мониторинг после выката. Для нас это была именно инженерная разработка, а не «нарисовать и забыть».</div>
+                <div class="t-body">{{ __('site.testimonials.t3_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
                   <img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" />
                 </div>
@@ -50,42 +50,42 @@
             </div>
           </div>
           <div class="t-nav">
-            <button type="button" data-t-prev aria-label="Предыдущий отзыв"><img src="{{ asset('assets/icons/bottom-bar/arrow-left.svg') }}" alt="" /></button>
-            <button type="button" data-t-next aria-label="Следующий отзыв"><img src="{{ asset('assets/icons/bottom-bar/arrow-right.svg') }}" alt="" /></button>
+            <button type="button" data-t-prev aria-label="{{ __('site.testimonials.prev') }}"><img src="{{ asset('assets/icons/bottom-bar/arrow-left.svg') }}" alt="" /></button>
+            <button type="button" data-t-next aria-label="{{ __('site.testimonials.next') }}"><img src="{{ asset('assets/icons/bottom-bar/arrow-right.svg') }}" alt="" /></button>
           </div>
         </div>
       </section>
 
       <section class="section wrap reveal" id="process">
         <div class="section-head">
-          <span class="chip">Процесс</span>
-          <h2 class="display-sm">Запуск ваших задач в прод стал проще</h2>
-          <p class="lead">Прозрачно, быстро, без лишней бюрократии</p>
+          <span class="chip">{{ __('site.process.chip') }}</span>
+          <h2 class="display-sm">{{ __('site.process.h2') }}</h2>
+          <p class="lead">{{ __('site.process.lead') }}</p>
         </div>
         <div class="timeline">
           <div class="tl-origin" aria-hidden="true"><span class="tl-dot"></span></div>
           <div class="tl-row" data-side="right">
             <div class="tl-spine tl-spine--nodot"></div>
             <div class="tl-card">
-              <h4>Шаг 1</h4>
-              <h5>Бриф и оценка задачи</h5>
-              <p>Разбираем цель, формат (веб или мобайл), ключевые экраны и интеграции. На этом этапе фиксируем ориентир по бюджету, срокам и первому релизу.</p>
+              <h4>{{ __('site.process.s1_h') }}</h4>
+              <h5>{{ __('site.process.s1_t') }}</h5>
+              <p>{{ __('site.process.s1_p') }}</p>
             </div>
           </div>
           <div class="tl-row" data-side="left">
             <div class="tl-spine"><div class="tl-dot"></div></div>
             <div class="tl-card">
-              <h4>Шаг 2</h4>
-              <h5>Итерационная разработка</h5>
-              <p>Двигаемся короткими спринтами: дизайн/код, демо, правки, согласование. Приоритеты и статусы ведём в одном потоке, чтобы не терять контекст.</p>
+              <h4>{{ __('site.process.s2_h') }}</h4>
+              <h5>{{ __('site.process.s2_t') }}</h5>
+              <p>{{ __('site.process.s2_p') }}</p>
             </div>
           </div>
           <div class="tl-row" data-side="right">
             <div class="tl-spine"><div class="tl-dot"></div></div>
             <div class="tl-card">
-              <h4>Шаг 3</h4>
-              <h5>Релиз и сопровождение</h5>
-              <p>Публикуем в прод (или сторах для мобайла), подключаем аналитику, проверяем метрики и закрываем пост-релизные доработки в согласованном окне поддержки.</p>
+              <h4>{{ __('site.process.s3_h') }}</h4>
+              <h5>{{ __('site.process.s3_t') }}</h5>
+              <p>{{ __('site.process.s3_p') }}</p>
             </div>
           </div>
         </div>
@@ -93,71 +93,68 @@
 
       <section class="section wrap reveal" id="pricing">
         <div class="section-head">
-          <span class="chip">Стоимость</span>
-          <h2 class="display-sm">Стоимость веб- и мобильной разработки</h2>
-          <p class="lead">Выберите направление и получите ориентир по бюджету, срокам и составу работ</p>
+          <span class="chip">{{ __('site.pricing.chip') }}</span>
+          <h2 class="display-sm">{{ __('site.pricing.h2') }}</h2>
+          <p class="lead">{{ __('site.pricing.lead') }}</p>
         </div>
         <div class="pricing-toggle" data-pricing-toggle>
           <span class="pill" aria-hidden="true"></span>
-          <button type="button" data-plan="web">Веб-разработка</button>
-          <button type="button" data-plan="mobile">Мобильная разработка</button>
+          <button type="button" data-plan="web">{{ __('site.pricing.tab_web') }}</button>
+          <button type="button" data-plan="mobile">{{ __('site.pricing.tab_mobile') }}</button>
         </div>
         <div class="pricing-card">
           <div class="pricing-inner">
             <div class="pricing-top">
-              <h3 data-p-title>Веб-разработка</h3>
-              <p data-p-sub>Лендинги, корпоративные сайты и веб-приложения под задачи бизнеса</p>
+              <h3 data-p-title>{{ __('site.pricing.web_title') }}</h3>
+              <p data-p-sub>{{ __('site.pricing.web_sub') }}</p>
             </div>
             <div class="points" data-p-points>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />Маркетинговый лендинг</div>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />Корпоративный сайт</div>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />Личный кабинет / web app</div>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />В цену входят: адаптив, базовое SEO, формы, аналитика</div>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />Отдельно оцениваются: сложные интеграции, админ-панель, мультиязык</div>
-              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />Срок: обычно 2–8 недель в зависимости от объёма</div>
+              @foreach(trans('site.pricing_points.web') as $line)
+              <div class="point"><img src="{{ asset('assets/icons/pricing/check.svg') }}" alt="" />{{ $line }}</div>
+              @endforeach
             </div>
           </div>
           <div class="pricing-foot">
-            <div><span class="price-big" data-p-price>от 180 000 ₽<span>/ проект</span></span></div>
-            <button type="button" class="btn-primary" style="margin-top:0">Обсудить проект</button>
+            <div><span class="price-big" data-p-price>{!! \App\Support\PricingDisplay::priceLineHtml('web') !!}</span></div>
+            <button type="button" class="btn-primary" style="margin-top:0">{{ __('site.pricing.discuss') }}</button>
           </div>
         </div>
       </section>
 
       <section class="section wrap reveal" id="toolkit">
         <div class="section-head">
-          <span class="chip">Технологии</span>
-          <h2 class="display-sm">Надёжный стек, предсказуемый результат</h2>
-          <p class="lead">Инструменты и практики, чтобы идея дошла до работающего продукта</p>
+          <span class="chip">{{ __('site.toolkit.chip') }}</span>
+          <h2 class="display-sm">{{ __('site.toolkit.h2') }}</h2>
+          <p class="lead">{{ __('site.toolkit.lead') }}</p>
         </div>
         <div class="tool-row" style="--fill: 90; --stagger: 0"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/react.svg') }}" alt="React" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>React</h4><p>Современные интерфейсы и масштабируемые веб-приложения</p></div>
+          <div class="tool-meta"><h4>React</h4><p>{{ __('site.toolkit.react_d') }}</p></div>
           <span class="tool-pct" data-target="90">0%</span>
         </div>
         <div class="tool-row" style="--fill: 88; --stagger: 1"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/reactnative.svg') }}" alt="React Native" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>React Native</h4><p>Кроссплатформенные приложения для iOS и Android</p></div>
+          <div class="tool-meta"><h4>React Native</h4><p>{{ __('site.toolkit.rn_d') }}</p></div>
           <span class="tool-pct" data-target="88">0%</span>
         </div>
         <div class="tool-row" style="--fill: 85; --stagger: 2"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/docker.svg') }}" alt="Docker" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>Docker</h4><p>Контейнеризация и предсказуемый деплой в любой среде</p></div>
+          <div class="tool-meta"><h4>Docker</h4><p>{{ __('site.toolkit.docker_d') }}</p></div>
           <span class="tool-pct" data-target="85">0%</span>
         </div>
         <div class="tool-row" style="--fill: 83; --stagger: 3"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/php.svg') }}" alt="PHP" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>PHP</h4><p>Серверная логика, API и интеграции с базами данных</p></div>
+          <div class="tool-meta"><h4>PHP</h4><p>{{ __('site.toolkit.php_d') }}</p></div>
           <span class="tool-pct" data-target="83">0%</span>
         </div>
         <div class="tool-row" style="--fill: 80; --stagger: 4"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/python.svg') }}" alt="Python" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>Python</h4><p>Автоматизация, бэкенд и задачи любой сложности</p></div>
+          <div class="tool-meta"><h4>Python</h4><p>{{ __('site.toolkit.py_d') }}</p></div>
           <span class="tool-pct" data-target="80">0%</span>
         </div>
         <div class="tool-row" style="--fill: 78; --stagger: 5"><span class="tool-overlay" aria-hidden="true"></span>
           <div class="tool-icon"><img src="{{ asset('assets/icons/stack/postgresql.svg') }}" alt="PostgreSQL" width="40" height="40" /></div>
-          <div class="tool-meta"><h4>PostgreSQL</h4><p>Проектирование и оптимизация реляционных баз данных</p></div>
+          <div class="tool-meta"><h4>PostgreSQL</h4><p>{{ __('site.toolkit.pg_d') }}</p></div>
           <span class="tool-pct" data-target="78">0%</span>
         </div>
       </section>
@@ -166,13 +163,13 @@
         <div class="newsletter-card">
           <div class="news-inner">
             <div class="section-head" style="margin-bottom:0">
-              <span class="chip">Обновления</span>
-              <h2 class="display-sm">100+ разборов по веб- и мобильной разработке продуктов</h2>
-              <p class="lead">Практика, решения и опыт из продакшн-проектов</p>
+              <span class="chip">{{ __('site.newsletter.chip') }}</span>
+              <h2 class="display-sm">{{ __('site.newsletter.h2') }}</h2>
+              <p class="lead">{{ __('site.newsletter.lead') }}</p>
             </div>
             <form class="news-form" onsubmit="return false;">
-              <input type="email" name="email" placeholder="Введите ваш email" autocomplete="email" />
-              <button type="submit" class="btn-primary" style="margin-top:0">Подписаться</button>
+              <input type="email" name="email" placeholder="{{ __('site.newsletter.placeholder') }}" autocomplete="email" />
+              <button type="submit" class="btn-primary" style="margin-top:0">{{ __('site.newsletter.submit') }}</button>
             </form>
             <div class="marquee" aria-hidden="true">
               <div class="marquee-track">
@@ -186,39 +183,39 @@
 
       <section class="section wrap reveal" id="faq">
         <div class="section-head">
-          <span class="chip">FAQ</span>
-          <h2 class="display-sm">Частые вопросы перед стартом разработки</h2>
-          <p class="lead">Коротко о процессах, сроках, оплате и формате взаимодействия</p>
+          <span class="chip">{{ __('site.faq.chip') }}</span>
+          <h2 class="display-sm">{{ __('site.faq.h2') }}</h2>
+          <p class="lead">{{ __('site.faq.lead') }}</p>
         </div>
         <div class="faq-list">
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">Как проходит работа по проекту?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">Стартуем с брифа и оценки, затем фиксируем этапы и приоритеты. Дальше итерационно: показываю промежуточные результаты, собираем фидбек, доводим до продакшн-качества и релиза.</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q1') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a1') }}</div></div>
           </div>
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">Что входит в стоимость «от»?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">В базовую оценку входят проектирование, разработка, адаптив, базовая аналитика и подготовка к релизу. Интеграции, сложная админка, мультиязык, офлайн-режим и нестандартные сценарии считаются отдельно.</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q2') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a2') }}</div></div>
           </div>
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">Сколько обычно занимает разработка?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">Веб-проекты обычно занимают 2–8 недель, мобильные — 4–12 недель. Точный срок зависит от объёма функционала, готовности контента и скорости согласований.</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q3') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a3') }}</div></div>
           </div>
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">В чём разница между веб и мобильной разработкой?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">Веб — это сайты и web-приложения в браузере. Мобайл — приложения для iOS/Android с публикацией в сторах и мобильными сценариями (push, permissions, нативные особенности).</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q4') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a4') }}</div></div>
           </div>
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">Как мы общаемся во время проекта?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">Основная коммуникация — Telegram / WhatsApp / MAX, плюс почта для формализации договорённостей. Для синхронизаций проводим видео-встречи и созвоны по этапам.</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q5') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a5') }}</div></div>
           </div>
           <div class="faq-item" data-faq>
-            <button type="button" class="faq-q">Работаете по договору и этапной оплате?<span class="faq-switch"></span></button>
-            <div class="faq-a"><div class="faq-a-inner">Да, можем работать по договору с поэтапной оплатой: фиксируем объём, сроки, стоимость этапов и критерии приёмки, чтобы обеим сторонам было прозрачно.</div></div>
+            <button type="button" class="faq-q">{{ __('site.faq.q6') }}<span class="faq-switch"></span></button>
+            <div class="faq-a"><div class="faq-a-inner">{{ __('site.faq.a6') }}</div></div>
           </div>
         </div>
         <div class="faq-cta">
-          <p style="margin:0 0 16px;font-weight:500">Не нашли ответ?</p>
-          <button type="button" class="btn-primary" style="margin-top:0">Напишите в мессенджер</button>
+          <p style="margin:0 0 16px;font-weight:500">{{ __('site.faq.more_q') }}</p>
+          <button type="button" class="btn-primary" style="margin-top:0">{{ __('site.faq.write') }}</button>
         </div>
       </section>
     </main>
@@ -227,71 +224,72 @@
       <div class="footer-card reveal">
         <div class="footer-inner">
           <div class="section-head" style="margin-bottom:24px">
-            <span class="chip">Контакты</span>
-            <h2 class="display-sm">На связи 24/7</h2>
-            <p class="lead">Есть задача? Напишите в удобный канал — обычно отвечаю в течение 3–6 часов.</p>
+            <span class="chip">{{ __('site.footer.chip') }}</span>
+            <h2 class="display-sm">{{ __('site.footer.h2') }}</h2>
+            <p class="lead">{{ __('site.footer.lead') }}</p>
           </div>
           <form class="contact-form" onsubmit="return false;">
-            <div class="field"><input type="text" name="name" placeholder="Введите ваше имя" autocomplete="name" /></div>
-            <div class="field"><input type="email" name="email" placeholder="Введите ваш email" autocomplete="email" /></div>
-            <div class="field"><textarea name="message" placeholder="Ваше сообщение"></textarea></div>
-            <button type="submit" class="btn-primary btn-send" style="margin-top:8px;width:100%" aria-label="Отправить">
+            <div class="field"><input type="text" name="name" placeholder="{{ __('site.footer.name_ph') }}" autocomplete="name" /></div>
+            <div class="field"><input type="email" name="email" placeholder="{{ __('site.footer.email_ph') }}" autocomplete="email" /></div>
+            <div class="field"><textarea name="message" placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
+            <button type="submit" class="btn-primary btn-send" style="margin-top:8px;width:100%" aria-label="{{ __('site.footer.send_aria') }}">
               <span class="btn-label" aria-hidden="true">
-                <span class="btn-text btn-text-default">Отправить</span>
-                <span class="btn-text btn-text-hover">Отправляем</span>
+                <span class="btn-text btn-text-default">{{ __('site.footer.send') }}</span>
+                <span class="btn-text btn-text-hover">{{ __('site.footer.send_hover') }}</span>
               </span>
             </button>
           </form>
           <div class="contact-block">
-            <p class="muted">Каналы связи</p>
+            <p class="muted">{{ __('site.footer.channels') }}</p>
             <p class="phone">Telegram: <a href="https://t.me/falroman" target="_blank" rel="noopener noreferrer">@falroman</a></p>
             <p class="mail">Email: <a href="mailto:falkin95@mail.ru">falkin95@mail.ru</a></p>
-            <p class="muted" style="margin-top:10px">По согласованию провожу видео-встречи и созвоны по этапам проекта.</p>
+            <p class="muted" style="margin-top:10px">{{ __('site.footer.meetings') }}</p>
             <div class="socials" style="justify-content:center;margin-top:20px">
-              <a class="social" href="{{ $social->threads }}" @if($social->threads !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="Threads"><img src="{{ asset('assets/img/home/threads.svg') }}" alt="" width="24" height="24" /></a>
-              <a class="social" href="{{ $social->instagram }}" @if($social->instagram !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="Инстаграм"><img src="{{ asset('assets/img/home/social-ig.svg') }}" alt="" width="24" height="24" /></a>
-              <a class="social" href="{{ $social->linkedin }}" @if($social->linkedin !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="ЛинкедИн"><img src="{{ asset('assets/img/home/social-li.svg') }}" alt="" width="24" height="24" /></a>
+              <a class="social" href="{{ $social->threads }}" @if($social->threads !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_threads') }}"><img src="{{ asset('assets/img/home/threads.svg') }}" alt="" width="24" height="24" /></a>
+              <a class="social" href="{{ $social->instagram }}" @if($social->instagram !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_ig') }}"><img src="{{ asset('assets/img/home/social-ig.svg') }}" alt="" width="24" height="24" /></a>
+              <a class="social" href="{{ $social->linkedin }}" @if($social->linkedin !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_li') }}"><img src="{{ asset('assets/img/home/social-li.svg') }}" alt="" width="24" height="24" /></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">© 2024–2026 Фалькин Роман. Все права защищены.</div>
+      <div class="footer-bottom wrap">
+        <span class="footer-bottom__copy">{{ __('site.footer.copy') }}</span>
+      </div>
     </footer>
 
-    <!-- About modal -->
-    <div class="about-overlay" id="aboutOverlay" aria-modal="true" role="dialog" aria-label="О себе" hidden>
+    <div class="about-overlay" id="aboutOverlay" aria-modal="true" role="dialog" aria-label="{{ __('site.about.aria_dialog') }}" hidden>
       <div class="about-backdrop"></div>
       <div class="about-card">
-        <button class="about-close" id="aboutClose" aria-label="Закрыть">
+        <button class="about-close" id="aboutClose" aria-label="{{ __('site.about.close') }}">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
         <div class="about-card-header">
           <div class="about-avatar">
-            <img src="{{ asset('assets/img/main.png') }}" alt="Фалькин Роман" />
+            <img src="{{ asset('assets/img/main.png') }}" alt="{{ __('site.brand.name') }}" />
           </div>
           <div>
-            <p class="about-name">Фалькин Роман</p>
-            <p class="about-role">Web &amp; Mobile Developer</p>
+            <p class="about-name">{{ __('site.brand.name') }}</p>
+            <p class="about-role">{{ __('site.about.role') }}</p>
           </div>
         </div>
         <div class="about-body-panel">
           <div class="about-body">
-            <p class="about-greeting">👋 Привет, я Фалькин Роман.</p>
-            <p class="about-desc">Я разработчик, который создаёт функциональные и визуально сильные цифровые продукты. Специализируюсь на веб и мобильной разработке — от идеи до продакшена, с фокусом на UX и измеримый бизнес-результат.</p>
+            <p class="about-greeting">{{ __('site.about.hi') }}</p>
+            <p class="about-desc">{{ __('site.about.desc') }}</p>
             <div class="about-section">
-              <h4 class="about-section-title">Опыт работы</h4>
+              <h4 class="about-section-title">{{ __('site.about.exp_h') }}</h4>
               <ul class="about-list">
-                <li><span class="about-emoji" aria-hidden="true">🔷</span>Fullstack Web Developer (2019 — наст. время)</li>
-                <li><span class="about-emoji" aria-hidden="true">🔷</span>React Native разработчик (2021 — наст. время)</li>
-                <li><span class="about-emoji" aria-hidden="true">🔷</span>Frontend Developer, Next.js (2022 — наст. время)</li>
-                <li><span class="about-emoji" aria-hidden="true">🔷</span>MVP и прототипы для стартапов (2020 — наст. время)</li>
+                <li><span class="about-emoji" aria-hidden="true">🔷</span>{{ __('site.about.exp_1') }}</li>
+                <li><span class="about-emoji" aria-hidden="true">🔷</span>{{ __('site.about.exp_2') }}</li>
+                <li><span class="about-emoji" aria-hidden="true">🔷</span>{{ __('site.about.exp_3') }}</li>
+                <li><span class="about-emoji" aria-hidden="true">🔷</span>{{ __('site.about.exp_4') }}</li>
               </ul>
             </div>
             <div class="about-section">
-              <h4 class="about-section-title">Образование</h4>
+              <h4 class="about-section-title">{{ __('site.about.edu_h') }}</h4>
               <ul class="about-list">
-                <li><span class="about-emoji about-emoji--edu" aria-hidden="true">🎓</span>МГУ — магистр «Руководитель проектов»</li>
-                <li><span class="about-emoji about-emoji--edu" aria-hidden="true">🎓</span>Курсы: React, React Native, Node.js, Laravel, Docker, PostgreSQL</li>
+                <li><span class="about-emoji about-emoji--edu" aria-hidden="true">🎓</span>{{ __('site.about.edu_1') }}</li>
+                <li><span class="about-emoji about-emoji--edu" aria-hidden="true">🎓</span>{{ __('site.about.edu_2') }}</li>
               </ul>
             </div>
           </div>
@@ -303,19 +301,19 @@
       </div>
     </div>
 
-    <nav class="bottom-dock" aria-label="Быстрая навигация">
+    <nav class="bottom-dock" aria-label="{{ __('site.dock.nav_aria') }}">
       <div class="bottom-dock__links">
-        <a class="bottom-dock__link" href="#top" aria-label="Главная" data-tooltip="Главная"><img src="{{ asset('assets/icons/bottom-bar/home.svg') }}" alt="" /></a>
-        <a class="bottom-dock__link" href="#services" aria-label="Услуги" data-tooltip="Услуги"><img src="{{ asset('assets/icons/bottom-bar/services.svg') }}" alt="" /></a>
-        <a class="bottom-dock__link" href="#projects" aria-label="Проекты" data-tooltip="Проекты"><img src="{{ asset('assets/icons/bottom-bar/projects.svg') }}" alt="" /></a>
-        <a class="bottom-dock__link" href="#testimonials" aria-label="Отзывы" data-tooltip="Отзывы"><img src="{{ asset('assets/icons/bottom-bar/testimonials.svg') }}" alt="" /></a>
-        <a class="bottom-dock__link" href="#toolkit" aria-label="Технологии" data-tooltip="Технологии"><img src="{{ asset('assets/icons/bottom-bar/toolkit.svg') }}" alt="" /></a>
-        <a class="bottom-dock__link" href="#faq" aria-label="FAQ" data-tooltip="Вопросы"><img src="{{ asset('assets/icons/bottom-bar/faq.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#top" aria-label="{{ __('site.dock.home') }}" data-tooltip="{{ __('site.dock.home') }}"><img src="{{ asset('assets/icons/bottom-bar/home.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#services" aria-label="{{ __('site.dock.services') }}" data-tooltip="{{ __('site.dock.services') }}"><img src="{{ asset('assets/icons/bottom-bar/services.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#projects" aria-label="{{ __('site.dock.projects') }}" data-tooltip="{{ __('site.dock.projects') }}"><img src="{{ asset('assets/icons/bottom-bar/projects.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#testimonials" aria-label="{{ __('site.dock.testimonials') }}" data-tooltip="{{ __('site.dock.testimonials') }}"><img src="{{ asset('assets/icons/bottom-bar/testimonials.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#toolkit" aria-label="{{ __('site.dock.toolkit') }}" data-tooltip="{{ __('site.dock.toolkit') }}"><img src="{{ asset('assets/icons/bottom-bar/toolkit.svg') }}" alt="" /></a>
+        <a class="bottom-dock__link" href="#faq" aria-label="FAQ" data-tooltip="{{ __('site.dock.faq') }}"><img src="{{ asset('assets/icons/bottom-bar/faq.svg') }}" alt="" /></a>
       </div>
-      <a class="bottom-dock__cta" href="#pricing" aria-label="Смотреть стоимость" data-tooltip="Смотреть стоимость">
+      <a class="bottom-dock__cta" href="#pricing" aria-label="{{ __('site.dock.pricing_cta') }}" data-tooltip="{{ __('site.dock.pricing_cta') }}">
         <span class="bottom-dock__cta-label" aria-hidden="true">
-          <span class="bottom-dock__cta-text bottom-dock__cta-text-default">Смотреть стоимость</span>
-          <span class="bottom-dock__cta-text bottom-dock__cta-text-hover">К оценке</span>
+          <span class="bottom-dock__cta-text bottom-dock__cta-text-default">{{ __('site.dock.pricing_cta') }}</span>
+          <span class="bottom-dock__cta-text bottom-dock__cta-text-hover">{{ __('site.dock.pricing_hover') }}</span>
         </span>
       </a>
     </nav>

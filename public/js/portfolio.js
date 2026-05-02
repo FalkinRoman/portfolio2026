@@ -297,10 +297,30 @@
     tGo(ti + 1);
   });
 
-  /* Pricing toggle */
+  /* Pricing toggle (copy из PORTFOLIO_I18N — язык с сервера) */
   var pt = document.querySelector("[data-pricing-toggle]");
   var pricingRoot = document.getElementById("pricing");
-  if (pt && pricingRoot) {
+  var I = typeof window.PORTFOLIO_I18N !== "undefined" ? window.PORTFOLIO_I18N : null;
+  var P = I && I.pricing ? I.pricing : null;
+  function pricingPointsHtml(plan) {
+    if (!P || !plan || !plan.points || !plan.points.length) return "";
+    var icon =
+      I && I.assets && I.assets.check
+        ? I.assets.check
+        : "/assets/icons/pricing/check.svg";
+    return plan.points
+      .map(function (line) {
+        return (
+          '<div class="point"><img src="' +
+          icon +
+          '" alt="" />' +
+          line +
+          "</div>"
+        );
+      })
+      .join("");
+  }
+  if (pt && pricingRoot && P) {
     var title = pricingRoot.querySelector("[data-p-title]");
     var sub = pricingRoot.querySelector("[data-p-sub]");
     var hi = pricingRoot.querySelector("[data-p-highlight]");
@@ -310,24 +330,13 @@
       b.addEventListener("click", function () {
         var mobile = b.getAttribute("data-plan") === "mobile";
         pt.classList.toggle("enterprise", mobile);
-        if (title) title.textContent = mobile ? "Мобильная разработка" : "Веб-разработка";
-        if (sub)
-          sub.textContent = mobile
-            ? "Приложения iOS/Android: от MVP до продакшн-релиза и поддержки"
-            : "Лендинги, корпоративные сайты и веб-приложения под задачи бизнеса";
-        if (hi)
-          hi.textContent = mobile
-            ? "Цена зависит от числа платформ, количества экранов, роли backend/API, push-логики и публикации в сторах."
-            : "Цена формируется от объёма экранов, сложности логики, интеграций и требований к анимациям/админке.";
-        if (price)
-          price.innerHTML = mobile
-            ? "от 320 000 ₽<span>/ проект</span>"
-            : "от 180 000 ₽<span>/ проект</span>";
-        if (pPoints) {
-          pPoints.innerHTML = mobile
-            ? '<div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />MVP на React Native (iOS + Android)</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Приложение с личным кабинетом и API</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Публикация в App Store / Google Play — включена</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />В цену входят: архитектура, UI, сборка, базовые метрики/краши</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Отдельно оцениваются: чат/видеосвязь, офлайн-режим, сложные интеграции</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Срок: обычно 4–12 недель</div>'
-            : '<div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Маркетинговый лендинг</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Корпоративный сайт</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Личный кабинет / web app</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />В цену входят: адаптив, базовое SEO, формы, аналитика</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Отдельно оцениваются: сложные интеграции, админ-панель, мультиязык</div><div class="point"><img src="./assets/icons/pricing/check.svg" alt="" />Срок: обычно 2–8 недель в зависимости от объёма</div>';
-        }
+        var plan = mobile ? P.mobile : P.web;
+        if (!plan) return;
+        if (title) title.textContent = plan.title || "";
+        if (sub) sub.textContent = plan.sub || "";
+        if (hi) hi.textContent = plan.highlight || "";
+        if (price) price.innerHTML = plan.priceHtml || "";
+        if (pPoints) pPoints.innerHTML = pricingPointsHtml(plan);
       });
     });
   }
@@ -538,7 +547,11 @@
     brand.addEventListener("click", openAbout);
     brand.setAttribute("tabindex", "0");
     brand.setAttribute("role", "button");
-    brand.setAttribute("aria-label", "Открыть информацию обо мне");
+    var ariaAbout =
+      typeof window.PORTFOLIO_I18N !== "undefined" && window.PORTFOLIO_I18N.brandAriaAbout
+        ? window.PORTFOLIO_I18N.brandAriaAbout
+        : "Открыть информацию обо мне";
+    brand.setAttribute("aria-label", ariaAbout);
     brand.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openAbout(); }
     });
@@ -555,43 +568,41 @@
     });
   }
 
-  /* Header: язык — глобус + dropdown (логика локали позже) */
-  (function initLangDropdown() {
-    var root = document.querySelector("[data-lang-dropdown]");
-    if (!root) return;
-    var btn = root.querySelector(".lang-dropdown__trigger");
-    var menu = root.querySelector(".lang-dropdown__menu");
-    if (!btn || !menu) return;
-
-    function setOpen(open) {
+  /* Header / footer: глобус + dropdown (язык — ссылки GET /locale/...) */
+  (function initLangDropdowns() {
+    var roots = document.querySelectorAll("[data-lang-dropdown]");
+    if (!roots.length) return;
+    function setOpen(root, open) {
+      var btn = root.querySelector(".lang-dropdown__trigger");
+      var menu = root.querySelector(".lang-dropdown__menu");
+      if (!btn || !menu) return;
       root.classList.toggle("is-open", open);
       btn.setAttribute("aria-expanded", open ? "true" : "false");
       menu.setAttribute("aria-hidden", open ? "false" : "true");
     }
-
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      setOpen(!root.classList.contains("is-open"));
+    roots.forEach(function (root) {
+      var btn = root.querySelector(".lang-dropdown__trigger");
+      if (!btn) return;
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = !root.classList.contains("is-open");
+        roots.forEach(function (r) {
+          setOpen(r, r === root ? open : false);
+        });
+      });
     });
-
     document.addEventListener("click", function (e) {
-      if (!root.contains(e.target)) setOpen(false);
+      roots.forEach(function (root) {
+        if (!root.contains(e.target)) setOpen(root, false);
+      });
     });
-
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
-      if (!root.classList.contains("is-open")) return;
-      setOpen(false);
-      btn.focus();
-    });
-
-    menu.querySelectorAll(".lang-dropdown__item").forEach(function (item) {
-      item.addEventListener("click", function () {
-        menu.querySelectorAll(".lang-dropdown__item").forEach(function (el) {
-          el.classList.remove("is-active");
-        });
-        item.classList.add("is-active");
-        setOpen(false);
+      roots.forEach(function (root) {
+        if (!root.classList.contains("is-open")) return;
+        setOpen(root, false);
+        var b = root.querySelector(".lang-dropdown__trigger");
+        if (b) b.focus();
       });
     });
   })();

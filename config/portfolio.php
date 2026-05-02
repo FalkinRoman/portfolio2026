@@ -10,4 +10,12 @@ return [
         /** Путь относительно public/ для og:image по умолчанию */
         'default_og_image' => 'assets/img/main.png',
     ],
+
+    /**
+     * EN: фиксированные «from $…» (RU — строки в lang/ru).
+     */
+    'pricing' => [
+        'web_usd_from' => (int) env('PRICING_WEB_USD_FROM', 2_000),
+        'mobile_usd_from' => (int) env('PRICING_MOBILE_USD_FROM', 4_000),
+    ],
 ];
