@@ -31,6 +31,19 @@
             <span>2 свободных слота</span>
           </div>
           <span class="header-divider" aria-hidden="true"></span>
+          <div class="lang-dropdown" data-lang-dropdown>
+            <button type="button" class="lang-dropdown__trigger" id="langDropdownBtn" aria-expanded="false" aria-haspopup="menu" aria-controls="langDropdownMenu" title="Язык">
+              <span class="visually-hidden">Выбор языка</span>
+              <svg class="lang-dropdown__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </button>
+            <div class="lang-dropdown__menu" id="langDropdownMenu" role="menu" aria-labelledby="langDropdownBtn" aria-hidden="true">
+              <button type="button" class="lang-dropdown__item is-active" role="menuitem" data-lang="ru" lang="ru">Русский</button>
+              <button type="button" class="lang-dropdown__item" role="menuitem" data-lang="en" lang="en">English</button>
+            </div>
+          </div>
           <div class="socials">
             <a class="social" href="{{ $social->threads }}" @if($social->threads !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="Threads"><img src="{{ asset('assets/img/home/threads.svg') }}" alt="" width="24" height="24" /></a>
             <a class="social" href="{{ $social->instagram }}" @if($social->instagram !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="Инстаграм"><img src="{{ asset('assets/img/home/social-ig.svg') }}" alt="" width="24" height="24" /></a>

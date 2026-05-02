@@ -555,4 +555,45 @@
     });
   }
 
+  /* Header: язык — глобус + dropdown (логика локали позже) */
+  (function initLangDropdown() {
+    var root = document.querySelector("[data-lang-dropdown]");
+    if (!root) return;
+    var btn = root.querySelector(".lang-dropdown__trigger");
+    var menu = root.querySelector(".lang-dropdown__menu");
+    if (!btn || !menu) return;
+
+    function setOpen(open) {
+      root.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(!root.classList.contains("is-open"));
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!root.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      if (!root.classList.contains("is-open")) return;
+      setOpen(false);
+      btn.focus();
+    });
+
+    menu.querySelectorAll(".lang-dropdown__item").forEach(function (item) {
+      item.addEventListener("click", function () {
+        menu.querySelectorAll(".lang-dropdown__item").forEach(function (el) {
+          el.classList.remove("is-active");
+        });
+        item.classList.add("is-active");
+        setOpen(false);
+      });
+    });
+  })();
+
 })();
