@@ -15,7 +15,7 @@ return [
      * EN: фиксированные «from $…» (RU — строки в lang/ru).
      */
     'pricing' => [
-        'web_usd_from' => (int) env('PRICING_WEB_USD_FROM', 2_000),
-        'mobile_usd_from' => (int) env('PRICING_MOBILE_USD_FROM', 4_000),
+        'web_usd_from' => (int) env('PRICING_WEB_USD_FROM', 1_900),
+        'mobile_usd_from' => (int) env('PRICING_MOBILE_USD_FROM', 3_900),
     ],
 ];

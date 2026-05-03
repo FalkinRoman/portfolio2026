@@ -1,5 +1,6 @@
 @php
   $H = asset('assets/img/home');
+  $carouselBase = app()->isLocale('ru') ? asset('assets/img/home/carousel-ru') : $H;
 @endphp
     <canvas class="mouse-trace-canvas" aria-hidden="true"></canvas>
     <div class="hero-bg" aria-hidden="true">
@@ -82,18 +83,18 @@
           </span>
         </button>
 
-        <div class="carousel-strip">
+        <div class="carousel-strip{{ app()->isLocale('ru') ? ' carousel-strip--ratio-5-4' : '' }}">
           <div class="carousel-track" data-carousel>
-            <div class="carousel-card"><img src="{{ $H }}/carousel-1.png" alt="Tamber" /></div>
-            <div class="carousel-card"><img src="{{ $H }}/carousel-2.png" alt="Mobile UI" /></div>
-            <div class="carousel-card"><img src="{{ $H }}/carousel-3.png" alt="LensRef" /></div>
-            <div class="carousel-card"><img src="{{ $H }}/carousel-4.png" alt="Realione" /></div>
-            <div class="carousel-card"><img src="{{ $H }}/carousel-5.png" alt="Solomaze" /></div>
-            <div class="carousel-card" aria-hidden="true"><img src="{{ $H }}/carousel-1.png" alt="" /></div>
-            <div class="carousel-card" aria-hidden="true"><img src="{{ $H }}/carousel-2.png" alt="" /></div>
-            <div class="carousel-card" aria-hidden="true"><img src="{{ $H }}/carousel-3.png" alt="" /></div>
-            <div class="carousel-card" aria-hidden="true"><img src="{{ $H }}/carousel-4.png" alt="" /></div>
-            <div class="carousel-card" aria-hidden="true"><img src="{{ $H }}/carousel-5.png" alt="" /></div>
+            <div class="carousel-card"><img src="{{ $carouselBase }}/carousel-1.png" alt="Tamber" /></div>
+            <div class="carousel-card"><img src="{{ $carouselBase }}/carousel-2.png" alt="Mobile UI" /></div>
+            <div class="carousel-card"><img src="{{ $carouselBase }}/carousel-3.png" alt="LensRef" /></div>
+            <div class="carousel-card"><img src="{{ $carouselBase }}/carousel-4.png" alt="Realione" /></div>
+            <div class="carousel-card"><img src="{{ $carouselBase }}/carousel-5.png" alt="Solomaze" /></div>
+            <div class="carousel-card" aria-hidden="true"><img src="{{ $carouselBase }}/carousel-1.png" alt="" /></div>
+            <div class="carousel-card" aria-hidden="true"><img src="{{ $carouselBase }}/carousel-2.png" alt="" /></div>
+            <div class="carousel-card" aria-hidden="true"><img src="{{ $carouselBase }}/carousel-3.png" alt="" /></div>
+            <div class="carousel-card" aria-hidden="true"><img src="{{ $carouselBase }}/carousel-4.png" alt="" /></div>
+            <div class="carousel-card" aria-hidden="true"><img src="{{ $carouselBase }}/carousel-5.png" alt="" /></div>
           </div>
         </div>
       </section>

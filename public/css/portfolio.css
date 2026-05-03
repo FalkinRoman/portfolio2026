@@ -239,7 +239,7 @@ a {
 
 .brand:hover .avatar,
 .brand:focus-visible .avatar {
-  transform: rotate(-3deg) scale(1.04);
+  transform: rotate(-7deg) scale(1.1);
 }
 
 .brand-text h1 {
@@ -1321,6 +1321,11 @@ body.intro-done .hero-intro .hero-sub-line::after {
   background: var(--bg-muted);
 }
 
+/* RU: превью 5×4 — те же clamp по высоте, ширина от aspect-ratio */
+.carousel-strip--ratio-5-4 .carousel-card {
+  aspect-ratio: 5 / 4;
+}
+
 .carousel-card img {
   width: 100%;
   height: 100%;
@@ -1756,9 +1761,15 @@ body.intro-done .hero-intro .hero-sub-line::after {
 
 .t-nav {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
   gap: 12px;
   margin-top: 16px;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .t-nav button {

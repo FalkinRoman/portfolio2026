@@ -15,8 +15,8 @@ class PricingDisplay
         }
 
         $usd = (int) match ($plan) {
-            'mobile' => config('portfolio.pricing.mobile_usd_from', 4_000),
-            default => config('portfolio.pricing.web_usd_from', 2_000),
+            'mobile' => config('portfolio.pricing.mobile_usd_from', 3_900),
+            default => config('portfolio.pricing.web_usd_from', 1_900),
         };
         $usd = max(1, $usd);
         $withCurrency = '$'.number_format($usd, 0, '.', ',');
