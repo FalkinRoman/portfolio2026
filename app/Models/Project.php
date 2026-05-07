@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
 {
@@ -65,7 +64,8 @@ class Project extends Model
         return $q->where('is_published', true);
     }
 
-    public function publicUrl(string $path): ?string
+    /** Путь относительно текущего origin (не APP_URL), иначе при 127.0.0.1:8000 и APP_URL=http://localhost картинки 404. */
+    public function publicUrl(?string $path): ?string
     {
         if ($path === null || $path === '') {
             return null;
@@ -74,7 +74,9 @@ class Project extends Model
             return $path;
         }
 
-        return Storage::disk('public')->url($path);
+        $path = ltrim(str_replace('\\', '/', $path), '/');
+
+        return '/storage/'.$path;
     }
 
     public function getRouteKeyName(): string

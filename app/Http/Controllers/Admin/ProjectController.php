@@ -28,8 +28,8 @@ class ProjectController extends Controller
     {
         $data = $this->validated($request);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
-        $data['features'] = $this->parseFeatures($request->input('features_text', ''));
-        $data['features_en'] = $this->parseFeatures($request->input('features_text_en', ''));
+        $data['features'] = $this->parseFeatures($request->input('features_text'));
+        $data['features_en'] = $this->parseFeatures($request->input('features_text_en'));
         $data['is_published'] = $request->boolean('is_published');
         $data['sort_order'] = (int) $request->input('sort_order', 0);
 
@@ -50,8 +50,8 @@ class ProjectController extends Controller
     {
         $data = $this->validated($request, $project->id);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
-        $data['features'] = $this->parseFeatures($request->input('features_text', ''));
-        $data['features_en'] = $this->parseFeatures($request->input('features_text_en', ''));
+        $data['features'] = $this->parseFeatures($request->input('features_text'));
+        $data['features_en'] = $this->parseFeatures($request->input('features_text_en'));
         $data['is_published'] = $request->boolean('is_published');
         $data['sort_order'] = (int) $request->input('sort_order', 0);
 
@@ -103,11 +103,18 @@ class ProjectController extends Controller
             'accent_line_en' => 'nullable|string|max:2000',
             'seo_title_en' => 'nullable|string|max:255',
             'seo_description_en' => 'nullable|string|max:2000',
+            'gallery_images' => 'nullable|array',
+            'gallery_images.*' => 'nullable|image|max:10240',
+            'gallery_existing_order' => 'nullable|array',
+            'gallery_existing_order.*' => 'nullable|string|max:2048',
+            'gallery_remove' => 'nullable|array',
+            'gallery_remove.*' => 'nullable|string|max:2048',
         ]);
     }
 
-    private function parseFeatures(string $text): array
+    private function parseFeatures(?string $text): array
     {
+        $text = $text ?? '';
         $lines = preg_split("/\r\n|\n|\r/", $text) ?: [];
 
         return array_values(array_filter(array_map('trim', $lines), fn ($l) => $l !== ''));
@@ -128,22 +135,46 @@ class ProjectController extends Controller
             }
         }
 
-        if ($request->hasFile('gallery_images')) {
-            $old = $project->gallery_images ?? [];
-            foreach ($old as $p) {
+        $existing = array_values(array_filter($project->gallery_images ?? []));
+        $remove = array_values(array_filter((array) $request->input('gallery_remove', [])));
+
+        if ($remove !== []) {
+            foreach ($remove as $p) {
                 if ($p && ! str_starts_with($p, 'http')) {
                     Storage::disk($disk)->delete($p);
                 }
             }
-            $paths = [];
-            foreach ($request->file('gallery_images', []) as $file) {
-                if ($file && $file->isValid()) {
-                    $paths[] = $file->store($base.'/gallery', $disk);
+            $existing = array_values(array_filter($existing, fn ($p) => ! in_array($p, $remove, true)));
+        }
+
+        $requestedOrder = array_values(array_filter((array) $request->input('gallery_existing_order', [])));
+        if ($requestedOrder !== []) {
+            $present = array_flip($existing);
+            $ordered = [];
+            foreach ($requestedOrder as $p) {
+                if (isset($present[$p])) {
+                    $ordered[] = $p;
+                    unset($present[$p]);
                 }
             }
-            if ($paths !== []) {
-                $project->gallery_images = $paths;
+            foreach ($existing as $p) {
+                if (isset($present[$p])) {
+                    $ordered[] = $p;
+                }
             }
+            $existing = $ordered;
+        }
+
+        $newPaths = [];
+        foreach ($request->file('gallery_images', []) as $file) {
+            if ($file && $file->isValid()) {
+                $newPaths[] = $file->store($base.'/gallery', $disk);
+            }
+        }
+
+        $gallery = array_values(array_filter(array_merge($existing, $newPaths)));
+        if ($gallery !== [] || $remove !== [] || $newPaths !== [] || $requestedOrder !== []) {
+            $project->gallery_images = $gallery !== [] ? $gallery : null;
         }
     }
 

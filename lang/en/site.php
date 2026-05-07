@@ -47,6 +47,23 @@ return [
         'chip' => 'Projects',
         'h2' => "Shipped to prod,\nbuilt to scale",
         'lead' => 'From landing pages to full products: code, speed, and support',
+        'view_all' => 'All projects',
+        'view_all_hover' => 'Open catalog',
+    ],
+
+    'projects_catalog' => [
+        'chip' => 'Catalog',
+        'h2' => "All projects\nin one place",
+        'lead' => 'Search, filters, and quick access to the right case',
+        'search_ph' => 'Search by title or description',
+        'filters_aria' => 'Project filters',
+        'filter_all' => 'All',
+        'filter_platform' => 'Platforms',
+        'filter_education' => 'Education',
+        'filter_bot' => 'Bots',
+        'empty' => 'No projects match your query.',
+        'seo_title' => 'Projects — Roman Falkin',
+        'seo_description' => 'Project catalog: web and mobile products, Telegram bots, platforms, and implementation case studies.',
     ],
 
     'testimonials' => [

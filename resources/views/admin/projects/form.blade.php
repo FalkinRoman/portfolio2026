@@ -132,23 +132,52 @@
     <div class="admin-field">
       <label for="card_image">Превью в блоке «Проекты»</label>
       <input id="card_image" type="file" name="card_image" accept="image/*" />
-      @if($project->card_image)<p style="font-size:0.8rem;opacity:.6;margin:0.25rem 0 0">Текущий файл: {{ $project->card_image }}</p>@endif
+      @if($project->publicUrl($project->card_image))
+        <div class="admin-upload-preview">
+          <img src="{{ $project->publicUrl($project->card_image) }}" alt="" width="88" height="88" loading="lazy" decoding="async" />
+        </div>
+        <p class="admin-field__hint">Текущий файл: {{ $project->card_image }}</p>
+      @endif
     </div>
     <div class="admin-field">
       <label for="logo_image">Логотип в шапке кейса</label>
       <input id="logo_image" type="file" name="logo_image" accept="image/*,.svg" />
-      @if($project->logo_image)<p style="font-size:0.8rem;opacity:.6;margin:0.25rem 0 0">Текущий: {{ $project->logo_image }}</p>@endif
+      <p class="admin-field__hint">После выбора откроется круговой кроппер: перетаскивай и масштабируй область логотипа.</p>
+      @if($project->publicUrl($project->logo_image))
+        <div class="admin-upload-preview">
+          <img id="logoPreviewImage" src="{{ $project->publicUrl($project->logo_image) }}" alt="" width="88" height="88" loading="lazy" decoding="async" />
+        </div>
+        <p class="admin-field__hint">Текущий файл: {{ $project->logo_image }}</p>
+      @endif
     </div>
     <div class="admin-field">
       <label for="banner_image">Баннер под заголовком</label>
       <input id="banner_image" type="file" name="banner_image" accept="image/*" />
-      @if($project->banner_image)<p style="font-size:0.8rem;opacity:.6;margin:0.25rem 0 0">Текущий: {{ $project->banner_image }}</p>@endif
+      @if($project->publicUrl($project->banner_image))
+        <div class="admin-upload-preview">
+          <img src="{{ $project->publicUrl($project->banner_image) }}" alt="" width="88" height="88" loading="lazy" decoding="async" />
+        </div>
+        <p class="admin-field__hint">Текущий файл: {{ $project->banner_image }}</p>
+      @endif
     </div>
     <div class="admin-field">
       <label for="gallery_images">Галерея (несколько файлов)</label>
       <input id="gallery_images" type="file" name="gallery_images[]" accept="image/*" multiple />
       @if($project->gallery_images && count($project->gallery_images))
-        <p style="font-size:0.8rem;opacity:.6;margin:0.5rem 0 0">При загрузке новых файлы галереи заменяются целиком.</p>
+        <div class="admin-gallery-sort" data-gallery-sort>
+          @foreach($project->gallery_images as $gPath)
+            @if($project->publicUrl($gPath))
+              <div class="admin-gallery-item" draggable="true" data-gallery-item>
+                <input type="hidden" name="gallery_existing_order[]" value="{{ $gPath }}" data-gallery-order />
+                <input type="hidden" name="gallery_remove[]" value="{{ $gPath }}" disabled data-gallery-remove />
+                <img src="{{ $project->publicUrl($gPath) }}" alt="" loading="lazy" decoding="async" />
+                <button class="admin-gallery-item__remove" type="button" data-gallery-remove-toggle aria-label="Убрать фото">✕</button>
+                <span class="admin-gallery-item__drag" aria-hidden="true">↕</span>
+              </div>
+            @endif
+          @endforeach
+        </div>
+        <p class="admin-field__hint">Перетаскивай карточки, чтобы менять очередь показа. Кнопка ✕ помечает фото на удаление. Новые фото добавляются в конец.</p>
       @endif
     </div>
 
@@ -166,4 +195,275 @@
   </form>
   @endif
 </div>
+
+<div class="admin-modal" id="logoCropModal" aria-hidden="true">
+  <div class="admin-modal__card" role="dialog" aria-modal="true" aria-labelledby="logoCropTitle">
+    <h3 class="admin-modal__title" id="logoCropTitle">Обрезка логотипа</h3>
+    <p class="admin-modal__sub">Выбери область внутри круга. На сайте логотип будет показан в круглой маске.</p>
+    <div class="admin-cropper">
+      <canvas id="logoCropCanvas" width="420" height="420"></canvas>
+    </div>
+    <div class="admin-cropper__controls">
+      <label for="logoCropZoom">Масштаб</label>
+      <input id="logoCropZoom" type="range" min="100" max="300" step="1" value="100" />
+    </div>
+    <div class="admin-modal__actions">
+      <button type="button" class="btn-admin btn-admin--ghost" id="logoCropCancel">Отмена</button>
+      <button type="button" class="btn-admin" id="logoCropApply">Применить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var input = document.getElementById('logo_image');
+    var modal = document.getElementById('logoCropModal');
+    var canvas = document.getElementById('logoCropCanvas');
+    var zoom = document.getElementById('logoCropZoom');
+    var applyBtn = document.getElementById('logoCropApply');
+    var cancelBtn = document.getElementById('logoCropCancel');
+    if (!input || !modal || !canvas || !zoom || !applyBtn || !cancelBtn || !window.FileReader) return;
+
+    var ctx = canvas.getContext('2d');
+    var preview = document.getElementById('logoPreviewImage');
+    var img = null;
+    var objectUrl = null;
+    var cropR = 146;
+    var cropCx = canvas.width / 2;
+    var cropCy = canvas.height / 2;
+    var baseScale = 1;
+    var scale = 1;
+    var offsetX = 0;
+    var offsetY = 0;
+    var drag = { active: false, x: 0, y: 0 };
+    var lastFileName = 'logo.png';
+
+    function openModal() {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      canvas.classList.remove('is-dragging');
+    }
+
+    function clamp(v, min, max) {
+      return Math.min(max, Math.max(min, v));
+    }
+
+    function normalizeOffset() {
+      if (!img) return;
+      var drawW = img.width * scale;
+      var drawH = img.height * scale;
+      var minX = cropCx + cropR - drawW;
+      var maxX = cropCx - cropR;
+      var minY = cropCy + cropR - drawH;
+      var maxY = cropCy - cropR;
+      if (drawW < cropR * 2) {
+        offsetX = cropCx - drawW / 2;
+      } else {
+        offsetX = clamp(offsetX, minX, maxX);
+      }
+      if (drawH < cropR * 2) {
+        offsetY = cropCy - drawH / 2;
+      } else {
+        offsetY = clamp(offsetY, minY, maxY);
+      }
+    }
+
+    function render() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#080b11';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (img) {
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.scale(scale, scale);
+        ctx.drawImage(img, 0, 0);
+        ctx.restore();
+      }
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.56)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(cropCx, cropCy, cropR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.94)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cropCx, cropCy, cropR, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    function initFromImage() {
+      if (!img) return;
+      baseScale = Math.max((cropR * 2) / img.width, (cropR * 2) / img.height);
+      scale = baseScale;
+      zoom.value = 100;
+      offsetX = cropCx - (img.width * scale) / 2;
+      offsetY = cropCy - (img.height * scale) / 2;
+      normalizeOffset();
+      render();
+    }
+
+    function applyCrop() {
+      if (!img) return;
+      var outSize = 512;
+      var out = document.createElement('canvas');
+      out.width = outSize;
+      out.height = outSize;
+      var outCtx = out.getContext('2d');
+      var srcSize = (cropR * 2) / scale;
+      var srcX = (cropCx - cropR - offsetX) / scale;
+      var srcY = (cropCy - cropR - offsetY) / scale;
+      outCtx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, outSize, outSize);
+
+      out.toBlob(function (blob) {
+        if (!blob) return;
+        var dt = new DataTransfer();
+        var safe = (lastFileName || 'logo').replace(/\.[a-z0-9]+$/i, '');
+        var file = new File([blob], safe + '-crop.png', { type: 'image/png' });
+        dt.items.add(file);
+        input.files = dt.files;
+        if (preview) {
+          preview.src = URL.createObjectURL(blob);
+        }
+        closeModal();
+      }, 'image/png', 0.96);
+    }
+
+    input.addEventListener('change', function () {
+      var file = input.files && input.files[0] ? input.files[0] : null;
+      if (!file) return;
+      if (!/^image\//.test(file.type)) return;
+      lastFileName = file.name || 'logo.png';
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = URL.createObjectURL(file);
+      img = new Image();
+      img.onload = function () {
+        initFromImage();
+        openModal();
+      };
+      img.src = objectUrl;
+    });
+
+    zoom.addEventListener('input', function () {
+      if (!img) return;
+      var prevScale = scale;
+      scale = baseScale * (Number(zoom.value) / 100);
+      var centerX = cropCx;
+      var centerY = cropCy;
+      offsetX = centerX - ((centerX - offsetX) / prevScale) * scale;
+      offsetY = centerY - ((centerY - offsetY) / prevScale) * scale;
+      normalizeOffset();
+      render();
+    });
+
+    canvas.addEventListener('pointerdown', function (e) {
+      if (!img) return;
+      drag.active = true;
+      drag.x = e.clientX;
+      drag.y = e.clientY;
+      canvas.classList.add('is-dragging');
+      canvas.setPointerCapture(e.pointerId);
+    });
+
+    canvas.addEventListener('pointermove', function (e) {
+      if (!drag.active || !img) return;
+      var dx = e.clientX - drag.x;
+      var dy = e.clientY - drag.y;
+      drag.x = e.clientX;
+      drag.y = e.clientY;
+      offsetX += dx;
+      offsetY += dy;
+      normalizeOffset();
+      render();
+    });
+
+    function endDrag(e) {
+      drag.active = false;
+      canvas.classList.remove('is-dragging');
+      if (e && e.pointerId !== undefined && canvas.hasPointerCapture(e.pointerId)) {
+        canvas.releasePointerCapture(e.pointerId);
+      }
+    }
+
+    canvas.addEventListener('pointerup', endDrag);
+    canvas.addEventListener('pointercancel', endDrag);
+    canvas.addEventListener('wheel', function (e) {
+      if (!img) return;
+      e.preventDefault();
+      var z = Number(zoom.value) + (e.deltaY < 0 ? 4 : -4);
+      zoom.value = String(clamp(z, 100, 300));
+      zoom.dispatchEvent(new Event('input'));
+    }, { passive: false });
+
+    applyBtn.addEventListener('click', applyCrop);
+    cancelBtn.addEventListener('click', function () {
+      input.value = '';
+      closeModal();
+    });
+  })();
+
+  (function () {
+    var gallery = document.querySelector('[data-gallery-sort]');
+    if (!gallery) return;
+
+    var dragItem = null;
+
+    function updateOrderInputs() {
+      gallery.querySelectorAll('[data-gallery-item]').forEach(function (item) {
+        var orderInput = item.querySelector('[data-gallery-order]');
+        if (!orderInput) return;
+        orderInput.disabled = item.classList.contains('is-removed');
+      });
+    }
+
+    gallery.querySelectorAll('[data-gallery-remove-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('[data-gallery-item]');
+        if (!item) return;
+        var removeInput = item.querySelector('[data-gallery-remove]');
+        var removed = !item.classList.contains('is-removed');
+        item.classList.toggle('is-removed', removed);
+        if (removeInput) removeInput.disabled = !removed;
+        btn.textContent = removed ? '↺' : '✕';
+        btn.setAttribute('aria-label', removed ? 'Вернуть фото' : 'Убрать фото');
+        updateOrderInputs();
+      });
+    });
+
+    gallery.querySelectorAll('[data-gallery-item]').forEach(function (item) {
+      item.addEventListener('dragstart', function () {
+        if (item.classList.contains('is-removed')) return;
+        dragItem = item;
+        item.classList.add('is-dragging');
+      });
+
+      item.addEventListener('dragend', function () {
+        item.classList.remove('is-dragging');
+        dragItem = null;
+      });
+
+      item.addEventListener('dragover', function (e) {
+        if (!dragItem || dragItem === item || item.classList.contains('is-removed')) return;
+        e.preventDefault();
+        var rect = item.getBoundingClientRect();
+        var before = e.clientX < rect.left + rect.width / 2;
+        if (before) {
+          gallery.insertBefore(dragItem, item);
+        } else {
+          gallery.insertBefore(dragItem, item.nextSibling);
+        }
+      });
+    });
+  })();
+</script>
 @endsection

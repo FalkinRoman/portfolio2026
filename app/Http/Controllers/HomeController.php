@@ -12,6 +12,7 @@ class HomeController extends Controller
         $projects = Project::published()
             ->orderBy('sort_order')
             ->orderBy('id')
+            ->limit(4)
             ->get();
 
         return view('home', compact('projects'));

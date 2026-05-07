@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class SiteContent extends Model
 {
@@ -55,6 +54,8 @@ class SiteContent extends Model
             return $path;
         }
 
-        return Storage::disk('public')->url($path);
+        $path = ltrim(str_replace('\\', '/', $path), '/');
+
+        return '/storage/'.$path;
     }
 }

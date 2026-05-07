@@ -18,6 +18,7 @@ Route::get('/locale/{locale}', [LocaleController::class, 'switch'])->name('local
 Route::redirect('/favicon.ico', '/assets/img/favicon-round.png');
 
 Route::get('/', HomeController::class)->name('home');
+Route::redirect('/projects', '/#projects', 301)->name('projects.index');
 Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

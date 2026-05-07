@@ -8,6 +8,20 @@ use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
+    public function index(): View
+    {
+        $projects = Project::published()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        $seoTitle = __('site.projects_catalog.seo_title');
+        $seoDescription = __('site.projects_catalog.seo_description');
+        $seoOgImage = asset(config('portfolio.seo.default_og_image'));
+
+        return view('projects', compact('projects', 'seoTitle', 'seoDescription', 'seoOgImage'));
+    }
+
     public function show(Project $project): View
     {
         if (! $project->is_published) {

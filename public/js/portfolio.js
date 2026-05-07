@@ -116,6 +116,10 @@
         case "projects":
           addSel(".project-card");
           break;
+        case "projects-catalog":
+          addSel(".catalog-card");
+          addSel(".projects-toolbar");
+          break;
         case "testimonials":
           addSel(".clients-row");
           addSel(".testimonial-shell");
@@ -349,6 +353,102 @@
       if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
+
+  /* Projects catalog filters */
+  (function initProjectsCatalogFilters() {
+    var root = document.querySelector("[data-projects-catalog]");
+    var list = document.querySelector("[data-project-list]");
+    if (!root || !list) return;
+
+    var search = root.querySelector("[data-project-search]");
+    var kindFilters = root.querySelectorAll("[data-project-filter]");
+    var statusFilters = root.querySelectorAll("[data-project-status]");
+    var kindSelect = root.querySelector("[data-project-filter-select]");
+    var statusSelect = root.querySelector("[data-project-status-select]");
+    var empty = document.querySelector("[data-project-empty]");
+    var cards = Array.prototype.slice.call(list.querySelectorAll("[data-project-kind]"));
+    var activeKind = "all";
+    var activeStatus = "all";
+
+    function apply() {
+      var q = search ? search.value.trim().toLowerCase() : "";
+      var visible = 0;
+      cards.forEach(function (card) {
+        var kind = card.getAttribute("data-project-kind") || "";
+        var status = card.getAttribute("data-project-status") || "";
+        var text = (card.getAttribute("data-project-text") || "").toLowerCase();
+        var byType = activeKind === "all" || kind === activeKind;
+        var byStatus = activeStatus === "all" || status === activeStatus;
+        var byText = q === "" || text.indexOf(q) !== -1;
+        var show = byType && byStatus && byText;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    }
+
+    kindFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeKind = btn.getAttribute("data-project-filter") || "all";
+        kindFilters.forEach(function (b) {
+          b.classList.toggle("is-active", b === btn);
+        });
+        if (kindSelect) kindSelect.value = activeKind;
+        apply();
+      });
+    });
+
+    statusFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeStatus = btn.getAttribute("data-project-status") || "all";
+        statusFilters.forEach(function (b) {
+          b.classList.toggle("is-active", b === btn);
+        });
+        if (statusSelect) statusSelect.value = activeStatus;
+        apply();
+      });
+    });
+
+    if (kindSelect) {
+      kindSelect.addEventListener("change", function () {
+        activeKind = kindSelect.value || "all";
+        apply();
+      });
+    }
+
+    if (statusSelect) {
+      statusSelect.addEventListener("change", function () {
+        activeStatus = statusSelect.value || "all";
+        apply();
+      });
+    }
+
+    if (search) {
+      var searchWrap = search.closest(".projects-toolbar__search-wrap--animated");
+      search.addEventListener("input", apply);
+      search.addEventListener("focus", function () {
+        if (searchWrap) searchWrap.classList.add("is-search-focused");
+      });
+      search.addEventListener("blur", function () {
+        if (searchWrap) searchWrap.classList.remove("is-search-focused");
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (!search) return;
+      if (e.key !== "/") return;
+      var tag = (e.target && e.target.tagName ? e.target.tagName : "").toLowerCase();
+      var editing = tag === "input" || tag === "textarea" || (e.target && e.target.isContentEditable);
+      if (editing) return;
+      e.preventDefault();
+      search.focus();
+      search.select();
+    });
+
+    if (kindSelect) kindSelect.value = activeKind;
+    if (statusSelect) statusSelect.value = activeStatus;
+    apply();
+  })();
 
   /* Subtle parallax on hero bg */
   if (!reduceMotion) {
