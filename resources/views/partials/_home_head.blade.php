@@ -18,7 +18,8 @@
             <p class="brand-subline">
               <span class="brand-sub-wrap" aria-hidden="true">
                 <span class="brand-sub-default">{{ __('site.brand.role_default') }}</span>
-                <span class="brand-sub-hover">{{ __('site.brand.role_hover') }}</span>
+                <span class="brand-sub-hover brand-sub-hover--desktop">{{ __('site.brand.role_hover') }}</span>
+                <span class="brand-sub-hover brand-sub-hover--mobile">{{ __('site.brand.role_hover_mobile') }}</span>
               </span>
             </p>
           </div>

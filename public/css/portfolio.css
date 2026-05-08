@@ -285,6 +285,10 @@ a {
   transform: translateY(125%);
 }
 
+.brand-sub-hover--mobile {
+  display: none;
+}
+
 .brand:hover .brand-sub-default,
 .brand:focus-visible .brand-sub-default {
   transform: translateY(-125%);
@@ -293,6 +297,16 @@ a {
 .brand:hover .brand-sub-hover,
 .brand:focus-visible .brand-sub-hover {
   transform: translateY(0);
+}
+
+@media (max-width: 719px) {
+  .brand-sub-hover--desktop {
+    display: none;
+  }
+
+  .brand-sub-hover--mobile {
+    display: block;
+  }
 }
 
 .header-aside {
@@ -2954,6 +2968,16 @@ body.intro-done .hero-intro .hero-sub-line::after {
 }
 
 @media (max-width: 540px) {
+  .pricing-toggle {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .pricing-toggle button {
+    font-size: 13px;
+    padding: 11px 8px;
+  }
+
   .pricing-foot {
     justify-content: center;
     flex-direction: column;
@@ -3107,6 +3131,17 @@ body.intro-done .hero-intro .hero-sub-line::after {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+}
+
+.news-form .btn-primary {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 600px) {
+  .news-form .btn-primary {
+    width: 100%;
+  }
 }
 
 .news-form input {
@@ -3391,6 +3426,12 @@ body.intro-done .hero-intro .hero-sub-line::after {
 .footer-bottom__copy {
   display: block;
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  .footer-bottom__copy-tail {
+    display: block;
+  }
 }
 
 /* ===================== About Modal ===================== */

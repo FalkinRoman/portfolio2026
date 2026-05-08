@@ -7,6 +7,7 @@ return [
         'name' => 'Roman Falkin',
         'role_default' => 'Web & Mobile Developer',
         'role_hover' => 'Tap for about me',
+        'role_hover_mobile' => 'Tap for info',
         'aria_open' => 'Open about me',
     ],
 

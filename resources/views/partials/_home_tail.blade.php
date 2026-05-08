@@ -253,7 +253,12 @@
         </div>
       </div>
       <div class="footer-bottom wrap">
-        <span class="footer-bottom__copy">{{ __('site.footer.copy') }}</span>
+        @php($copyParts = explode('. ', __('site.footer.copy'), 2))
+        <span class="footer-bottom__copy">
+          {{ $copyParts[0] }}@if(isset($copyParts[1])).
+          <span class="footer-bottom__copy-tail"> {{ $copyParts[1] }}</span>
+          @endif
+        </span>
       </div>
     </footer>
 
