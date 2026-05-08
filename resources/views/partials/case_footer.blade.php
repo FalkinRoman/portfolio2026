@@ -13,7 +13,8 @@
             <div class="field"><input type="tel" name="phone" placeholder="{{ __('site.footer.phone_ph') }}" autocomplete="tel" /></div>
             <div class="field"><input type="text" name="telegram" placeholder="{{ __('site.footer.telegram_ph') }}" autocomplete="username" inputmode="text" /></div>
             <div class="field"><textarea name="message" required placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
-            <button type="submit" class="btn-primary btn-send" style="margin-top:8px;width:100%" aria-label="{{ __('site.footer.send_aria') }}">
+            @include('partials.legal_consent')
+            <button type="submit" class="btn-primary btn-send" style="width:100%" aria-label="{{ __('site.footer.send_aria') }}">
               <span class="btn-label" aria-hidden="true">
                 <span class="btn-text btn-text-default">{{ __('site.footer.send') }}</span>
                 <span class="btn-text btn-text-hover">{{ __('site.footer.send_hover') }}</span>
@@ -33,8 +34,9 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom wrap">
+      <div class="footer-bottom wrap footer-bottom--split">
         <span class="footer-bottom__copy">{{ __('site.footer.copy') }}</span>
+        @include('partials.footer_legal_links')
       </div>
     </footer>
 

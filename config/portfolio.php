@@ -12,6 +12,14 @@ return [
     ],
 
     /**
+     * Реквизиты для юр. документов (152-ФЗ). ИНН / адрес — по желанию (для ИП и т.п.).
+     */
+    'legal' => [
+        'operator_inn' => env('LEGAL_INN'),
+        'operator_address' => env('LEGAL_ADDRESS'),
+    ],
+
+    /**
      * EN: фиксированные «from $…» (RU — строки в lang/ru).
      */
     'pricing' => [

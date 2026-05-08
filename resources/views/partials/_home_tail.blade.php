@@ -184,6 +184,7 @@
               <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
               <input type="tel" name="phone" placeholder="{{ __('site.newsletter.phone_ph') }}" autocomplete="tel" />
               <input type="text" name="telegram" placeholder="{{ __('site.newsletter.telegram_ph') }}" autocomplete="username" inputmode="text" />
+              <div class="news-form__consent">@include('partials.legal_consent')</div>
               <button type="submit" class="btn-primary" style="margin-top:0">{{ __('site.newsletter.submit') }}</button>
             </form>
             <div class="marquee" aria-hidden="true">
@@ -250,7 +251,8 @@
             <div class="field"><input type="tel" name="phone" placeholder="{{ __('site.footer.phone_ph') }}" autocomplete="tel" /></div>
             <div class="field"><input type="text" name="telegram" placeholder="{{ __('site.footer.telegram_ph') }}" autocomplete="username" inputmode="text" /></div>
             <div class="field"><textarea name="message" required placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
-            <button type="submit" class="btn-primary btn-send" style="margin-top:8px;width:100%" aria-label="{{ __('site.footer.send_aria') }}">
+            @include('partials.legal_consent')
+            <button type="submit" class="btn-primary btn-send" style="width:100%" aria-label="{{ __('site.footer.send_aria') }}">
               <span class="btn-label" aria-hidden="true">
                 <span class="btn-text btn-text-default">{{ __('site.footer.send') }}</span>
                 <span class="btn-text btn-text-hover">{{ __('site.footer.send_hover') }}</span>
@@ -270,13 +272,14 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom wrap">
+      <div class="footer-bottom wrap footer-bottom--split">
         @php($copyParts = explode('. ', __('site.footer.copy'), 2))
         <span class="footer-bottom__copy">
           {{ $copyParts[0] }}@if(isset($copyParts[1])).
           <span class="footer-bottom__copy-tail"> {{ $copyParts[1] }}</span>
           @endif
         </span>
+        @include('partials.footer_legal_links')
       </div>
     </footer>
 

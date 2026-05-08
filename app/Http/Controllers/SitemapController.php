@@ -10,7 +10,11 @@ class SitemapController extends Controller
     public function __invoke(): Response
     {
         $projects = Project::published()->get();
-        $urls = collect([url('/')])->merge(
+        $urls = collect([
+            url('/'),
+            route('legal.privacy'),
+            route('legal.personal_data'),
+        ])->merge(
             $projects->map(fn (Project $p) => route('project.show', $p))
         );
 

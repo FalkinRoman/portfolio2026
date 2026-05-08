@@ -37,7 +37,8 @@ class LeadFormController extends Controller
             .'<b>Имя:</b> '.$e($data['name'])."\n"
             .($phone !== '' ? '<b>Телефон:</b> '.$e($phone)."\n" : '')
             .($tg !== '' ? '<b>Telegram:</b> '.$e($tg)."\n" : '')
-            .'<b>Сообщение:</b>'."\n".$e($data['message']);
+            .'<b>Сообщение:</b>'."\n".$e($data['message'])."\n"
+            .'<b>Согласие (отправка формы):</b> да';
 
         $this->telegram->sendHtml($html);
 
@@ -65,7 +66,8 @@ class LeadFormController extends Controller
             .'Язык: '.$e($locale)."\n"
             .'IP: '.$e((string) $ip)."\n\n"
             .($phone !== '' ? '<b>Телефон:</b> '.$e($phone)."\n" : '')
-            .($tg !== '' ? '<b>Telegram:</b> '.$e($tg) : '');
+            .($tg !== '' ? '<b>Telegram:</b> '.$e($tg)."\n" : '')
+            .'<b>Согласие (отправка формы):</b> да';
 
         $this->telegram->sendHtml($html);
 
