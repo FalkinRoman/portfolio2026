@@ -6,9 +6,18 @@ return [
     'seo' => [
         'brand_name' => 'Фалькин Роман',
         'site_title' => 'Фалькин Роман — портфолио',
-        'meta_description' => 'Веб и мобильная разработка: лендинги, продукты, MVP. Кейсы и контакты.',
-        /** Путь относительно public/ для og:image по умолчанию */
-        'default_og_image' => 'assets/img/main.png',
+        'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, PHP/Laravel): лендинги, сайты под ключ, MVP.',
+        /** Превью для Telegram, VK, соцсетей (public/...) — одна картинка на все публичные URL */
+        'default_og_image' => 'assets/img/seo/seo.png',
+        /** Совпадают с public/assets/img/seo/seo.png (обновите при замене картинки) */
+        'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 2178),
+        'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 1574),
+        /** Имя сайта в Open Graph */
+        'og_site_name' => env('SEO_OG_SITE_NAME', 'Фалькин Роман'),
+        /** Полные HTTPS URL для sameAs в JSON-LD (опционально) */
+        'same_as_threads' => env('SEO_SAME_AS_THREADS'),
+        'same_as_instagram' => env('SEO_SAME_AS_INSTAGRAM'),
+        'same_as_telegram' => env('SEO_SAME_AS_TELEGRAM_URL'),
     ],
 
     /**

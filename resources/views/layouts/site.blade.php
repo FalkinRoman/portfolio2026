@@ -11,17 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/portfolio.css') }}" />
   <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon-round.png') }}" sizes="any" />
   <link rel="apple-touch-icon" href="{{ asset('assets/img/favicon-round.png') }}" />
-  <script type="application/ld+json">
-  {!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type' => 'Person',
-    'name' => config('portfolio.seo.brand_name'),
-    'url' => url('/'),
-    'email' => config('portfolio.admin_email'),
-    'jobTitle' => 'Web & Mobile Developer',
-    'sameAs' => ['https://t.me/falroman'],
-  ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-  </script>
+  @include('partials.seo_jsonld_person')
   @stack('head')
 </head>
 <body>

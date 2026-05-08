@@ -50,8 +50,8 @@ class ProjectController extends Controller
                 180
             );
         }
-        $seoOgImage = $project->publicUrl($project->banner_image ?: $project->card_image)
-            ?: asset(config('portfolio.seo.default_og_image'));
+        /* Единое превью (seo.png) для Telegram и соцсетей по всему сайту */
+        $seoOgImage = asset(config('portfolio.seo.default_og_image'));
 
         return view('project', compact('project', 'seoTitle', 'seoDescription', 'seoOgImage'));
     }

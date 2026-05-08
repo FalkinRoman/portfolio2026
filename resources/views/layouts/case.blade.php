@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/portfolio.css') }}" />
   <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon-round.png') }}" sizes="any" />
   <link rel="apple-touch-icon" href="{{ asset('assets/img/favicon-round.png') }}" />
+  @include('partials.seo_jsonld_person')
   @stack('head')
 </head>
 <body>

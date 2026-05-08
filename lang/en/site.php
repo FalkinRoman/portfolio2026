@@ -63,8 +63,8 @@ return [
         'filter_education' => 'Education',
         'filter_bot' => 'Bots',
         'empty' => 'No projects match your query.',
-        'seo_title' => 'Projects — Roman Falkin',
-        'seo_description' => 'Project catalog: web and mobile products, Telegram bots, platforms, and implementation case studies.',
+        'seo_title' => 'Projects & case studies — Roman Falkin | Web & Mobile',
+        'seo_description' => 'Shipped work: web, mobile apps, bots, MVPs. Stack, scope, and outcome-focused case studies for clients and partners.',
     ],
 
     'testimonials' => [
@@ -239,8 +239,8 @@ return [
     'seo' => [
         'og_locale_ru' => 'ru_RU',
         'og_locale_en' => 'en_US',
-        'home_title' => 'Roman Falkin — portfolio',
-        'home_description' => 'Web and mobile development: landing pages, products, MVPs. Case studies and contact.',
+        'home_title' => 'Roman Falkin — Web & Mobile Developer | Portfolio',
+        'home_description' => 'Web and mobile app developer (React, React Native, PHP/Laravel): landing pages, production-ready products, MVP, integrations. Case studies and project inquiries.',
     ],
 
     'pricing_points' => [
