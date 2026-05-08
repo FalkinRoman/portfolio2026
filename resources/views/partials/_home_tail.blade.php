@@ -7,7 +7,7 @@
         </div>
         <div class="clients-row">
           <div class="client-avatars">
-            <div class="av"><img src="{{ $T }}/clients-1.png" alt="" /></div>
+            <div class="av"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
             <div class="av"><img src="{{ $T }}/clients-2.png" alt="" /></div>
             <div class="av"><img src="{{ $T }}/clients-3.png" alt="" /></div>
           </div>
@@ -19,8 +19,14 @@
             <div class="testimonial-track" data-t-track>
               <article class="testimonial-slide">
                 <div class="t-meta">
-                  <div class="t-avatar"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
-                  <div><h3>{{ __('site.testimonials.t1_name') }}</h3><p>{{ __('site.testimonials.t1_role') }}</p></div>
+                  <div class="t-avatar"><img src="{{ asset('assets/img/review/1.jpg') }}" alt="" /></div>
+                  <div>
+                    <h3>{{ __('site.testimonials.t1_name') }}</h3>
+                    <p>
+                      <span class="t-role-desktop">{{ __('site.testimonials.t1_role') }}</span>
+                      <span class="t-role-mobile">{{ __('site.testimonials.t1_role_mobile') }}</span>
+                    </p>
+                  </div>
                 </div>
                 <div class="t-body">{{ __('site.testimonials.t1_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
@@ -29,20 +35,10 @@
               </article>
               <article class="testimonial-slide">
                 <div class="t-meta">
-                  <div class="t-avatar"><img src="{{ $T }}/t-avatar-2.png" alt="" /></div>
+                  <div class="t-avatar"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
                   <div><h3>{{ __('site.testimonials.t2_name') }}</h3><p>{{ __('site.testimonials.t2_role') }}</p></div>
                 </div>
                 <div class="t-body">{{ __('site.testimonials.t2_body') }}</div>
-                <div class="t-stars" aria-hidden="true">
-                  <img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" />
-                </div>
-              </article>
-              <article class="testimonial-slide">
-                <div class="t-meta">
-                  <div class="t-avatar"><img src="{{ $T }}/t-avatar-3.png" alt="" /></div>
-                  <div><h3>{{ __('site.testimonials.t3_name') }}</h3><p>{{ __('site.testimonials.t3_role') }}</p></div>
-                </div>
-                <div class="t-body">{{ __('site.testimonials.t3_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
                   <img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" /><img src="{{ asset('assets/img/home/star.svg') }}" alt="" />
                 </div>

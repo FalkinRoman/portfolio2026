@@ -2350,6 +2350,20 @@ body.intro-done .hero-intro .hero-sub-line::after {
   color: var(--text-muted);
 }
 
+.t-role-mobile {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .t-role-desktop {
+    display: none;
+  }
+
+  .t-role-mobile {
+    display: inline;
+  }
+}
+
 .t-body {
   font-size: 16px;
   line-height: 1.45;
