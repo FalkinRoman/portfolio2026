@@ -22,7 +22,7 @@ class SocialSettingsController extends Controller
         $clean = collect($request->only([
             'social_threads_url',
             'social_instagram_url',
-            'social_linkedin_url',
+            'social_telegram_url',
         ]))->map(fn ($v) => $v === '' ? null : $v)->all();
 
         $request->merge($clean);
@@ -30,7 +30,7 @@ class SocialSettingsController extends Controller
         $data = $request->validate([
             'social_threads_url' => 'nullable|url|max:500',
             'social_instagram_url' => 'nullable|url|max:500',
-            'social_linkedin_url' => 'nullable|url|max:500',
+            'social_telegram_url' => 'nullable|url|max:500',
         ]);
 
         $settings = SiteSetting::current();

@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['partials._home_head', 'partials._home_tail', 'partials.case_footer'], function ($view) {
             $view->with('social', Schema::hasTable('site_settings')
                 ? SiteSetting::socialHrefs()
-                : (object) ['threads' => '#', 'instagram' => '#', 'linkedin' => '#']);
+                : (object) ['threads' => '#', 'instagram' => '#', 'telegram' => '#']);
         });
     }
 }

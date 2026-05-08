@@ -9,7 +9,7 @@ class SiteSetting extends Model
     protected $fillable = [
         'social_threads_url',
         'social_instagram_url',
-        'social_linkedin_url',
+        'social_telegram_url',
     ];
 
     public static function current(): self
@@ -30,7 +30,7 @@ class SiteSetting extends Model
         return (object) [
             'threads' => ($s?->social_threads_url) ? $s->social_threads_url : '#',
             'instagram' => ($s?->social_instagram_url) ? $s->social_instagram_url : '#',
-            'linkedin' => ($s?->social_linkedin_url) ? $s->social_linkedin_url : '#',
+            'telegram' => ($s?->social_telegram_url) ? $s->social_telegram_url : '#',
         ];
     }
 }

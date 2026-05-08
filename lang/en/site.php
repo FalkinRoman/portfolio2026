@@ -17,7 +17,7 @@ return [
         'lang_choose' => 'Choose language',
         'social_threads' => 'Threads',
         'social_ig' => 'Instagram',
-        'social_li' => 'LinkedIn',
+        'social_tg' => 'Telegram',
     ],
 
     'hero' => [
@@ -78,7 +78,7 @@ return [
         't1_name' => 'Danira Parimbetova',
         't1_role' => 'CEO, Media Land',
         't1_role_mobile' => 'CEO',
-        't1_body' => 'For BeatLine, our goal was a strong MusicMatch-like product that makes lyrics creation and release preparation fast for streaming platforms: Yandex Music, VK Music, and Zvuk. We got exactly that: a clean product, fast launch, and professional execution without unnecessary overhead.',
+        't1_body' => 'We needed a tool for lyrics work and release prep for Russian streaming services — nothing on the market fit, so we built our own. Roman shipped it cleanly: lyrics editor, sync, exports in the right formats for Yandex Music, VK Music, and Zvuk. We got a polished product with a fast launch — a strong MusicMatch-style analog tailored to our platforms.',
         't2_name' => 'Olesya Rein',
         't2_role' => 'practicing psychologist',
         't2_role_mobile' => 'psychologist',

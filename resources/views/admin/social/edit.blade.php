@@ -20,9 +20,9 @@
       @error('social_instagram_url')<div class="error">{{ $message }}</div>@enderror
     </div>
     <div class="admin-field">
-      <label for="social_linkedin_url">LinkedIn</label>
-      <input id="social_linkedin_url" type="url" name="social_linkedin_url" value="{{ old('social_linkedin_url', $settings->social_linkedin_url) }}" placeholder="https://www.linkedin.com/in/..." />
-      @error('social_linkedin_url')<div class="error">{{ $message }}</div>@enderror
+      <label for="social_telegram_url">Telegram</label>
+      <input id="social_telegram_url" type="url" name="social_telegram_url" value="{{ old('social_telegram_url', $settings->social_telegram_url) }}" placeholder="https://t.me/..." />
+      @error('social_telegram_url')<div class="error">{{ $message }}</div>@enderror
     </div>
     <div class="admin-actions">
       <button type="submit" class="btn-admin">Сохранить</button>
