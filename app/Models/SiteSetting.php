@@ -10,7 +10,16 @@ class SiteSetting extends Model
         'social_threads_url',
         'social_instagram_url',
         'social_telegram_url',
+        'telegram_bot_token',
+        'telegram_chat_id',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'telegram_bot_token' => 'encrypted',
+        ];
+    }
 
     public static function current(): self
     {

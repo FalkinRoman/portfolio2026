@@ -31,12 +31,27 @@ class SocialSettingsController extends Controller
             'social_threads_url' => 'nullable|url|max:500',
             'social_instagram_url' => 'nullable|url|max:500',
             'social_telegram_url' => 'nullable|url|max:500',
+            'telegram_bot_token' => 'nullable|string|max:512',
+            'telegram_chat_id' => 'nullable|string|max:128',
         ]);
 
         $settings = SiteSetting::current();
-        $settings->fill($data);
+        $settings->fill([
+            'social_threads_url' => $data['social_threads_url'] ?? null,
+            'social_instagram_url' => $data['social_instagram_url'] ?? null,
+            'social_telegram_url' => $data['social_telegram_url'] ?? null,
+        ]);
+
+        $token = isset($data['telegram_bot_token']) ? trim((string) $data['telegram_bot_token']) : '';
+        if ($token !== '') {
+            $settings->telegram_bot_token = $token;
+        }
+
+        $chat = isset($data['telegram_chat_id']) ? trim((string) $data['telegram_chat_id']) : '';
+        $settings->telegram_chat_id = $chat === '' ? null : $chat;
+
         $settings->save();
 
-        return redirect()->route('admin.social.edit')->with('ok', 'Ссылки сохранены.');
+        return redirect()->route('admin.social.edit')->with('ok', 'Ссылки и уведомления Telegram сохранены.');
     }
 }

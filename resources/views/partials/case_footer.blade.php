@@ -6,10 +6,13 @@
             <h2 class="display-sm">{{ __('site.footer.h2') }}</h2>
             <p class="lead">{{ __('site.footer.lead') }}</p>
           </div>
-          <form class="contact-form" onsubmit="return false;">
-            <div class="field"><input type="text" name="name" placeholder="{{ __('site.footer.name_ph') }}" autocomplete="name" /></div>
-            <div class="field"><input type="email" name="email" placeholder="{{ __('site.footer.email_ph') }}" autocomplete="email" /></div>
-            <div class="field"><textarea name="message" placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
+          <form class="contact-form" action="{{ route('leads.contact') }}" method="post" data-lead-form="contact">
+            @csrf
+            <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+            <div class="field"><input type="text" name="name" required placeholder="{{ __('site.footer.name_ph') }}" autocomplete="name" /></div>
+            <div class="field"><input type="tel" name="phone" placeholder="{{ __('site.footer.phone_ph') }}" autocomplete="tel" /></div>
+            <div class="field"><input type="text" name="telegram" placeholder="{{ __('site.footer.telegram_ph') }}" autocomplete="username" inputmode="text" /></div>
+            <div class="field"><textarea name="message" required placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
             <button type="submit" class="btn-primary btn-send" style="margin-top:8px;width:100%" aria-label="{{ __('site.footer.send_aria') }}">
               <span class="btn-label" aria-hidden="true">
                 <span class="btn-text btn-text-default">{{ __('site.footer.send') }}</span>

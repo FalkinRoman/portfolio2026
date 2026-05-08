@@ -220,7 +220,7 @@
   <div class="admin-wrap">
     <nav class="admin-nav" aria-label="Админка">
       <a href="{{ route('admin.projects.index') }}">Проекты</a>
-      <a href="{{ route('admin.social.edit') }}">Соцсети</a>
+      <a href="{{ route('admin.social.edit') }}">Соцсети / бот</a>
       <a href="{{ route('home') }}" target="_blank" rel="noopener">Сайт →</a>
       <form method="post" action="{{ route('logout') }}">@csrf<button type="submit">Выйти</button></form>
     </nav>

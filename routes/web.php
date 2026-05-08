@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\SocialSettingsController;
-use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeadFormController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RobotsController;
@@ -20,6 +21,13 @@ Route::redirect('/favicon.ico', '/assets/img/favicon-round.png');
 Route::get('/', HomeController::class)->name('home');
 Route::redirect('/projects', '/#projects', 301)->name('projects.index');
 Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
+
+Route::post('/leads/contact', [LeadFormController::class, 'contact'])
+    ->middleware('throttle:12,1')
+    ->name('leads.contact');
+Route::post('/leads/newsletter', [LeadFormController::class, 'newsletter'])
+    ->middleware('throttle:20,1')
+    ->name('leads.newsletter');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {

@@ -707,4 +707,80 @@
     });
   })();
 
+  (function initLeadForms() {
+    function csrfToken() {
+      var m = document.querySelector('meta[name="csrf-token"]');
+      return m && m.getAttribute("content") ? m.getAttribute("content") : "";
+    }
+    function leadMessages(kind) {
+      var L = typeof window.PORTFOLIO_I18N !== "undefined" && window.PORTFOLIO_I18N.leads
+        ? window.PORTFOLIO_I18N.leads
+        : {};
+      if (kind === "newsletter") {
+        return { ok: L.newsOk || "OK", err: L.newsErr || "Error", rate: L.newsRate || "Rate limit" };
+      }
+      return { ok: L.contactOk || "OK", err: L.contactErr || "Error", rate: L.contactRate || "Rate limit" };
+    }
+    function firstValidationMessage(data) {
+      if (!data || !data.errors) return null;
+      var k = Object.keys(data.errors)[0];
+      if (!k) return null;
+      var arr = data.errors[k];
+      return Array.isArray(arr) && arr.length ? arr[0] : null;
+    }
+    function bindForm(form) {
+      var kind = form.getAttribute("data-lead-form");
+      if (!kind) return;
+      var action = form.getAttribute("action");
+      if (!action) return;
+      var msgs = leadMessages(kind);
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+        var fd = new FormData(form);
+        fetch(action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": csrfToken(),
+          },
+          body: fd,
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { res: res, data: data };
+            });
+          })
+          .then(function (pair) {
+            var res = pair.res;
+            var data = pair.data;
+            if (res.status === 429) {
+              alert(msgs.rate);
+              return;
+            }
+            if (res.status === 422) {
+              var v = firstValidationMessage(data) || data.message || msgs.err;
+              alert(v);
+              return;
+            }
+            if (!res.ok || !data || !data.ok) {
+              alert(msgs.err);
+              return;
+            }
+            alert(msgs.ok);
+            form.reset();
+          })
+          .catch(function () {
+            alert(msgs.err);
+          })
+          .finally(function () {
+            if (btn) btn.disabled = false;
+          });
+      });
+    }
+    document.querySelectorAll("form[data-lead-form]").forEach(bindForm);
+  })();
+
 })();

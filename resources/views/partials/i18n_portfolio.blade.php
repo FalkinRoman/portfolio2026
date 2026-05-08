@@ -18,5 +18,13 @@ window.PORTFOLIO_I18N = {
       points: @json(trans('site.pricing_points.mobile')),
     },
   },
+  leads: {
+    contactOk: @json(__('site.leads.contact_ok')),
+    contactErr: @json(__('site.leads.contact_err')),
+    contactRate: @json(__('site.leads.contact_rate')),
+    newsOk: @json(__('site.leads.news_ok')),
+    newsErr: @json(__('site.leads.news_err')),
+    newsRate: @json(__('site.leads.news_rate')),
+  },
 };
 </script>

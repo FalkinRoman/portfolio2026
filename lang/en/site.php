@@ -138,7 +138,8 @@ return [
         'chip' => 'Updates',
         'h2' => '100+ breakdowns on web and mobile product development',
         'lead' => 'Practice, solutions, and lessons from production work',
-        'placeholder' => 'Your email',
+        'phone_ph' => 'Phone',
+        'telegram_ph' => 'Telegram (@username)',
         'submit' => 'Subscribe',
     ],
 
@@ -167,7 +168,8 @@ return [
         'h2' => 'Available 24/7',
         'lead' => 'Have a project? Reach out on any channel — I usually reply within 3–6 hours.',
         'name_ph' => 'Your name',
-        'email_ph' => 'Your email',
+        'phone_ph' => 'Phone',
+        'telegram_ph' => 'Telegram (@username)',
         'msg_ph' => 'Your message',
         'send' => 'Send',
         'send_hover' => 'Sending',
@@ -203,6 +205,15 @@ return [
         'faq' => 'FAQ',
         'pricing_cta' => 'See pricing',
         'pricing_hover' => 'Get an estimate',
+    ],
+
+    'leads' => [
+        'contact_ok' => 'Thanks! Your message was sent.',
+        'contact_err' => 'Could not send. Please check the fields.',
+        'contact_rate' => 'Too many attempts. Wait a moment.',
+        'news_ok' => 'Thanks! Email saved.',
+        'news_err' => 'Could not submit. Add phone or Telegram.',
+        'news_rate' => 'Too many attempts. Wait a moment.',
     ],
 
     'case' => [
