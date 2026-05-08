@@ -79,9 +79,13 @@ return [
         't1_role' => 'CEO, Media Land',
         't1_role_mobile' => 'CEO',
         't1_body' => 'For BeatLine, our goal was a strong MusicMatch-like product that makes lyrics creation and release preparation fast for streaming platforms: Yandex Music, VK Music, and Zvuk. We got exactly that: a clean product, fast launch, and professional execution without unnecessary overhead.',
-        't2_name' => 'Irina Sokolova',
-        't2_role' => 'founder, digital studio',
-        't2_body' => 'We shipped a web platform for leads and a customer area together — stack, API architecture, and timelines were agreed before code. Launch went smoothly; post-launch work happened in iterations, like real product development, not “we’ll see”.',
+        't2_name' => 'Olesya Rein',
+        't2_role' => 'practicing psychologist',
+        't2_role_mobile' => 'psychologist',
+        't2_body' => 'I put off launching a site for a long time — it felt complicated and not quite “my story.” Roman helped me make sense of it: proposed a structure, walked me through the purpose of each section, and the process turned out far easier than I expected. The result is a site that really matches how I practice — nothing excessive, but everything that matters: who I am, my approach, formats and pricing, answers to common questions, and a straightforward path to booking. I’m comfortable sharing it with clients now.',
+        't3_name' => 'Irina Sokolova',
+        't3_role' => 'founder, Plombir Flowers',
+        't3_body' => 'We wanted customers to order right in Telegram — no calls, no endless back-and-forth in chat. Roman built a mini app for our flower shop: catalog, cart, checkout — all in a few steps. It’s fast, doesn’t freeze, and looks right on a phone. Customers got the hang of it immediately, no hand-holding. Managers stopped burning time on the same questions — orders simply arrive ready to process. For a small shop, that’s a real difference.',
     ],
 
     'process' => [
