@@ -73,7 +73,7 @@
         <p class="lead hero-sub">
           <span class="hero-sub-line hero-sub-line-1">
             <span class="hero-sub-line__inner">{!! __('site.hero.sub_l1_html') !!}</span>
-          </span><br class="br-desktop" /><span class="hero-sub-line hero-sub-line-2">
+          </span><br class="br-desktop" /><br class="br-mobile" /><span class="hero-sub-line hero-sub-line-2">
             <span class="hero-sub-line__inner">{{ __('site.hero.sub_l2') }}</span>
           </span>
         </p>
