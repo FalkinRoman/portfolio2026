@@ -19,7 +19,7 @@
   $kindIcons  = ['web' => '🌐', 'mobile' => '📱', 'bot' => '🤖', 'site' => '🧩'];
   $statusTone = ['in_progress' => 'warning', 'planned' => 'muted', 'released' => 'ok', 'support' => 'accent'];
 
-  $mainPhoto          = asset('assets/img/main.png');
+  $mainPhoto          = asset('assets/img/main.webp');
   $totalProjects      = $projects->count();
   $liveProjects       = $projects->filter(fn ($p) => filled($p->live_url))->count();
   $inProgressProjects = 0;

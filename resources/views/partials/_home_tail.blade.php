@@ -296,7 +296,7 @@
         </button>
         <div class="about-card-header">
           <div class="about-avatar">
-            <img src="{{ asset('assets/img/main.png') }}" alt="{{ __('site.brand.name') }}" />
+            <img src="{{ asset('assets/img/main.webp') }}" alt="{{ __('site.brand.name') }}" />
           </div>
           <div>
             <p class="about-name">{{ __('site.brand.name') }}</p>

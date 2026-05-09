@@ -11,7 +11,7 @@
       <div class="header-inner">
         <div class="brand">
           <div class="avatar">
-            <img src="{{ asset('assets/img/main.png') }}" alt="" width="60" height="60" />
+            <img src="{{ asset('assets/img/main.webp') }}" alt="" width="60" height="60" />
           </div>
           <div class="brand-text">
             <h1>{{ __('site.brand.name') }}</h1>
