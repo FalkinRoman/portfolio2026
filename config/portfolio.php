@@ -10,8 +10,8 @@ return [
         /** Превью для Telegram, VK, соцсетей (public/...) — одна картинка на все публичные URL */
         'default_og_image' => 'assets/img/seo/seo.jpg',
         /** Совпадают с реальным файлом seo.jpg (при замене картинки обнови размеры или .env SEO_OG_IMAGE_*) */
-        'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 1200),
-        'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 630),
+        'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 868),
+        'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 627),
         /** Имя сайта в Open Graph */
         'og_site_name' => env('SEO_OG_SITE_NAME', 'Фалькин Роман'),
         /** Полные HTTPS URL для sameAs в JSON-LD (опционально) */
