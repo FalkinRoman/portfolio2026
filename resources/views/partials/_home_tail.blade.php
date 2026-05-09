@@ -1,4 +1,3 @@
-@php($T = asset('assets/img/home'))
       <section class="section wrap reveal" id="testimonials">
         <div class="section-head">
           <span class="chip">{{ __('site.testimonials.chip') }}</span>
@@ -9,7 +8,7 @@
           <div class="client-avatars">
             <div class="av"><img src="{{ asset('assets/img/review/1.jpg') }}" alt="" /></div>
             <div class="av"><img src="{{ asset('assets/img/review/2.jpeg') }}" alt="" /></div>
-            <div class="av"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
+            <div class="av"><img src="{{ asset('assets/img/review/3.jpg') }}" alt="" /></div>
           </div>
           <h3>{{ __('site.testimonials.clients_h') }}</h3>
           <p>{{ __('site.testimonials.clients_p') }}</p>
@@ -51,8 +50,14 @@
               </article>
               <article class="testimonial-slide">
                 <div class="t-meta">
-                  <div class="t-avatar"><img src="{{ $T }}/t-avatar-1.png" alt="" /></div>
-                  <div><h3>{{ __('site.testimonials.t3_name') }}</h3><p>{{ __('site.testimonials.t3_role') }}</p></div>
+                  <div class="t-avatar"><img src="{{ asset('assets/img/review/3.jpg') }}" alt="" /></div>
+                  <div>
+                    <h3>{{ __('site.testimonials.t3_name') }}</h3>
+                    <p>
+                      <span class="t-role-desktop">{{ __('site.testimonials.t3_role') }}</span>
+                      <span class="t-role-mobile">{{ __('site.testimonials.t3_role_mobile') }}</span>
+                    </p>
+                  </div>
                 </div>
                 <div class="t-body">{{ __('site.testimonials.t3_body') }}</div>
                 <div class="t-stars" aria-hidden="true">
