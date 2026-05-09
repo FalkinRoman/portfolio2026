@@ -5,6 +5,10 @@
   $ogPath = config('portfolio.seo.default_og_image');
   $og = $seoOgImage ?? asset($ogPath);
   $og = \Illuminate\Support\Str::of($og)->before('?')->toString();
+  $ogLower = strtolower($ogPath);
+  $ogMime = str_ends_with($ogLower, '.png')
+      ? 'image/png'
+      : (str_ends_with($ogLower, '.webp') ? 'image/webp' : 'image/jpeg');
   $ogW = (int) config('portfolio.seo.og_image_width', 1200);
   $ogH = (int) config('portfolio.seo.og_image_height', 630);
   $siteName = config('portfolio.seo.og_site_name', config('portfolio.seo.brand_name'));
@@ -25,7 +29,7 @@
 <meta property="og:locale:alternate" content="{{ $localeAlt }}">
 <meta property="og:image" content="{{ $og }}">
 <meta property="og:image:secure_url" content="{{ $og }}">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image:type" content="{{ $ogMime }}">
 <meta property="og:image:width" content="{{ $ogW }}">
 <meta property="og:image:height" content="{{ $ogH }}">
 <meta property="og:image:alt" content="{{ $title }}">

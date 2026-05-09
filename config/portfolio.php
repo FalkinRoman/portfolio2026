@@ -8,10 +8,10 @@ return [
         'site_title' => 'Фалькин Роман — портфолио',
         'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, PHP/Laravel): лендинги, сайты под ключ, MVP.',
         /** Превью для Telegram, VK, соцсетей (public/...) — одна картинка на все публичные URL */
-        'default_og_image' => 'assets/img/seo/seo.png',
-        /** Совпадают с public/assets/img/seo/seo.png (обновите при замене картинки) */
-        'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 2178),
-        'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 1574),
+        'default_og_image' => 'assets/img/seo/seo.jpg',
+        /** Совпадают с реальным файлом seo.jpg (при замене картинки обнови размеры или .env SEO_OG_IMAGE_*) */
+        'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 1200),
+        'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 630),
         /** Имя сайта в Open Graph */
         'og_site_name' => env('SEO_OG_SITE_NAME', 'Фалькин Роман'),
         /** Полные HTTPS URL для sameAs в JSON-LD (опционально) */
