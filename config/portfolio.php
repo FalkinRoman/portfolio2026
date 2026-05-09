@@ -6,7 +6,7 @@ return [
     'seo' => [
         'brand_name' => 'Фалькин Роман',
         'site_title' => 'Фалькин Роман — портфолио',
-        'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, PHP/Laravel): лендинги, сайты под ключ, MVP.',
+        'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, продукты, MVP.',
         /** Превью для Telegram, VK, соцсетей (public/...) — одна картинка на все публичные URL */
         'default_og_image' => 'assets/img/seo/seo.jpg',
         /** Совпадают с реальным файлом seo.jpg (при замене картинки обнови размеры или .env SEO_OG_IMAGE_*) */

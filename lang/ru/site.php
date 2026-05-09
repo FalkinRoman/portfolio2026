@@ -239,7 +239,7 @@ return [
         'og_locale_ru' => 'ru_RU',
         'og_locale_en' => 'en_US',
         'home_title' => 'Фалькин Роман — Web & Mobile Developer | Портфолио',
-        'home_description' => 'Разработчик веб и мобильных приложений (React, React Native, PHP/Laravel): лендинги, сайты под ключ, MVP, интеграции. Кейсы с продакшеном и обратная связь по проекту.',
+        'home_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, продукты, MVP. Кейсы в проде, понятный процесс.',
     ],
 
     'pricing_points' => [
