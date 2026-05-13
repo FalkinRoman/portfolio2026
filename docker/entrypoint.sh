@@ -16,9 +16,11 @@ fi
 chown -R www-data:www-data storage bootstrap/cache database/database.sqlite 2>/dev/null || true
 
 su www-data -s /bin/sh -c "php artisan migrate --force --no-interaction"
-su www-data -s /bin/sh -c "php artisan storage:link --force --no-interaction" 2>/dev/null || true
+# public/ часто на named volume (root:root) — www-data не может symlink; root может
+php artisan storage:link --force --no-interaction 2>/dev/null || true
 
 if [ "$APP_ENV" = "production" ]; then
+  su www-data -s /bin/sh -c "php artisan config:clear --no-interaction" 2>/dev/null || true
   su www-data -s /bin/sh -c "php artisan config:cache --no-interaction" || true
   su www-data -s /bin/sh -c "php artisan route:cache --no-interaction" || true
   su www-data -s /bin/sh -c "php artisan view:cache --no-interaction" || true
