@@ -21,7 +21,7 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-interaction
 
 FROM php:8.3-fpm-alpine AS runtime
 RUN apk add --no-cache \
-    icu-dev oniguruma-dev libzip-dev \
+    icu-dev oniguruma-dev libzip-dev sqlite-dev \
     freetype-dev libjpeg-turbo-dev libpng-dev \
     linux-headers \
     $PHPIZE_DEPS \
