@@ -119,3 +119,20 @@ location ~ \.php$ {
 - Откройте главную и `/admin` — вход под `ADMIN_EMAIL`.
 - Проверьте формы лидов и (если настроено) Telegram.
 - Проверьте отображение картинок проектов (`php artisan storage:link` и права на `storage/app/public`).
+
+## 11. Docker Compose
+
+В репозитории: `Dockerfile` (PHP 8.3 FPM + сборка Vite + Composer), `docker-compose.yml` (сервисы `app` и `web` / nginx), общие тома для `public`, `storage`, SQLite.
+
+```bash
+cp .env.example .env   # на сервере лучше свой прод-`.env`
+# Заполни APP_KEY, APP_URL=https://…, ADMIN_EMAIL, при необходимости TELEGRAM_*
+
+docker compose up -d --build
+```
+
+Сайт по умолчанию: **http://localhost:8080** (порт задаётся переменной окружения **`HTTP_PORT`** при запуске compose).
+
+В entrypoint контейнера `app`: миграции, `storage:link`, при `APP_ENV=production` — `config:route:view` cache. Контент из сидеров: `docker compose exec app php artisan db:seed` (осторожно: сидер чистит проекты и пересоздаёт админа).
+
+TLS: перед compose поставь reverse-proxy (Caddy, Traefik, внешний nginx) с сертификатом и проксируй на `127.0.0.1:${HTTP_PORT:-8080}`, в `.env` укажи реальный `APP_URL`.
