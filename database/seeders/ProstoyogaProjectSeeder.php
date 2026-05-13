@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use Database\Seeders\Concerns\ResolvesProjectFixtureImages;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\File;
  */
 class ProstoyogaProjectSeeder extends Seeder
 {
+    use ResolvesProjectFixtureImages;
+
     public function run(): void
     {
         $fixtureBase = database_path('seeders/fixtures/prostoyoga');
@@ -73,30 +76,26 @@ class ProstoyogaProjectSeeder extends Seeder
         }
         File::ensureDirectoryExists($destRoot.'/gallery');
 
-        foreach (['card.png', 'logo.png', 'banner.png'] as $file) {
-            $from = $fixtureBase.'/'.$file;
-            if (! is_file($from)) {
-                throw new \RuntimeException('Missing fixture file: '.$from);
-            }
-            File::copy($from, $destRoot.'/'.$file);
+        $rootNames = [];
+        foreach (['card', 'logo', 'banner'] as $stem) {
+            $resolved = $this->resolveFixtureFile($fixtureBase, $stem);
+            File::copy($resolved['path'], $destRoot.'/'.$resolved['filename']);
+            $rootNames[$stem] = $resolved['filename'];
         }
 
         // gallery/01..05 в фикстурах — порядок показа как в админке (раньше на диске было 02,03,01,04,05).
         $galleryRel = [];
         foreach (range(1, 5) as $i) {
-            $name = sprintf('%02d.png', $i);
-            $from = $fixtureBase.'/gallery/'.$name;
-            if (! is_file($from)) {
-                throw new \RuntimeException('Missing gallery fixture: '.$from);
-            }
-            File::copy($from, $destRoot.'/gallery/'.$name);
-            $galleryRel[] = 'projects/'.$id.'/gallery/'.$name;
+            $stem = sprintf('%02d', $i);
+            $resolved = $this->resolveFixtureFile($fixtureBase.'/gallery', $stem);
+            File::copy($resolved['path'], $destRoot.'/gallery/'.$resolved['filename']);
+            $galleryRel[] = 'projects/'.$id.'/gallery/'.$resolved['filename'];
         }
 
         $project->update([
-            'card_image' => 'projects/'.$id.'/card.png',
-            'logo_image' => 'projects/'.$id.'/logo.png',
-            'banner_image' => 'projects/'.$id.'/banner.png',
+            'card_image' => 'projects/'.$id.'/'.$rootNames['card'],
+            'logo_image' => 'projects/'.$id.'/'.$rootNames['logo'],
+            'banner_image' => 'projects/'.$id.'/'.$rootNames['banner'],
             'gallery_images' => $galleryRel,
         ]);
     }
