@@ -236,7 +236,8 @@
         </div>
         <div class="faq-cta">
           <p style="margin:0 0 16px;font-weight:500">{{ __('site.faq.more_q') }}</p>
-          <button type="button" class="btn-primary" style="margin-top:0">{{ __('site.faq.write') }}</button>
+          @php($faqTg = ($social->telegram ?? '#') !== '#' ? $social->telegram : (config('portfolio.seo.same_as_telegram') ?: 'https://t.me/falroman'))
+          <a href="{{ $faqTg }}" class="btn-primary" style="margin-top:0;text-decoration:none;color:inherit" target="_blank" rel="noopener noreferrer">{{ __('site.faq.write') }}</a>
         </div>
       </section>
     </main>
