@@ -18,6 +18,12 @@ services:
       - portfolio_public:/var/www/html/public
       - portfolio_storage:/var/www/html/storage
       - portfolio_database:/var/www/html/database
+    healthcheck:
+      test: ["CMD-SHELL", "php -r 'if(!@fsockopen(\"127.0.0.1\",9000))exit(1);'"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 120s
 
   web:
     build:
@@ -31,10 +37,12 @@ services:
       - "${HTTP_PORT:-8080}:80"
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker/certbot-www:/var/www/certbot:rw
       - portfolio_public:/var/www/html/public:ro
       - portfolio_storage:/var/www/html/storage:ro
     depends_on:
-      - app
+      app:
+        condition: service_healthy
 
 volumes:
   portfolio_public:

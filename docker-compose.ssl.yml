@@ -1,0 +1,9 @@
+# Включить HTTPS после появления docker/ssl/fullchain.pem и privkey.pem:
+#   docker compose -f docker-compose.yml -f docker-compose.ssl.yml up -d
+services:
+  web:
+    ports:
+      - "443:443"
+    volumes:
+      - ./docker/ssl:/etc/nginx/ssl:ro
+      - ./docker/nginx/https.conf:/etc/nginx/conf.d/https.conf:ro
