@@ -716,10 +716,35 @@
       var L = typeof window.PORTFOLIO_I18N !== "undefined" && window.PORTFOLIO_I18N.leads
         ? window.PORTFOLIO_I18N.leads
         : {};
+      var telegramErr = L.telegramErr || "Telegram error";
+      var csrfErr = L.csrfErr || "CSRF";
+      var networkErr = L.networkErr || "Network error";
       if (kind === "newsletter") {
-        return { ok: L.newsOk || "OK", err: L.newsErr || "Error", rate: L.newsRate || "Rate limit" };
+        return {
+          ok: L.newsOk || "OK",
+          err: L.newsErr || "Error",
+          rate: L.newsRate || "Rate limit",
+          telegramErr: telegramErr,
+          csrfErr: csrfErr,
+          networkErr: networkErr,
+        };
       }
-      return { ok: L.contactOk || "OK", err: L.contactErr || "Error", rate: L.contactRate || "Rate limit" };
+      return {
+        ok: L.contactOk || "OK",
+        err: L.contactErr || "Error",
+        rate: L.contactRate || "Rate limit",
+        telegramErr: telegramErr,
+        csrfErr: csrfErr,
+        networkErr: networkErr,
+      };
+    }
+    function applyCsrfToken(token) {
+      if (!token || typeof token !== "string") return;
+      var m = document.querySelector('meta[name="csrf-token"]');
+      if (m) m.setAttribute("content", token);
+      document.querySelectorAll('input[name="_token"]').forEach(function (inp) {
+        inp.value = token;
+      });
     }
     function firstValidationMessage(data) {
       if (!data || !data.errors) return null;
@@ -737,7 +762,11 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var btn = form.querySelector('button[type="submit"]');
-        if (btn) btn.disabled = true;
+        if (btn) {
+          btn.disabled = true;
+          btn.classList.add("is-busy");
+          btn.setAttribute("aria-busy", "true");
+        }
         var fd = new FormData(form);
         fetch(action, {
           method: "POST",
@@ -750,13 +779,21 @@
           body: fd,
         })
           .then(function (res) {
-            return res.json().then(function (data) {
-              return { res: res, data: data };
-            });
+            var ct = (res.headers.get("content-type") || "").toLowerCase();
+            if (ct.indexOf("application/json") !== -1) {
+              return res.json().then(function (data) {
+                return { res: res, data: data || {} };
+              });
+            }
+            return { res: res, data: {} };
           })
           .then(function (pair) {
             var res = pair.res;
-            var data = pair.data;
+            var data = pair.data || {};
+            if (res.status === 419) {
+              alert(msgs.csrfErr);
+              return;
+            }
             if (res.status === 429) {
               alert(msgs.rate);
               return;
@@ -766,18 +803,27 @@
               alert(v);
               return;
             }
-            if (!res.ok || !data || !data.ok) {
+            if (res.status === 503 && data.message === "telegram_send_failed") {
+              alert(msgs.telegramErr);
+              return;
+            }
+            if (!res.ok || !data.ok) {
               alert(msgs.err);
               return;
             }
             alert(msgs.ok);
             form.reset();
+            if (data.csrf_token) applyCsrfToken(data.csrf_token);
           })
           .catch(function () {
-            alert(msgs.err);
+            alert(msgs.networkErr);
           })
           .finally(function () {
-            if (btn) btn.disabled = false;
+            if (btn) {
+              btn.disabled = false;
+              btn.classList.remove("is-busy");
+              btn.removeAttribute("aria-busy");
+            }
           });
       });
     }

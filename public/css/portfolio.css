@@ -1223,6 +1223,41 @@ body.intro-done .hero-intro .hero-sub-line::after {
   animation: btn-shine-pass 0.78s var(--ease-soft) forwards;
 }
 
+.btn-primary.is-busy {
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.btn-primary.is-busy:hover {
+  transform: none;
+  filter: none;
+}
+
+.btn-primary.is-busy::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  animation: lead-form-spin 0.7s linear infinite;
+  pointer-events: none;
+}
+
+.btn-primary.is-busy:hover::after {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes lead-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .hero-cta,
 .btn-send {
   min-width: 230px;

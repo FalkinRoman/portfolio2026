@@ -210,11 +210,15 @@ return [
 
     'leads' => [
         'contact_ok' => 'Thanks! Your message was sent.',
-        'contact_err' => 'Could not send. Please check the fields.',
+        'contact_err' => 'Could not send. Try again or reach out directly.',
         'contact_rate' => 'Too many attempts. Wait a moment.',
-        'news_ok' => 'Thanks! Email saved.',
-        'news_err' => 'Could not submit. Add phone or Telegram.',
+        'news_ok' => 'Thanks! You are on the list.',
+        'news_err' => 'Could not submit. Try again.',
         'news_rate' => 'Too many attempts. Wait a moment.',
+        'phone_or_tg' => 'Add phone or Telegram.',
+        'telegram_err' => 'Could not deliver the Telegram notification. Try again later or message directly.',
+        'csrf_err' => 'Session expired. Refresh the page (F5) and submit again.',
+        'network_err' => 'No response from the server. Check your connection and try again.',
     ],
 
     'case' => [

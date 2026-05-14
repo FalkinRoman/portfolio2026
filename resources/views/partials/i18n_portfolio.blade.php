@@ -25,6 +25,9 @@ window.PORTFOLIO_I18N = {
     newsOk: @json(__('site.leads.news_ok')),
     newsErr: @json(__('site.leads.news_err')),
     newsRate: @json(__('site.leads.news_rate')),
+    telegramErr: @json(__('site.leads.telegram_err')),
+    csrfErr: @json(__('site.leads.csrf_err')),
+    networkErr: @json(__('site.leads.network_err')),
   },
 };
 </script>

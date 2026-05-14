@@ -14,7 +14,7 @@ class LeadFormController extends Controller
 
     public function contact(Request $request): JsonResponse
     {
-        if ($request->filled('_hp')) {
+        if ($request->filled('fax')) {
             return response()->json(['ok' => true]);
         }
 
@@ -23,6 +23,9 @@ class LeadFormController extends Controller
             'phone' => ['nullable', 'string', 'max:40', 'required_without:telegram'],
             'telegram' => ['nullable', 'string', 'max:100', 'required_without:phone'],
             'message' => ['required', 'string', 'max:8000'],
+        ], [
+            'phone.required_without' => __('site.leads.phone_or_tg'),
+            'telegram.required_without' => __('site.leads.phone_or_tg'),
         ]);
 
         $e = fn (string $v) => htmlspecialchars($v, ENT_QUOTES | ENT_HTML5, 'UTF-8');
@@ -44,18 +47,21 @@ class LeadFormController extends Controller
             return response()->json(['ok' => false, 'message' => 'telegram_send_failed'], 503);
         }
 
-        return response()->json(['ok' => true]);
+        return response()->json(['ok' => true, 'csrf_token' => csrf_token()]);
     }
 
     public function newsletter(Request $request): JsonResponse
     {
-        if ($request->filled('_hp')) {
+        if ($request->filled('fax')) {
             return response()->json(['ok' => true]);
         }
 
         $data = $request->validate([
             'phone' => ['nullable', 'string', 'max:40', 'required_without:telegram'],
             'telegram' => ['nullable', 'string', 'max:100', 'required_without:phone'],
+        ], [
+            'phone.required_without' => __('site.leads.phone_or_tg'),
+            'telegram.required_without' => __('site.leads.phone_or_tg'),
         ]);
 
         $e = fn (string $v) => htmlspecialchars($v, ENT_QUOTES | ENT_HTML5, 'UTF-8');
@@ -75,6 +81,6 @@ class LeadFormController extends Controller
             return response()->json(['ok' => false, 'message' => 'telegram_send_failed'], 503);
         }
 
-        return response()->json(['ok' => true]);
+        return response()->json(['ok' => true, 'csrf_token' => csrf_token()]);
     }
 }
