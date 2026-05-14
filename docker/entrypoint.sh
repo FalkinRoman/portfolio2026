@@ -17,6 +17,7 @@ chown -R www-data:www-data storage bootstrap/cache database/database.sqlite 2>/d
 
 su www-data -s /bin/sh -c "php artisan migrate --force --no-interaction"
 # public/ часто на named volume (root:root) — www-data не может symlink; root может
+rm -f public/storage 2>/dev/null || true
 php artisan storage:link --force --no-interaction 2>/dev/null || true
 
 if [ "$APP_ENV" = "production" ]; then

@@ -7,8 +7,7 @@ services:
     image: portfolio-laravel-app:${TAG:-latest}
     pull_policy: build
     restart: unless-stopped
-    env_file:
-      - .env
+    # Без env_file: Docker заливает APP_KEY в env при create; Laravel не перебивает getenv пустым из файла после правок .env
     environment:
       APP_ENV: "${APP_ENV:-production}"
       APP_DEBUG: "${APP_DEBUG:-false}"
