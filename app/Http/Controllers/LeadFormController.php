@@ -40,7 +40,9 @@ class LeadFormController extends Controller
             .'<b>Сообщение:</b>'."\n".$e($data['message'])."\n"
             .'<b>Согласие (отправка формы):</b> да';
 
-        $this->telegram->sendHtml($html);
+        if (! $this->telegram->sendHtml($html)) {
+            return response()->json(['ok' => false, 'message' => 'telegram_send_failed'], 503);
+        }
 
         return response()->json(['ok' => true]);
     }
@@ -69,7 +71,9 @@ class LeadFormController extends Controller
             .($tg !== '' ? '<b>Telegram:</b> '.$e($tg)."\n" : '')
             .'<b>Согласие (отправка формы):</b> да';
 
-        $this->telegram->sendHtml($html);
+        if (! $this->telegram->sendHtml($html)) {
+            return response()->json(['ok' => false, 'message' => 'telegram_send_failed'], 503);
+        }
 
         return response()->json(['ok' => true]);
     }
