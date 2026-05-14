@@ -741,6 +741,7 @@
         var fd = new FormData(form);
         fetch(action, {
           method: "POST",
+          credentials: "same-origin",
           headers: {
             Accept: "application/json",
             "X-Requested-With": "XMLHttpRequest",
