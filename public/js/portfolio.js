@@ -135,7 +135,7 @@
           addSel(":scope > .tool-row");
           break;
         case "newsletter":
-          addSel(".news-inner > .news-form");
+          addSel('.news-inner > form[data-lead-form="newsletter"]');
           addSel(".news-inner > .marquee");
           break;
         case "faq":

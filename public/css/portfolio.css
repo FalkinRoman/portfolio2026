@@ -1226,7 +1226,7 @@ body.intro-done .hero-intro .hero-sub-line::after {
 .btn-primary.is-busy {
   cursor: wait;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .btn-primary.is-busy:hover {
@@ -1234,17 +1234,31 @@ body.intro-done .hero-intro .hero-sub-line::after {
   filter: none;
 }
 
+/* Кольцо поверх текста (.btn-label иначе перекрывает ::before) */
 .btn-primary.is-busy::before {
   content: "";
   position: absolute;
-  z-index: 4;
+  left: 50%;
+  top: 50%;
   width: 22px;
   height: 22px;
+  margin: -11px 0 0 -11px;
+  z-index: 8;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.28);
   border-top-color: rgba(255, 255, 255, 0.95);
+  box-sizing: border-box;
   animation: lead-form-spin 0.7s linear infinite;
   pointer-events: none;
+}
+
+.btn-primary.is-busy .btn-label {
+  opacity: 0.12;
+  transition: opacity 0.12s ease;
+}
+
+.btn-primary.is-busy:not(:has(.btn-label)) {
+  color: transparent;
 }
 
 .btn-primary.is-busy:hover::after {
@@ -1253,6 +1267,9 @@ body.intro-done .hero-intro .hero-sub-line::after {
 }
 
 @keyframes lead-form-spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -3173,6 +3190,15 @@ body.intro-done .hero-intro .hero-sub-line::after {
   background: var(--bg-muted);
   border-radius: 20px;
   padding: clamp(24px, 4vw, 40px);
+}
+
+.lead-newsletter-form {
+  margin-top: 28px;
+}
+
+.lead-newsletter-form .form-legal-notice {
+  text-align: center;
+  margin-top: 6px;
 }
 
 .news-form {

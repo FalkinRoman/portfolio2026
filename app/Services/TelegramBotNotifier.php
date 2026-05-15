@@ -23,7 +23,9 @@ class TelegramBotNotifier
         $url = 'https://api.telegram.org/bot'.$token.'/sendMessage';
 
         try {
-            $res = Http::timeout(15)->asForm()->post($url, [
+            $timeout = max(5, min(60, (int) env('TELEGRAM_HTTP_TIMEOUT', 30)));
+
+            $res = Http::timeout($timeout)->asForm()->post($url, [
                 'chat_id' => $chatId,
                 'text' => $html,
                 'parse_mode' => 'HTML',

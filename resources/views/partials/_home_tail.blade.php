@@ -184,14 +184,19 @@
               <h2 class="display-sm">{{ __('site.newsletter.h2') }}</h2>
               <p class="lead">{{ __('site.newsletter.lead') }}</p>
             </div>
-            <form class="news-form" action="{{ route('leads.newsletter') }}" method="post" data-lead-form="newsletter">
+            <form class="contact-form lead-newsletter-form" action="{{ route('leads.newsletter') }}" method="post" data-lead-form="newsletter">
               @csrf
-              <input type="tel" name="phone" placeholder="{{ __('site.newsletter.phone_ph') }}" autocomplete="tel" />
-              <input type="text" name="telegram" placeholder="{{ __('site.newsletter.telegram_ph') }}" autocomplete="username" inputmode="text" />
-              {{-- honeypot: имя fax + в конце формы — автозаполнение не подставляет сюда username/email --}}
+              <div class="field"><input type="tel" name="phone" placeholder="{{ __('site.newsletter.phone_ph') }}" autocomplete="tel" /></div>
+              <div class="field"><input type="text" name="telegram" placeholder="{{ __('site.newsletter.telegram_ph') }}" autocomplete="username" inputmode="text" /></div>
+              {{-- fax в конце: не первое type=text — меньше шансов автозаполнения в honeypot --}}
               <input type="text" name="fax" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-              <div class="news-form__consent">@include('partials.legal_consent')</div>
-              <button type="submit" class="btn-primary" style="margin-top:0">{{ __('site.newsletter.submit') }}</button>
+              @include('partials.legal_consent')
+              <button type="submit" class="btn-primary btn-send" style="width:100%;margin-top:clamp(12px,2vw,20px)" aria-label="{{ __('site.newsletter.submit') }}">
+                <span class="btn-label" aria-hidden="true">
+                  <span class="btn-text btn-text-default">{{ __('site.newsletter.submit') }}</span>
+                  <span class="btn-text btn-text-hover">{{ __('site.newsletter.submit') }}</span>
+                </span>
+              </button>
             </form>
             <div class="marquee" aria-hidden="true">
               <div class="marquee-track">
@@ -253,11 +258,11 @@
           </div>
           <form class="contact-form" action="{{ route('leads.contact') }}" method="post" data-lead-form="contact">
             @csrf
+            <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <div class="field"><input type="text" name="name" required placeholder="{{ __('site.footer.name_ph') }}" autocomplete="name" /></div>
             <div class="field"><input type="tel" name="phone" placeholder="{{ __('site.footer.phone_ph') }}" autocomplete="tel" /></div>
             <div class="field"><input type="text" name="telegram" placeholder="{{ __('site.footer.telegram_ph') }}" autocomplete="username" inputmode="text" /></div>
             <div class="field"><textarea name="message" required placeholder="{{ __('site.footer.msg_ph') }}"></textarea></div>
-            <input type="text" name="fax" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             @include('partials.legal_consent')
             <button type="submit" class="btn-primary btn-send" style="width:100%" aria-label="{{ __('site.footer.send_aria') }}">
               <span class="btn-label" aria-hidden="true">

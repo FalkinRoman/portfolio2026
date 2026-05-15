@@ -14,7 +14,7 @@ class LeadFormController extends Controller
 
     public function contact(Request $request): JsonResponse
     {
-        if ($request->filled('fax')) {
+        if ($request->filled('_hp') || $request->filled('fax')) {
             return response()->json(['ok' => true]);
         }
 
@@ -52,7 +52,7 @@ class LeadFormController extends Controller
 
     public function newsletter(Request $request): JsonResponse
     {
-        if ($request->filled('fax')) {
+        if ($request->filled('_hp') || $request->filled('fax')) {
             return response()->json(['ok' => true]);
         }
 
