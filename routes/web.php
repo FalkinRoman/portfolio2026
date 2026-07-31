@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\SocialSettingsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LeadFormController;
 use App\Http\Controllers\LegalPageController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
@@ -26,20 +27,16 @@ Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name(
 Route::get('/privacy', [LegalPageController::class, 'privacy'])->name('legal.privacy');
 Route::get('/personal-data', [LegalPageController::class, 'personalData'])->name('legal.personal_data');
 
-Route::post('/leads/contact', [LeadFormController::class, 'contact'])
-    ->middleware('throttle:12,1')
-    ->name('leads.contact');
-Route::post('/leads/newsletter', [LeadFormController::class, 'newsletter'])
-    ->middleware('throttle:20,1')
-    ->name('leads.newsletter');
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.projects.index');
     })->name('dashboard');
+    Route::get('/content', [PageContentController::class, 'edit'])->name('content.edit');
+    Route::put('/content', [PageContentController::class, 'update'])->name('content.update');
     Route::get('/social', [SocialSettingsController::class, 'edit'])->name('social.edit');
     Route::put('/social', [SocialSettingsController::class, 'update'])->name('social.update');
     Route::resource('projects', AdminProjectController::class)->except(['show']);
+    Route::resource('reviews', AdminReviewController::class)->except(['show']);
 });
 
 Route::get('/dashboard', function () {

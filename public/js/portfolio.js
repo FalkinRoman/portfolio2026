@@ -301,7 +301,7 @@
     tGo(ti + 1);
   });
 
-  /* Pricing toggle (copy из PORTFOLIO_I18N — язык с сервера) */
+  /* Pricing toggle (copy из PORTFOLIO_I18N — язык с сервера, N планов) */
   var pt = document.querySelector("[data-pricing-toggle]");
   var pricingRoot = document.getElementById("pricing");
   var I = typeof window.PORTFOLIO_I18N !== "undefined" ? window.PORTFOLIO_I18N : null;
@@ -330,12 +330,20 @@
     var hi = pricingRoot.querySelector("[data-p-highlight]");
     var price = pricingRoot.querySelector("[data-p-price]");
     var pPoints = pricingRoot.querySelector("[data-p-points]");
-    pt.querySelectorAll("button").forEach(function (b) {
+    var buttons = Array.prototype.slice.call(pt.querySelectorAll("button[data-plan]"));
+    buttons.forEach(function (b, idx) {
       b.addEventListener("click", function () {
-        var mobile = b.getAttribute("data-plan") === "mobile";
-        pt.classList.toggle("enterprise", mobile);
-        var plan = mobile ? P.mobile : P.web;
+        var key = b.getAttribute("data-plan");
+        var plan = P[key];
         if (!plan) return;
+        pt.classList.toggle("enterprise", idx > 0);
+        pt.style.setProperty("--plan-index", String(idx));
+        if (!pt.style.getPropertyValue("--plan-count")) {
+          pt.style.setProperty("--plan-count", String(buttons.length || 2));
+        }
+        buttons.forEach(function (x) {
+          x.classList.toggle("is-active", x === b);
+        });
         if (title) title.textContent = plan.title || "";
         if (sub) sub.textContent = plan.sub || "";
         if (hi) hi.textContent = plan.highlight || "";
@@ -345,11 +353,11 @@
     });
   }
 
-  /* Hero CTA → pricing */
+  /* Hero CTA → projects */
   var heroBtn = document.querySelector(".hero .btn-primary");
   if (heroBtn) {
     heroBtn.addEventListener("click", function () {
-      var el = document.getElementById("pricing");
+      var el = document.getElementById("projects");
       if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
     });
   }

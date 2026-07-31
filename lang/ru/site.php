@@ -5,7 +5,7 @@ return [
 
     'brand' => [
         'name' => 'Фалькин Роман',
-        'role_default' => 'Web&Mobile Developer',
+        'role_default' => 'Team Lead FullStack · Noi',
         'role_hover' => 'Нажми для инфо обо мне',
         'role_hover_mobile' => 'Нажми для инфо',
         'aria_open' => 'Открыть информацию обо мне',
@@ -18,18 +18,19 @@ return [
         'social_threads' => 'Threads',
         'social_ig' => 'Инстаграм',
         'social_tg' => 'Telegram',
+        'social_wa' => 'WhatsApp',
     ],
 
     'hero' => [
         'review' => '100+ довольных клиентов',
         'title_l1' => 'Я создаю продукты',
-        'title_l2' => 'что работают так же',
-        'title_l3' => 'так как вы',
-        'sub_l1_html' => 'Создаю цифровые решения,<br class="br-mobile" />которые вовлекают пользователей,',
-        'sub_l2' => 'и каждый экран решает задачу',
-        'cta_default' => 'Смотреть стоимость',
-        'cta_hover' => 'К оценке',
-        'cta_aria' => 'Смотреть стоимость',
+        'title_l2' => 'которые работают так же,',
+        'title_l3' => 'как вы',
+        'sub_l1_html' => 'Создаю цифровые решения, <br class="br-mobile" />которые вовлекают пользователей,',
+        'sub_l2' => 'и каждый экран решает свою задачу',
+        'cta_default' => 'Смотреть проекты',
+        'cta_hover' => 'К проектам',
+        'cta_aria' => 'Смотреть проекты',
     ],
 
     'services' => [
@@ -181,17 +182,17 @@ return [
     'about' => [
         'aria_dialog' => 'О себе',
         'close' => 'Закрыть',
-        'role' => 'Web & Mobile Developer',
-        'hi' => '👋 Привет, я Фалькин Роман.',
-        'desc' => 'Я разработчик, который создаёт функциональные и визуально сильные цифровые продукты. Специализируюсь на веб и мобильной разработке — от идеи до продакшена, с фокусом на UX и измеримый бизнес-результат.',
-        'exp_h' => 'Опыт работы',
-        'exp_1' => 'Fullstack Web Developer (2019 — наст. время)',
-        'exp_2' => 'React Native разработчик (2021 — наст. время)',
-        'exp_3' => 'Frontend Developer, Next.js (2022 — наст. время)',
+        'role' => 'Team Lead FullStack Development · Noi Studio',
+        'hi' => 'Привет, я Роман Фалькин.',
+        'desc' => '6+ лет в разработке цифровых продуктов: веб, мобайл и MVP — от идеи до продакшена, с фокусом на UX и бизнес-результат. Как Team Lead FullStack в Noi Studio веду полный цикл: архитектура приложений и IT-инфраструктуры, fullstack-разработка, интеграции (включая 1С), RBAC и масштабирование до App Store / Google Play.',
+        'exp_h' => 'Опыт',
+        'exp_1' => 'Fullstack Web (2019 — наст. время)',
+        'exp_2' => 'React Native (2021 — наст. время)',
+        'exp_3' => 'Frontend / Next.js (2022 — наст. время)',
         'exp_4' => 'MVP и прототипы для стартапов (2020 — наст. время)',
-        'edu_h' => 'Образование',
+        'edu_h' => 'Образование и стек',
         'edu_1' => 'МГУ — магистр «Руководитель проектов»',
-        'edu_2' => 'Курсы: React, React Native, Node.js, Laravel, Docker, PostgreSQL',
+        'edu_2' => 'Профильные курсы: React, React Native, Node.js, Laravel, Docker, PostgreSQL',
     ],
 
     'dock' => [
@@ -202,8 +203,8 @@ return [
         'testimonials' => 'Отзывы',
         'toolkit' => 'Технологии',
         'faq' => 'Вопросы',
-        'pricing_cta' => 'Смотреть стоимость',
-        'pricing_hover' => 'К оценке',
+        'pricing_cta' => 'Смотреть проекты',
+        'pricing_hover' => 'К проектам',
     ],
 
     'leads' => [

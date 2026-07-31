@@ -5,7 +5,7 @@ return [
 
     'brand' => [
         'name' => 'Roman Falkin',
-        'role_default' => 'Web & Mobile Developer',
+        'role_default' => 'Team Lead FullStack · Noi',
         'role_hover' => 'Tap for about me',
         'role_hover_mobile' => 'Tap for info',
         'aria_open' => 'Open about me',
@@ -18,6 +18,7 @@ return [
         'social_threads' => 'Threads',
         'social_ig' => 'Instagram',
         'social_tg' => 'Telegram',
+        'social_wa' => 'WhatsApp',
     ],
 
     'hero' => [
@@ -27,9 +28,9 @@ return [
         'title_l3' => 'you do',
         'sub_l1_html' => 'I craft digital experiences that engage users,',
         'sub_l2' => 'and every screen earns its place',
-        'cta_default' => 'See pricing',
-        'cta_hover' => 'Get an estimate',
-        'cta_aria' => 'See pricing',
+        'cta_default' => 'View projects',
+        'cta_hover' => 'Browse work',
+        'cta_aria' => 'View projects',
     ],
 
     'services' => [
@@ -183,15 +184,15 @@ return [
     'about' => [
         'aria_dialog' => 'About',
         'close' => 'Close',
-        'role' => 'Web & Mobile Developer',
-        'hi' => '👋 Hi, I’m Roman Falkin.',
-        'desc' => 'I’m a developer who builds functional, visually strong digital products. I focus on web and mobile — from idea to production, with UX and measurable business impact.',
+        'role' => 'Team Lead FullStack Development · Noi Studio',
+        'hi' => 'Hi, I’m Roman Falkin.',
+        'desc' => '6+ years in digital product development: web, mobile and MVP — from idea to production, with a focus on UX and business results. As Team Lead FullStack at Noi Studio I own the full cycle: app & IT infrastructure architecture, fullstack delivery, integrations (including 1C), RBAC, and scaling to App Store / Google Play.',
         'exp_h' => 'Experience',
-        'exp_1' => 'Fullstack Web Developer (2019 — present)',
-        'exp_2' => 'React Native developer (2021 — present)',
-        'exp_3' => 'Frontend Developer, Next.js (2022 — present)',
+        'exp_1' => 'Fullstack Web (2019 — present)',
+        'exp_2' => 'React Native (2021 — present)',
+        'exp_3' => 'Frontend / Next.js (2022 — present)',
         'exp_4' => 'MVPs and prototypes for startups (2020 — present)',
-        'edu_h' => 'Education',
+        'edu_h' => 'Education & stack',
         'edu_1' => 'MSU — Master’s in Project Management',
         'edu_2' => 'Courses: React, React Native, Node.js, Laravel, Docker, PostgreSQL',
     ],
@@ -204,8 +205,8 @@ return [
         'testimonials' => 'Testimonials',
         'toolkit' => 'Stack',
         'faq' => 'FAQ',
-        'pricing_cta' => 'See pricing',
-        'pricing_hover' => 'Get an estimate',
+        'pricing_cta' => 'View projects',
+        'pricing_hover' => 'Browse work',
     ],
 
     'leads' => [

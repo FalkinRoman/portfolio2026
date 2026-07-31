@@ -2936,15 +2936,16 @@ body.intro-done .hero-intro .hero-sub-line::after {
   position: absolute;
   top: 5px;
   left: 5px;
-  width: calc(50% - 5px);
+  width: calc((100% - 10px) / var(--plan-count, 2));
   height: calc(100% - 10px);
   background: var(--bg-muted);
   border-radius: var(--radius-pill);
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(calc(var(--plan-index, 0) * 100%));
 }
 
 .pricing-toggle.enterprise .pill {
-  transform: translateX(100%);
+  /* kept for backward compat; position driven by --plan-index */
 }
 
 .pricing-toggle button {

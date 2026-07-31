@@ -50,6 +50,9 @@
             <a class="social" href="{{ $social->threads }}" @if($social->threads !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_threads') }}"><img src="{{ asset('assets/img/home/threads.svg') }}" alt="" width="24" height="24" /></a>
             <a class="social" href="{{ $social->instagram }}" @if($social->instagram !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_ig') }}"><img src="{{ asset('assets/img/home/social-ig.svg') }}" alt="" width="24" height="24" /></a>
             <a class="social" href="{{ $social->telegram }}" @if($social->telegram !== '#') target="_blank" rel="noopener noreferrer" @endif aria-label="{{ __('site.header.social_tg') }}"><img src="{{ asset('assets/img/home/social-tg.svg') }}" alt="" width="24" height="24" /></a>
+            @if(($social->whatsapp ?? '#') !== '#')
+              <a class="social" href="{{ $social->whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="{{ __('site.header.social_wa') }}"><img src="{{ asset('assets/img/home/social-wa.svg') }}" alt="" width="24" height="24" /></a>
+            @endif
           </div>
         </div>
       </div>

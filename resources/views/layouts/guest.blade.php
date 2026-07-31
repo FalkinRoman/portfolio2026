@@ -16,10 +16,22 @@
         .auth-card p.lead { margin: 0 0 1.5rem; font-size: 0.9rem; color: rgba(255,255,255,.5); }
         .auth-field { margin-bottom: 1rem; }
         .auth-field label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.45); margin-bottom: 0.4rem; }
-        .auth-field input[type=email], .auth-field input[type=password] {
+        .auth-field input[type=email], .auth-field input[type=password], .auth-field input[type=text].auth-password-input {
             width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 0.65rem 0.85rem; color: #fff; font: inherit;
         }
         .auth-field input:focus { outline: none; border-color: rgba(99,102,241,.6); }
+        .auth-password-wrap { position: relative; }
+        .auth-password-wrap .auth-password-input { padding-right: 2.75rem; }
+        .auth-password-toggle {
+            position: absolute; right: 0.45rem; top: 50%; transform: translateY(-50%);
+            width: 2rem; height: 2rem; border: 0; background: transparent; color: rgba(255,255,255,.55);
+            cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; padding: 0;
+        }
+        .auth-password-toggle:hover { color: rgba(255,255,255,.9); background: rgba(255,255,255,.06); }
+        .auth-password-toggle svg { width: 1.15rem; height: 1.15rem; display: none; }
+        .auth-password-toggle .icon-eye { display: block; }
+        .auth-password-toggle.is-visible .icon-eye { display: none; }
+        .auth-password-toggle.is-visible .icon-eye-off { display: block; }
         .auth-remember { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 1.25rem; font-size: 0.875rem; color: rgba(255,255,255,.65); }
         .auth-remember input { accent-color: #6366f1; }
         .auth-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }

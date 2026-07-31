@@ -1,8 +1,11 @@
+@php
+  $pc = $cms['projects_chrome'] ?? [];
+@endphp
       <section class="section wrap reveal" id="projects">
         <div class="section-head">
-          <span class="chip">{{ __('site.projects.chip') }}</span>
-          <h2 class="display-sm">{!! nl2br(e(__('site.projects.h2'))) !!}</h2>
-          <p class="lead">{{ __('site.projects.lead') }}</p>
+          <span class="chip">{{ $pc['chip'] ?? __('site.projects.chip') }}</span>
+          <h2 class="display-sm">{!! nl2br(e($pc['h2'] ?? __('site.projects.h2'))) !!}</h2>
+          <p class="lead">{{ $pc['lead'] ?? __('site.projects.lead') }}</p>
         </div>
         @foreach($projects as $project)
         @continue(!$project->publicUrl($project->card_image))

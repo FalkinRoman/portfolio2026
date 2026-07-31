@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SocialSettingsSeeder::class);
         $this->call(CorePortfolioProjectsSeeder::class);
+        $this->call(ReviewSeeder::class);
+        $this->call(SiteContentSeeder::class);
     }
 }
