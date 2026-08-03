@@ -57,11 +57,11 @@ class SiteContent extends Model
                     'lead' => 'Engineering-first work focused on product and business growth',
                     'items' => [
                         ['title' => 'Web development', 'images' => ['assets/img/services/website-1.png', 'assets/img/services/website-2.png', 'assets/img/services/website-3.png']],
-                        ['title' => 'Mobile development', 'images' => ['assets/img/services/app-1.png', 'assets/img/services/app-2.png', 'assets/img/services/app-3.png']],
-                        ['title' => 'Frontend development', 'images' => ['assets/img/services/framer-1.png', 'assets/img/services/framer-2.png', 'assets/img/services/framer-3.png']],
-                        ['title' => 'Branding', 'images' => ['assets/img/services/branding-1.png', 'assets/img/services/branding-2.png', 'assets/img/services/branding-3.png']],
+                        ['title' => 'Mobile apps', 'images' => ['assets/img/services/app-1.png', 'assets/img/services/app-2.png', 'assets/img/services/app-3.png']],
+                        ['title' => 'CRM systems', 'images' => ['assets/img/services/crm-1.png', 'assets/img/services/crm-2.png', 'assets/img/services/crm-3.png']],
+                        ['title' => '1C integrations', 'images' => ['assets/img/services/1c-1.png', 'assets/img/services/1c-2.png', 'assets/img/services/1c-3.png']],
+                        ['title' => 'AI integrations', 'images' => ['assets/img/services/ai-1.png', 'assets/img/services/ai-2.png', 'assets/img/services/ai-3.png']],
                         ['title' => 'MVP & prototypes', 'images' => ['assets/img/services/mvp-1.png', 'assets/img/services/mvp-2.png', 'assets/img/services/mvp-3.png']],
-                        ['title' => 'Logos', 'images' => ['assets/img/services/logos-1.png', 'assets/img/services/logos-2.png', 'assets/img/services/logos-3.png']],
                     ],
                 ],
                 'projects_chrome' => [
@@ -137,7 +137,7 @@ class SiteContent extends Model
                     'h2' => 'Creator & Team Lead FullStack',
                     'lead' => 'AI & Digital Studio — from strategy and design to engineering that moves business metrics',
                     'role_line' => 'Roman Falkin · Team Lead FullStack Development',
-                    'body' => 'I own product business logic end-to-end: architecture, frontend, backend, DevOps. At Noi Studio we connect strategy, design, and AI into digital products with measurable outcomes — higher conversion, faster launch, less operational drag.',
+                    'body' => 'I own product business logic end-to-end: architecture, frontend, backend, DevOps. At Noi Studio we start from business value — audit digitalization gaps, test hypotheses, then ship — so it’s never development for development’s sake. Strategy, design, and AI into products with measurable outcomes.',
                     'cta_label' => 'View studio presentation',
                 ],
                 'faq' => [
@@ -166,7 +166,7 @@ class SiteContent extends Model
                 'about' => [
                     'role' => 'Team Lead FullStack Development · Noi Studio',
                     'hi' => 'Hi, I’m Roman Falkin.',
-                    'desc' => '6+ years in digital product development: web, mobile and MVP — from idea to production, with a focus on UX and business results. As Team Lead FullStack at Noi Studio I own the full cycle: app & IT infrastructure architecture, fullstack delivery, integrations (including 1C), RBAC, and scaling to App Store / Google Play.',
+                    'desc' => '7+ years in digital product development: web, mobile and MVP — from idea to production, with a focus on UX and business results. As Team Lead FullStack at Noi Studio I own the full cycle: app & IT infrastructure architecture, fullstack delivery, integrations (including 1C), RBAC, and scaling to App Store / Google Play.',
                     'exp_h' => 'Experience',
                     'exp' => [
                         'Fullstack Web (2019 — present)',
@@ -194,11 +194,11 @@ class SiteContent extends Model
                 'lead' => 'Инженерные решения с упором на рост продукта и бизнеса',
                 'items' => [
                     ['title' => 'Веб-разработка', 'images' => ['assets/img/services/website-1.png', 'assets/img/services/website-2.png', 'assets/img/services/website-3.png']],
-                    ['title' => 'Мобайл-разработка', 'images' => ['assets/img/services/app-1.png', 'assets/img/services/app-2.png', 'assets/img/services/app-3.png']],
-                    ['title' => 'Frontend разработка', 'images' => ['assets/img/services/framer-1.png', 'assets/img/services/framer-2.png', 'assets/img/services/framer-3.png']],
-                    ['title' => 'Брендинг', 'images' => ['assets/img/services/branding-1.png', 'assets/img/services/branding-2.png', 'assets/img/services/branding-3.png']],
+                    ['title' => 'Мобильные приложения', 'images' => ['assets/img/services/app-1.png', 'assets/img/services/app-2.png', 'assets/img/services/app-3.png']],
+                    ['title' => 'CRM-системы', 'images' => ['assets/img/services/crm-1.png', 'assets/img/services/crm-2.png', 'assets/img/services/crm-3.png']],
+                    ['title' => '1С-интеграции', 'images' => ['assets/img/services/1c-1.png', 'assets/img/services/1c-2.png', 'assets/img/services/1c-3.png']],
+                    ['title' => 'AI-интеграции', 'images' => ['assets/img/services/ai-1.png', 'assets/img/services/ai-2.png', 'assets/img/services/ai-3.png']],
                     ['title' => 'MVP и прототипы', 'images' => ['assets/img/services/mvp-1.png', 'assets/img/services/mvp-2.png', 'assets/img/services/mvp-3.png']],
-                    ['title' => 'Логотипы', 'images' => ['assets/img/services/logos-1.png', 'assets/img/services/logos-2.png', 'assets/img/services/logos-3.png']],
                 ],
             ],
             'projects_chrome' => [
@@ -274,7 +274,7 @@ class SiteContent extends Model
                 'h2' => 'Создатель и Team Lead FullStack',
                 'lead' => 'AI & Digital Studio — стратегия, дизайн и инженерия под измеримый бизнес-результат',
                 'role_line' => 'Роман Фалькин · Team Lead FullStack Development',
-                'body' => 'Веду продуктовую бизнес-логику от архитектуры до продакшена: frontend, backend, DevOps. В Noi Studio соединяем стратегию, дизайн и AI в цифровые решения с метриками — конверсия, скорость запуска, меньше операционной рутины.',
+                'body' => 'Веду продуктовую бизнес-логику от архитектуры до продакшена: frontend, backend, DevOps. В Noi Studio начинаем с ценности для бизнеса — аудит цифровизации, гипотезы, потом код — чтобы это не было разработкой ради разработки. Стратегия, дизайн и AI в решения с измеримым результатом.',
                 'cta_label' => 'Смотреть презентацию студии',
             ],
             'faq' => [
@@ -303,7 +303,7 @@ class SiteContent extends Model
             'about' => [
                 'role' => 'Team Lead FullStack Development · Noi Studio',
                 'hi' => 'Привет, я Роман Фалькин.',
-                'desc' => '6+ лет в разработке цифровых продуктов: веб, мобайл и MVP — от идеи до продакшена, с фокусом на UX и бизнес-результат. Как Team Lead FullStack в Noi Studio веду полный цикл: архитектура приложений и IT-инфраструктуры, fullstack-разработка, интеграции (включая 1С), RBAC и масштабирование до App Store / Google Play.',
+                'desc' => '7+ лет в разработке цифровых продуктов: веб, мобайл и MVP — от идеи до продакшена, с фокусом на UX и бизнес-результат. Как Team Lead FullStack в Noi Studio веду полный цикл: архитектура приложений и IT-инфраструктуры, fullstack-разработка, интеграции (включая 1С), RBAC и масштабирование до App Store / Google Play.',
                 'exp_h' => 'Опыт',
                 'exp' => [
                     'Fullstack Web (2019 — наст. время)',

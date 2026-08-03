@@ -222,14 +222,17 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom wrap footer-bottom--split">
-        @php($copyParts = explode('. ', $footer['copy'] ?? '', 2))
-        <span class="footer-bottom__copy">
-          {{ $copyParts[0] }}@if(isset($copyParts[1])).
-          <span class="footer-bottom__copy-tail"> {{ $copyParts[1] }}</span>
-          @endif
-        </span>
-        @include('partials.footer_legal_links')
+      <div class="footer-bottom wrap">
+        <div class="footer-bottom__row footer-bottom--split">
+          @php($copyParts = explode('. ', $footer['copy'] ?? '', 2))
+          <span class="footer-bottom__copy">
+            {{ $copyParts[0] }}@if(isset($copyParts[1])).
+            <span class="footer-bottom__copy-tail"> {{ $copyParts[1] }}</span>
+            @endif
+          </span>
+          @include('partials.footer_legal_links')
+        </div>
+        @include('partials.footer_requisites')
       </div>
     </footer>
 

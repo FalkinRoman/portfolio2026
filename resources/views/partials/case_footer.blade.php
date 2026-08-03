@@ -34,9 +34,12 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom wrap footer-bottom--split">
-        <span class="footer-bottom__copy">{{ $footer['copy'] ?? __('site.footer.copy') }}</span>
-        @include('partials.footer_legal_links')
+      <div class="footer-bottom wrap">
+        <div class="footer-bottom__row footer-bottom--split">
+          <span class="footer-bottom__copy">{{ $footer['copy'] ?? __('site.footer.copy') }}</span>
+          @include('partials.footer_legal_links')
+        </div>
+        @include('partials.footer_requisites')
       </div>
     </footer>
 

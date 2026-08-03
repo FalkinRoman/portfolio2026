@@ -21,11 +21,13 @@ return [
     ],
 
     /**
-     * Реквизиты для юр. документов (152-ФЗ). ИНН / адрес — по желанию (для ИП и т.п.).
+     * Реквизиты Оператора (ИП) для юр. документов и футера (152-ФЗ).
      */
     'legal' => [
+        'operator_name' => env('LEGAL_OPERATOR_NAME', env('SEO_OG_SITE_NAME', 'Фалькин Роман Юрьевич')),
         'operator_inn' => env('LEGAL_INN'),
-        'operator_address' => env('LEGAL_ADDRESS'),
+        'operator_ogrnip' => env('LEGAL_OGRNIP'),
+        'policy_updated' => env('LEGAL_POLICY_UPDATED', '03.08.2026'),
     ],
 
     /**
