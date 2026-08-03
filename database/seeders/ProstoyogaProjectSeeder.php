@@ -63,7 +63,7 @@ class ProstoyogaProjectSeeder extends Seeder
             'seo_title_en' => 'prosto.yoga — online yoga course platform',
             'seo_description_en' => 'Online yoga course with landing, payments, personal accounts and admin panel for content and student operations.',
             'is_published' => true,
-            'sort_order' => 2,
+            'sort_order' => 4,
         ];
 
         $project = Project::query()->updateOrCreate(['slug' => 'prostoyoga'], $text);

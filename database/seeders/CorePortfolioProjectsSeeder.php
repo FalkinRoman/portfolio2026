@@ -12,6 +12,8 @@ class CorePortfolioProjectsSeeder extends Seeder
     public function run(): void
     {
         $this->call(BeatLineProjectSeeder::class);
+        $this->call(StopkekProjectSeeder::class);
+        $this->call(LumProjectSeeder::class);
         $this->call(ProstoyogaProjectSeeder::class);
         $this->call(KindleProjectSeeder::class);
         $this->call(ProstocampsProjectSeeder::class);

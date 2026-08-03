@@ -63,7 +63,7 @@ class ProstocampsProjectSeeder extends Seeder
             'seo_title_en' => 'prosto.camps — yoga camp platform with ticketing',
             'seo_description_en' => 'Camp operations platform: bookings, payments, member portal, admin, and analytics.',
             'is_published' => true,
-            'sort_order' => 4,
+            'sort_order' => 6,
         ];
 
         $project = Project::query()->updateOrCreate(['slug' => 'prostocamps'], $text);

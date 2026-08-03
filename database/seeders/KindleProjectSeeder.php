@@ -65,7 +65,7 @@ class KindleProjectSeeder extends Seeder
             'seo_title_en' => 'Kindle — Telegram-first dating app with subscriptions and analytics',
             'seo_description_en' => 'Dating platform with Telegram bot onboarding, paid plans, moderation admin panel, and product analytics.',
             'is_published' => true,
-            'sort_order' => 3,
+            'sort_order' => 5,
         ];
 
         $project = Project::query()->updateOrCreate(['slug' => 'kindle'], $text);
