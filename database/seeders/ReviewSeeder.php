@@ -51,6 +51,18 @@ class ReviewSeeder extends Seeder
                 'source' => 'assets/img/review/3.jpg',
                 'sort_order' => 3,
             ],
+            [
+                'name' => 'Дмитрий Малащицкий',
+                'name_en' => 'Dmitry Malashchitsky',
+                'role' => 'основатель Lum, Sri Lanka',
+                'role_en' => 'founder of Lum, Sri Lanka',
+                'role_mobile' => 'основатель Lum',
+                'role_mobile_en' => 'founder, Lum',
+                'body' => 'Нужен был не «ещё один сайт про виллы», а нормальный цифровой образ бренда на Шри-Ланке — атмосфера, стиль, бронирование и управление контентом в одном контуре. Роман с командой собрали ребрендинг и систему: сайт, админка, объекты, магазин, мультиязычность и интеграция брони. Получилось цельно — гости видят Lum так, как мы его задумали, а мы правим всё сами. Рекомендую.',
+                'body_en' => 'We didn’t need “another villa website” — we needed a real digital brand for Sri Lanka: atmosphere, style, booking and content control in one system. Roman and the team delivered the rebrand and the stack: site, admin, properties, shop, multilingual content and booking integration. It feels coherent — guests see Lum the way we meant it, and we manage everything ourselves. Recommended.',
+                'source' => 'assets/img/review/4.jpg',
+                'sort_order' => 4,
+            ],
         ];
 
         foreach ($items as $item) {
