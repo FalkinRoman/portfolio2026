@@ -9,6 +9,18 @@
 @endphp
 <div class="admin-card">
   <h1>{{ $mode === 'create' ? 'Новый проект' : 'Редактировать: '.$project->name }}</h1>
+
+  @if($errors->any())
+    <div class="admin-flash" style="background:rgba(239,68,68,.18);border-color:rgba(239,68,68,.45);color:#fecaca;margin-bottom:1rem" role="alert">
+      <strong>Не сохранилось:</strong>
+      <ul style="margin:0.4rem 0 0;padding-left:1.1rem">
+        @foreach($errors->all() as $err)
+          <li>{{ $err }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
   <form id="project-save" method="post" action="{{ $mode === 'create' ? route('admin.projects.store') : route('admin.projects.update', $project) }}" enctype="multipart/form-data">
     @csrf
     @if($mode === 'edit') @method('put') @endif
@@ -131,7 +143,8 @@
     <h2 style="margin:1.5rem 0 0.75rem;font-size:1rem;color:rgba(255,255,255,.7)">Изображения</h2>
     <div class="admin-field">
       <label for="card_image">Превью в блоке «Проекты»</label>
-      <input id="card_image" type="file" name="card_image" accept="image/*" />
+      <input id="card_image" type="file" name="card_image" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" />
+      @error('card_image')<div class="error">{{ $message }}</div>@enderror
       @if($project->publicUrl($project->card_image))
         <div class="admin-upload-preview">
           <img src="{{ $project->publicUrl($project->card_image) }}" alt="" width="88" height="88" loading="lazy" decoding="async" />
@@ -152,7 +165,8 @@
     </div>
     <div class="admin-field">
       <label for="banner_image">Баннер под заголовком</label>
-      <input id="banner_image" type="file" name="banner_image" accept="image/*" />
+      <input id="banner_image" type="file" name="banner_image" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" />
+      @error('banner_image')<div class="error">{{ $message }}</div>@enderror
       @if($project->publicUrl($project->banner_image))
         <div class="admin-upload-preview">
           <img src="{{ $project->publicUrl($project->banner_image) }}" alt="" width="88" height="88" loading="lazy" decoding="async" />
@@ -162,7 +176,14 @@
     </div>
     <div class="admin-field">
       <label for="gallery_images">Галерея (несколько файлов)</label>
-      <input id="gallery_images" type="file" name="gallery_images[]" accept="image/*" multiple />
+      <input id="gallery_images" type="file" name="gallery_images[]" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" multiple />
+      @php
+        $galleryFileErrors = collect($errors->getMessages())->filter(fn ($_, $k) => str_starts_with((string) $k, 'gallery_images'))->flatten();
+      @endphp
+      @foreach($galleryFileErrors as $message)
+        <div class="error">{{ $message }}</div>
+      @endforeach
+      <p class="admin-field__hint">До 8 МБ / файл, лучше jpg/webp (не HEIC с iPhone). За раз 2–3 фото. После «Сохранить» останешься тут — появятся превью для сортировки.</p>
       @if($project->gallery_images && count($project->gallery_images))
         <div class="admin-gallery-sort" data-gallery-sort>
           @foreach($project->gallery_images as $gPath)
@@ -178,11 +199,13 @@
           @endforeach
         </div>
         <p class="admin-field__hint">Перетаскивай карточки, чтобы менять очередь показа. Кнопка ✕ помечает фото на удаление. Новые фото добавляются в конец.</p>
+      @else
+        <p class="admin-field__hint" style="opacity:.65">В галерее пока пусто — нечего сортировать. Сначала сохрани фото.</p>
       @endif
     </div>
 
     <div class="admin-actions">
-      <button type="submit" class="btn-admin">Сохранить</button>
+      <button type="submit" class="btn-admin" id="project-save-btn">Сохранить</button>
       <a class="btn-admin btn-admin--ghost" href="{{ route('admin.projects.index') }}">Назад</a>
     </div>
   </form>
@@ -215,6 +238,18 @@
 </div>
 
 <script>
+  (function () {
+    var form = document.getElementById('project-save');
+    var btn = document.getElementById('project-save-btn');
+    var galleryInput = document.getElementById('gallery_images');
+    if (!form || !btn) return;
+    form.addEventListener('submit', function () {
+      var n = galleryInput && galleryInput.files ? galleryInput.files.length : 0;
+      btn.disabled = true;
+      btn.textContent = n > 0 ? ('Загрузка '+n+' фото…') : 'Сохранение…';
+    });
+  })();
+
   (function () {
     var input = document.getElementById('logo_image');
     var modal = document.getElementById('logoCropModal');

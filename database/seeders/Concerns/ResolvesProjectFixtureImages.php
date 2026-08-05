@@ -11,7 +11,7 @@ trait ResolvesProjectFixtureImages
      */
     protected function resolveFixtureFile(string $dir, string $basenameWithoutExt): array
     {
-        foreach (['webp', 'png'] as $ext) {
+        foreach (['webp', 'jpg', 'jpeg', 'png'] as $ext) {
             $path = $dir.'/'.$basenameWithoutExt.'.'.$ext;
             if (is_file($path)) {
                 return ['path' => $path, 'filename' => $basenameWithoutExt.'.'.$ext];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Support\ImageUploadOptimizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -59,7 +60,9 @@ class ProjectController extends Controller
         $this->handleUploads($request, $project);
         $project->save();
 
-        return redirect()->route('admin.projects.index')->with('ok', 'Сохранено.');
+        return redirect()
+            ->route('admin.projects.edit', $project)
+            ->with('ok', 'Сохранено. Если грузил галерею — превью ниже, их можно таскать.');
     }
 
     public function destroy(Project $project): RedirectResponse
@@ -91,7 +94,7 @@ class ProjectController extends Controller
             'overview_p2' => 'nullable|string',
             'overview_p3' => 'nullable|string',
             'accent_line' => 'nullable|string|max:2000',
-            'live_url' => 'nullable|url|max:2000',
+            'live_url' => 'nullable|string|max:2000',
             'name_en' => 'nullable|string|max:255',
             'tagline_en' => 'nullable|string|max:2000',
             'meta_client_en' => 'nullable|string|max:255',
@@ -103,12 +106,23 @@ class ProjectController extends Controller
             'accent_line_en' => 'nullable|string|max:2000',
             'seo_title_en' => 'nullable|string|max:255',
             'seo_description_en' => 'nullable|string|max:2000',
-            'gallery_images' => 'nullable|array',
-            'gallery_images.*' => 'nullable|image|max:10240',
+            'card_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
+            'logo_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg|max:4096',
+            'banner_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
+            'gallery_images' => 'nullable|array|max:12',
+            'gallery_images.*' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
             'gallery_existing_order' => 'nullable|array',
             'gallery_existing_order.*' => 'nullable|string|max:2048',
             'gallery_remove' => 'nullable|array',
             'gallery_remove.*' => 'nullable|string|max:2048',
+        ], [
+            'gallery_images.*.max' => 'Каждое фото галереи — максимум 8 МБ. Сожми перед загрузкой или грузи по 2–3 за раз.',
+            'gallery_images.*.mimes' => 'Галерея: только jpg, jpeg, png, webp, gif (не HEIC).',
+            'card_image.max' => 'Превью — максимум 8 МБ.',
+            'card_image.mimes' => 'Превью: jpg/png/webp/gif.',
+            'banner_image.max' => 'Баннер — максимум 8 МБ.',
+            'banner_image.mimes' => 'Баннер: jpg/png/webp/gif.',
+            'logo_image.mimes' => 'Логотип: jpg/png/webp/gif/svg.',
         ]);
     }
 
@@ -122,6 +136,8 @@ class ProjectController extends Controller
 
     private function handleUploads(Request $request, Project $project): void
     {
+        @ini_set('memory_limit', '512M');
+
         $disk = 'public';
         $base = 'projects/'.$project->id;
 
@@ -130,8 +146,14 @@ class ProjectController extends Controller
                 if ($project->{$field}) {
                     Storage::disk($disk)->delete($project->{$field});
                 }
-                $path = $request->file($field)->store($base, $disk);
-                $project->{$field} = $path;
+                // Логотип из кроппера уже маленький — не раздуваем ресайзом агрессивно
+                $maxEdge = $field === 'logo_image' ? 1024 : 2800;
+                $project->{$field} = ImageUploadOptimizer::store(
+                    $request->file($field),
+                    $base,
+                    $disk,
+                    $maxEdge
+                );
             }
         }
 
@@ -168,7 +190,7 @@ class ProjectController extends Controller
         $newPaths = [];
         foreach ($request->file('gallery_images', []) as $file) {
             if ($file && $file->isValid()) {
-                $newPaths[] = $file->store($base.'/gallery', $disk);
+                $newPaths[] = ImageUploadOptimizer::store($file, $base.'/gallery', $disk, 2800);
             }
         }
 
