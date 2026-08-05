@@ -128,8 +128,10 @@ class SiteContent extends Model
                         ['name' => 'React Native', 'desc' => 'Cross-platform apps for iOS and Android', 'icon' => 'assets/icons/stack/reactnative.svg', 'pct' => 88],
                         ['name' => 'Docker', 'desc' => 'Containerization and predictable deploys in any environment', 'icon' => 'assets/icons/stack/docker.svg', 'pct' => 85],
                         ['name' => 'PHP', 'desc' => 'Server-side logic, APIs, and database integrations', 'icon' => 'assets/icons/stack/php.svg', 'pct' => 83],
+                        ['name' => 'Claude', 'desc' => 'AI agents, code assistance and product integrations with Claude', 'icon' => 'assets/icons/stack/claude.svg', 'pct' => 82],
                         ['name' => 'Python', 'desc' => 'Automation, backends, and complex problem solving', 'icon' => 'assets/icons/stack/python.svg', 'pct' => 80],
                         ['name' => 'PostgreSQL', 'desc' => 'Relational database design and optimization', 'icon' => 'assets/icons/stack/postgresql.svg', 'pct' => 78],
+                        ['name' => 'Kubernetes', 'desc' => 'Container orchestration and production clusters', 'icon' => 'assets/icons/stack/kubernetes.svg', 'pct' => 80],
                     ],
                 ],
                 'studio' => [
@@ -265,8 +267,10 @@ class SiteContent extends Model
                     ['name' => 'React Native', 'desc' => 'Кроссплатформенные приложения для iOS и Android', 'icon' => 'assets/icons/stack/reactnative.svg', 'pct' => 88],
                     ['name' => 'Docker', 'desc' => 'Контейнеризация и предсказуемый деплой в любой среде', 'icon' => 'assets/icons/stack/docker.svg', 'pct' => 85],
                     ['name' => 'PHP', 'desc' => 'Серверная логика, API и интеграции с базами данных', 'icon' => 'assets/icons/stack/php.svg', 'pct' => 83],
+                    ['name' => 'Claude', 'desc' => 'AI-агенты, код и продуктовые интеграции с Claude', 'icon' => 'assets/icons/stack/claude.svg', 'pct' => 82],
                     ['name' => 'Python', 'desc' => 'Автоматизация, бэкенд и задачи любой сложности', 'icon' => 'assets/icons/stack/python.svg', 'pct' => 80],
                     ['name' => 'PostgreSQL', 'desc' => 'Проектирование и оптимизация реляционных баз данных', 'icon' => 'assets/icons/stack/postgresql.svg', 'pct' => 78],
+                    ['name' => 'Kubernetes', 'desc' => 'Оркестрация контейнеров и продакшн-кластеры', 'icon' => 'assets/icons/stack/kubernetes.svg', 'pct' => 80],
                 ],
             ],
             'studio' => [

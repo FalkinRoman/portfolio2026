@@ -3113,6 +3113,8 @@ body.intro-done .hero-intro .hero-sub-line::after {
   flex: 1;
   min-width: 0;
   z-index: 1;
+  /* difference: белый текст читаем и на чёрном fill, и на белом хвосте ряда */
+  mix-blend-mode: difference;
 }
 
 .tool-meta h4 {
@@ -3126,7 +3128,7 @@ body.intro-done .hero-intro .hero-sub-line::after {
 .tool-meta p {
   margin: 0;
   font-size: 14px;
-  color: #bababa;
+  color: #c8c8c8;
 }
 
 .tool-pct {
@@ -3136,9 +3138,9 @@ body.intro-done .hero-intro .hero-sub-line::after {
   border-radius: var(--radius-pill);
   font-size: 14px;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(38, 38, 38, 0.35);
-  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  mix-blend-mode: difference;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
 }
