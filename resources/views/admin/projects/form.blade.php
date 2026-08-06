@@ -183,7 +183,7 @@
       @foreach($galleryFileErrors as $message)
         <div class="error">{{ $message }}</div>
       @endforeach
-      <p class="admin-field__hint">До 8 МБ / файл, лучше jpg/webp (не HEIC с iPhone). За раз 2–3 фото. После «Сохранить» останешься тут — появятся превью для сортировки.</p>
+      <p class="admin-field__hint">До 8 МБ / файл, лучше jpg/webp (не HEIC). Новые файлы <strong>добавляются</strong> к уже загруженным, ничего не затирается. За раз 2–3 фото. Удаление — только ✕ на превью.</p>
       @if($project->gallery_images && count($project->gallery_images))
         <div class="admin-gallery-sort" data-gallery-sort>
           @foreach($project->gallery_images as $gPath)

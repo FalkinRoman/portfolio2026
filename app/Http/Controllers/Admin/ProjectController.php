@@ -27,7 +27,7 @@ class ProjectController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $data = $this->validated($request);
+        $data = $this->validatedAttributes($request);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
         $data['features'] = $this->parseFeatures($request->input('features_text'));
         $data['features_en'] = $this->parseFeatures($request->input('features_text_en'));
@@ -49,7 +49,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project): RedirectResponse
     {
-        $data = $this->validated($request, $project->id);
+        $data = $this->validatedAttributes($request, $project->id);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
         $data['features'] = $this->parseFeatures($request->input('features_text'));
         $data['features_en'] = $this->parseFeatures($request->input('features_text_en'));
@@ -62,7 +62,7 @@ class ProjectController extends Controller
 
         return redirect()
             ->route('admin.projects.edit', $project)
-            ->with('ok', 'Сохранено. Если грузил галерею — превью ниже, их можно таскать.');
+            ->with('ok', 'Сохранено. Новые фото галереи добавлены к существующим — можно сортировать.');
     }
 
     public function destroy(Project $project): RedirectResponse
@@ -109,6 +109,7 @@ class ProjectController extends Controller
             'card_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
             'logo_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif,svg|max:4096',
             'banner_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
+            // append: новые файлы; существующие пути приходят отдельно (gallery_existing_order)
             'gallery_images' => 'nullable|array|max:12',
             'gallery_images.*' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192',
             'gallery_existing_order' => 'nullable|array',
@@ -124,6 +125,28 @@ class ProjectController extends Controller
             'banner_image.mimes' => 'Баннер: jpg/png/webp/gif.',
             'logo_image.mimes' => 'Логотип: jpg/png/webp/gif/svg.',
         ]);
+    }
+
+    /**
+     * Атрибуты модели без upload-полей.
+     * Иначе fill(gallery_images => UploadedFile[]) затирает пути и «новые 1–2 фото» сносят всю галерею.
+     *
+     * @return array<string, mixed>
+     */
+    private function validatedAttributes(Request $request, ?int $ignoreId = null): array
+    {
+        $data = $this->validated($request, $ignoreId);
+
+        unset(
+            $data['card_image'],
+            $data['logo_image'],
+            $data['banner_image'],
+            $data['gallery_images'],
+            $data['gallery_existing_order'],
+            $data['gallery_remove'],
+        );
+
+        return $data;
     }
 
     private function parseFeatures(?string $text): array
