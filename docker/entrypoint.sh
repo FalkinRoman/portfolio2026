@@ -7,13 +7,18 @@ mkdir -p storage/framework/sessions \
   storage/framework/cache/data \
   storage/app/public \
   storage/logs \
-  bootstrap/cache
+  bootstrap/cache \
+  database/data
 
-if [ ! -f database/database.sqlite ]; then
-  touch database/database.sqlite
+# том только на database/data — sqlite здесь; старый путь подхватываем один раз
+if [ -f database/database.sqlite ] && [ ! -f database/data/database.sqlite ]; then
+  mv database/database.sqlite database/data/database.sqlite
+fi
+if [ ! -f database/data/database.sqlite ]; then
+  touch database/data/database.sqlite
 fi
 
-chown -R www-data:www-data storage bootstrap/cache database/database.sqlite 2>/dev/null || true
+chown -R www-data:www-data storage bootstrap/cache database/data 2>/dev/null || true
 
 su www-data -s /bin/sh -c "php artisan migrate --force --no-interaction"
 # public/ часто на named volume (root:root) — www-data не может symlink; root может
