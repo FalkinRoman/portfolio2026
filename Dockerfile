@@ -39,7 +39,10 @@ WORKDIR /var/www/html
 COPY --from=vendor /app /var/www/html
 COPY --from=frontend /app/public/build /var/www/html/public/build
 
-RUN mkdir -p database storage/app/public bootstrap/cache \
+# Снимок public для sync в named volume (иначе старый portfolio_public залипает без новых ассетов)
+RUN cp -a /var/www/html/public /opt/public-dist
+
+RUN mkdir -p database/data storage/app/public bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

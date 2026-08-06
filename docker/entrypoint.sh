@@ -8,7 +8,18 @@ mkdir -p storage/framework/sessions \
   storage/app/public \
   storage/logs \
   bootstrap/cache \
-  database/data
+  database/data \
+  public
+
+# том portfolio_public перекрывает public/ — докидываем ассеты из образа (storage не трогаем)
+if [ -d /opt/public-dist ]; then
+  for item in /opt/public-dist/*; do
+    [ -e "$item" ] || continue
+    name=$(basename "$item")
+    [ "$name" = "storage" ] && continue
+    cp -a "$item" "public/"
+  done
+fi
 
 # том только на database/data — sqlite здесь; старый путь подхватываем один раз
 if [ -f database/database.sqlite ] && [ ! -f database/data/database.sqlite ]; then
