@@ -14,7 +14,7 @@ class SiteContentSeeder extends Seeder
         if ($row) {
             $row->home = SiteContent::defaultHome();
             $row->site_title = $row->site_title ?: 'Фалькин Роман — портфолио';
-            $row->meta_description = 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, CRM, продукты, MVP.';
+            $row->meta_description = 'Веб, CRM, мобильные и AI-решения от идеи до запуска. Кейсы BeatLine, стопКЕК, Lum и другие — на сайте.';
             $row->save();
         } else {
             SiteContent::current();

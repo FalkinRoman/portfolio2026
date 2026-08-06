@@ -96,7 +96,7 @@ class SiteContent extends Model
                                 'Marketing landing page',
                                 'Corporate website',
                                 'Customer area / web app',
-                                'Included: responsive layout, basic SEO, analytics',
+                                'Included: UI/UX design, responsive layout, basic SEO, analytics',
                                 'Quoted separately: complex integrations, admin, multilingual',
                                 'Timeline: typically 2–8 weeks depending on scope',
                             ],
@@ -131,7 +131,6 @@ class SiteContent extends Model
                         ['name' => 'Claude', 'desc' => 'AI agents, code assistance and product integrations with Claude', 'icon' => 'assets/icons/stack/claude.svg', 'pct' => 82],
                         ['name' => 'Python', 'desc' => 'Automation, backends, and complex problem solving', 'icon' => 'assets/icons/stack/python.svg', 'pct' => 80],
                         ['name' => 'PostgreSQL', 'desc' => 'Relational database design and optimization', 'icon' => 'assets/icons/stack/postgresql.svg', 'pct' => 78],
-                        ['name' => 'Kubernetes', 'desc' => 'Container orchestration and production clusters', 'icon' => 'assets/icons/stack/kubernetes.svg', 'pct' => 80],
                     ],
                 ],
                 'studio' => [
@@ -145,41 +144,33 @@ class SiteContent extends Model
                 'faq' => [
                     'chip' => 'FAQ',
                     'h2' => 'Common questions before we start',
-                    'lead' => 'Process, timelines, pricing, and when we bring in the Noi team',
+                    'lead' => 'Scope, pricing, timelines, communication, and how we work after launch',
                     'more_q' => 'Didn’t find an answer?',
                     'write' => 'Message on Telegram',
                     'items' => [
-                        [
-                            'q' => 'How does a project run?',
-                            'a' => 'Three stages: research and problem framing, build in short sprints with demos and sign-offs, then launch, polish, and growth. At every step priorities, timelines, and the next outcome stay clear.',
-                        ],
-                        [
-                            'q' => 'What’s the difference between Falkin Lab and Noi Studio?',
-                            'a' => 'Falkin Lab is for a strong fullstack end-to-end: from research to launch. Noi Studio steps in on complex work that needs a team — strategy, design, AI, and engineering. I lead the engineering track as Team Lead FullStack.',
-                        ],
                         [
                             'q' => 'What kinds of work do you take on?',
                             'a' => 'Sites and web services, mobile apps, CRM, 1C integrations, AI solutions, Telegram Mini Apps, MVPs and prototypes. If the brief spans several areas, we’ll map it and propose the right setup.',
                         ],
                         [
                             'q' => 'What does the “from” price include?',
-                            'a' => 'The baseline covers discovery, build, responsive layout, basic analytics, and launch prep. Integrations, heavy admin, multilingual, offline, or unusual flows are quoted separately.',
+                            'a' => 'The baseline always includes UI/UX design, development, responsive layout, basic analytics, and launch prep. Integrations, heavy admin, multilingual, offline, or unusual flows are quoted separately.',
                         ],
                         [
                             'q' => 'How long does development usually take?',
-                            'a' => 'Web projects usually take 2–8 weeks; mobile 4–12 weeks. Timing depends on scope, content readiness, and how fast we align on reviews.',
+                            'a' => 'Web is usually 2–8 weeks, mobile 4–12 weeks. Exact timeline and cost come from the brief: scope, content readiness, and how fast we align on reviews.',
                         ],
                         [
                             'q' => 'How do we communicate during the project?',
-                            'a' => 'Main channel is Telegram or WhatsApp — I reply personally and fast. Email for formal decisions. We can jump on a call whenever the brief needs it.',
+                            'a' => 'Day to day — Telegram or WhatsApp, I reply personally. Calls when needed — Yandex Telemost, or another video tool we agree on. Email stays for formal notes and documents.',
                         ],
                         [
                             'q' => 'Do you work under contract with staged payment?',
-                            'a' => 'Yes. We lock scope, timelines, stage costs, and acceptance criteria so both sides stay clear.',
+                            'a' => 'Yes — officially as a sole proprietor (ИП), under a contract with staged payment. We fix scope, timelines, stage costs, and acceptance criteria so both sides stay clear.',
                         ],
                         [
                             'q' => 'What happens after launch?',
-                            'a' => 'We turn on analytics, read the metrics, and close follow-up fixes. Then support and growth on an agreed plan: new features, optimizations, and ongoing care.',
+                            'a' => 'We turn on analytics and close launch bugs and polish in the agreed window. Then support and growth on a plan: fixes, new features, optimizations.',
                         ],
                     ],
                 ],
@@ -188,7 +179,7 @@ class SiteContent extends Model
                     'h2' => 'Available 24/7',
                     'lead' => 'Have a project? Message any channel — I reply personally and fast.',
                     'channels' => 'Channels',
-                    'meetings' => 'Happy to jump on a call to walk through the brief when useful.',
+                    'meetings' => 'Happy to jump on a Yandex Telemost call — or another video tool that works for you.',
                     'copy' => '© 2024–2026 Roman Falkin. All rights reserved.',
                 ],
                 'about' => [
@@ -209,7 +200,7 @@ class SiteContent extends Model
                     'edu' => [
                         'MSU — Master’s in Project Management',
                         'Courses: React, React Native, Node.js, Laravel, Docker, PostgreSQL',
-                        'Stack: React, React Native, Next.js, TypeScript, Node.js/NestJS, Laravel/PHP, Python, PostgreSQL, Redis, RabbitMQ/Kafka, Docker, Kubernetes, Nginx, CI/CD, REST/GraphQL/WebSocket, 1C',
+                        'Stack: React, React Native, Next.js, TypeScript, Node.js/NestJS, Laravel/PHP, Python, PostgreSQL, Redis, RabbitMQ/Kafka, Docker, Nginx, CI/CD, REST/GraphQL/WebSocket, 1C',
                     ],
                 ],
             ];
@@ -261,7 +252,7 @@ class SiteContent extends Model
                             'Маркетинговый лендинг',
                             'Корпоративный сайт',
                             'Личный кабинет / web app',
-                            'В цену входят: адаптив, базовое SEO, аналитика',
+                            'В цену входят: дизайн UI/UX, адаптив, базовое SEO, аналитика',
                             'Отдельно оцениваются: сложные интеграции, админ-панель, мультиязык',
                             'Срок: обычно 2–8 недель в зависимости от объёма',
                         ],
@@ -296,7 +287,6 @@ class SiteContent extends Model
                     ['name' => 'Claude', 'desc' => 'AI-агенты, код и продуктовые интеграции с Claude', 'icon' => 'assets/icons/stack/claude.svg', 'pct' => 82],
                     ['name' => 'Python', 'desc' => 'Автоматизация, бэкенд и задачи любой сложности', 'icon' => 'assets/icons/stack/python.svg', 'pct' => 80],
                     ['name' => 'PostgreSQL', 'desc' => 'Проектирование и оптимизация реляционных баз данных', 'icon' => 'assets/icons/stack/postgresql.svg', 'pct' => 78],
-                    ['name' => 'Kubernetes', 'desc' => 'Оркестрация контейнеров и продакшн-кластеры', 'icon' => 'assets/icons/stack/kubernetes.svg', 'pct' => 80],
                 ],
             ],
             'studio' => [
@@ -310,41 +300,33 @@ class SiteContent extends Model
             'faq' => [
                 'chip' => 'FAQ',
                 'h2' => 'Частые вопросы перед стартом',
-                'lead' => 'Процесс, сроки, оплата и когда подключаем команду Noi',
+                'lead' => 'Задачи, стоимость, сроки, связь и что будет после запуска',
                 'more_q' => 'Не нашли ответ?',
                 'write' => 'Напишите в мессенджер',
                 'items' => [
-                    [
-                        'q' => 'Как проходит работа над проектом?',
-                        'a' => 'Три этапа: исследование и постановка задачи, разработка короткими спринтами с демо и согласованиями, затем запуск, доработки и развитие. На каждом шаге видно приоритеты, сроки и следующий результат.',
-                    ],
-                    [
-                        'q' => 'Чем Falkin Lab отличается от Noi Studio?',
-                        'a' => 'Falkin Lab — когда нужен сильный fullstack под ключ: от исследования до запуска. Noi Studio подключаем к сложным задачам, где нужна команда — стратегия, дизайн, AI и разработка. Я веду инженерный контур как Team Lead FullStack.',
-                    ],
                     [
                         'q' => 'С какими задачами вы работаете?',
                         'a' => 'Сайты и веб-сервисы, мобильные приложения, CRM, интеграции с 1С, AI-решения, Telegram Mini Apps, MVP и прототипы. Если задача на стыке нескольких направлений — разберём и предложим формат работы.',
                     ],
                     [
                         'q' => 'Что входит в стоимость «от»?',
-                        'a' => 'В базовую оценку входят проектирование, разработка, адаптив, базовая аналитика и подготовка к запуску. Интеграции, сложная админка, мультиязык, офлайн-режим и нестандартные сценарии считаются отдельно.',
+                        'a' => 'В базовую оценку всегда входят дизайн (UI/UX), разработка, адаптив, базовая аналитика и подготовка к запуску. Интеграции, сложная админка, мультиязык, офлайн-режим и нестандартные сценарии считаются отдельно.',
                     ],
                     [
                         'q' => 'Сколько обычно занимает разработка?',
-                        'a' => 'Веб-проекты обычно 2–8 недель, мобильные — 4–12 недель. Срок зависит от объёма функционала, готовности материалов и скорости согласований.',
+                        'a' => 'Веб — обычно 2–8 недель, мобильные — 4–12 недель. Точные сроки и стоимость считаем по брифу: объём, готовность материалов и скорость согласований.',
                     ],
                     [
                         'q' => 'Как мы общаемся во время проекта?',
-                        'a' => 'Основной канал — Telegram или WhatsApp: отвечаю лично и быстро. Почта — для формальных договорённостей. Если нужно — созвонимся и разберём задачу голосом.',
+                        'a' => 'По ходу работы — Telegram или WhatsApp, отвечаю лично. Созвоны при необходимости — в Яндекс Телемосте или другом видеосервисе, который удобен. Почта — для формальных писем и документов.',
                     ],
                     [
                         'q' => 'Работаете по договору и этапной оплате?',
-                        'a' => 'Да. Фиксируем объём, сроки, стоимость этапов и критерии приёмки — чтобы обеим сторонам было прозрачно.',
+                        'a' => 'Да — официально как ИП, по договору с поэтапной оплатой. Фиксируем объём, сроки, стоимость этапов и критерии приёмки, чтобы обеим сторонам было прозрачно.',
                     ],
                     [
                         'q' => 'Что происходит после запуска?',
-                        'a' => 'Подключаем аналитику, смотрим метрики и закрываем доработки. Дальше — поддержка и развитие по согласованному плану: новые функции, оптимизации, сопровождение.',
+                        'a' => 'Подключаем аналитику и закрываем баги и мелкие доработки в согласованном окне после релиза. Дальше — поддержка и развитие по плану: правки, новые функции, оптимизации.',
                     ],
                 ],
             ],
@@ -353,7 +335,7 @@ class SiteContent extends Model
                 'h2' => 'На связи 24/7',
                 'lead' => 'Есть задача? Напишите в удобный канал — отвечаю лично и быстро.',
                 'channels' => 'Каналы связи',
-                'meetings' => 'По задачам проекта могу созвониться и разобрать детали голосом.',
+                'meetings' => 'По задачам проекта могу созвониться в Телемосте или другом удобном видеосервисе.',
                 'copy' => '© 2024–2026 Фалькин Роман. Все права защищены.',
             ],
             'about' => [
@@ -374,7 +356,7 @@ class SiteContent extends Model
                 'edu' => [
                     'МГУ — магистр «Руководитель проектов»',
                     'Профильные курсы: React, React Native, Node.js, Laravel, Docker, PostgreSQL',
-                    'Стек: React, React Native, Next.js, TypeScript, Node.js/NestJS, Laravel/PHP, Python, PostgreSQL, Redis, RabbitMQ/Kafka, Docker, Kubernetes, Nginx, CI/CD, REST/GraphQL/WebSocket, 1С',
+                    'Стек: React, React Native, Next.js, TypeScript, Node.js/NestJS, Laravel/PHP, Python, PostgreSQL, Redis, RabbitMQ/Kafka, Docker, Nginx, CI/CD, REST/GraphQL/WebSocket, 1С',
                 ],
             ],
         ];
