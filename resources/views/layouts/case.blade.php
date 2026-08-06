@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" prefix="og: https://ogp.me/ns#">
+@if(request()->attributes->get('social_crawler'))
+<head>
+  <meta charset="utf-8">
+  @include('partials.seo')
+</head>
+<body></body>
+@else
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,4 +29,5 @@
 <script src="{{ asset('js/portfolio.js') }}?v={{ @filemtime(public_path('js/portfolio.js')) ?: '1' }}" defer></script>
 @stack('scripts')
 </body>
+@endif
 </html>

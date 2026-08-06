@@ -29,6 +29,8 @@ class SocialCrawlerFriendly
         'Viber',
         'Pinterest',
         'Applebot',
+        // вторичный фетчер TG (логи: 95.161.* качает HTML этим UA)
+        'Chrome/75.0.3770.100',
     ];
 
     public function handle(Request $request, Closure $next): Response
