@@ -18,7 +18,21 @@
       (function () {
         try {
           if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-          document.body.classList.add("lab-splash-active", "intro-pending");
+          var body = document.body;
+          body.classList.add("lab-splash-active", "intro-pending");
+          // Failsafe: если portfolio.js закэширован/упал — не оставляем серый экран навечно
+          setTimeout(function () {
+            if (!body.classList.contains("lab-splash-active")) return;
+            var splash = document.getElementById("labSplash");
+            if (splash) {
+              splash.classList.add("is-gone");
+            }
+            body.classList.remove("lab-splash-active");
+            if (body.classList.contains("intro-pending") && !body.classList.contains("intro-run")) {
+              body.classList.remove("intro-pending");
+              body.classList.add("intro-done");
+            }
+          }, 4200);
         } catch (e) {}
       })();
     </script>
@@ -98,7 +112,7 @@
           <span class="hero-sub-line hero-sub-line-1">
             <span class="hero-sub-line__inner">{!! __('site.hero.sub_l1_html') !!}</span>
           </span><br class="br-desktop" /><br class="br-mobile" /><span class="hero-sub-line hero-sub-line-2">
-            <span class="hero-sub-line__inner">{!! __('site.hero.sub_l2') !!}</span>
+            <span class="hero-sub-line__inner">{{ __('site.hero.sub_l2') }}</span>
           </span>
         </p>
         <button type="button" class="btn-primary hero-cta" aria-label="{{ __('site.hero.cta_aria') }}">

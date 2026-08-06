@@ -295,7 +295,11 @@
         });
       }
     } else {
-      if (labSplash) labSplash.classList.add("is-gone");
+      if (labSplash) {
+        labSplash.classList.add("is-gone");
+        body.classList.remove("lab-splash-active");
+      }
+      body.classList.remove("intro-pending");
       body.classList.add("intro-done");
     }
   }

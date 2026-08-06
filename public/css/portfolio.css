@@ -808,9 +808,10 @@ body.lab-splash-active .lab-splash {
 
 .lab-splash__word {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(14px);
-  filter: blur(8px);
+  /* Не прячем до is-in: иначе пустой veil при задержке/старом JS */
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
 }
 
 .lab-splash.is-in .lab-splash__word {
@@ -825,9 +826,9 @@ body.lab-splash-active .lab-splash {
   line-height: 1.35;
   letter-spacing: 0.01em;
   color: rgba(17, 18, 20, 0.58);
-  opacity: 0;
-  transform: translateY(10px);
-  filter: blur(6px);
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
 }
 
 .lab-splash.is-in .lab-splash__tag {
@@ -1065,6 +1066,7 @@ body.intro-run .hero-intro .carousel-strip {
   body.intro-pending .hero-intro .review-pill,
   body.intro-pending .hero-intro .hero-cta,
   body.intro-pending .hero-intro .carousel-strip {
+    opacity: 1;
     transform: none;
     animation: none;
   }
@@ -1157,6 +1159,7 @@ body.intro-run .hero-intro .carousel-strip {
   position: relative;
   z-index: 1;
   display: inline;
+  text-wrap: balance;
 }
 
 .hero-title-line::after {
@@ -1198,11 +1201,13 @@ body.intro-done .hero-intro .hero-title-line::after {
 .hero-sub {
   text-align: center;
   margin-top: clamp(6px, 1.5vw, 12px);
+  margin-inline: auto;
   width: 100%;
-  max-width: var(--content-max);
+  max-width: min(40rem, 100%);
   font-size: var(--fs-lead);
-  line-height: var(--lh-lead);
+  line-height: 1.45;
   letter-spacing: var(--track-lead);
+  text-wrap: pretty;
 }
 
 .hero-sub-line {
@@ -1222,19 +1227,23 @@ body.intro-done .hero-intro .hero-title-line::after {
   transition: none;
 }
 
-/* Desktop / tablet: контролируемые переносы саба (Telegram Mini Apps, «которые»…) */
-@media (min-width: 721px) {
+@media (max-width: 720px) {
+  .hero-title {
+    /* чуть плотнее на узких: длинные RU-фразы не разъезжают hero */
+    font-size: clamp(26px, 7.6vw, 36px);
+    line-height: 1.02;
+  }
+
   .hero-sub {
-    max-width: min(38rem, 92%);
-    line-height: 1.45;
+    max-width: 34ch;
+    font-size: clamp(14px, 3.7vw, 16px);
+    line-height: 1.5;
   }
+}
 
-  .hero-sub-line {
-    overflow: visible;
-  }
-
-  .hero-sub-line__inner {
-    text-wrap: pretty;
+@media (min-width: 721px) and (max-width: 1024px) {
+  .hero-sub {
+    max-width: min(36rem, 92%);
   }
 }
 

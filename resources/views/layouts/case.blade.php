@@ -8,7 +8,7 @@
   @include('partials.seo')
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=geist-sans@400,500,600,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/portfolio.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/portfolio.css') }}?v={{ @filemtime(public_path('css/portfolio.css')) ?: '1' }}" />
   <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon-round.png') }}" sizes="any" />
   <link rel="apple-touch-icon" href="{{ asset('assets/img/favicon-round.png') }}" />
   @include('partials.seo_jsonld_person')
@@ -19,7 +19,7 @@
   @yield('content')
 </div>
 @include('partials.i18n_portfolio')
-<script src="{{ asset('js/portfolio.js') }}" defer></script>
+<script src="{{ asset('js/portfolio.js') }}?v={{ @filemtime(public_path('js/portfolio.js')) ?: '1' }}" defer></script>
 @stack('scripts')
 </body>
 </html>
