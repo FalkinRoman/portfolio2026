@@ -5,15 +5,15 @@ return [
 
     'seo' => [
         'brand_name' => 'Фалькин Роман',
-        'site_title' => 'Фалькин Роман — Falkin Lab',
-        'meta_description' => 'Falkin Lab: веб, мобильные приложения, CRM и AI от идеи до запуска. Кейсы, процесс и условия на falkinlab.ru.',
+        'site_title' => 'Фалькин Роман — портфолио',
+        'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, CRM, продукты, MVP.',
         /** Превью для Telegram, WhatsApp, Max, VK (public/...) — одна картинка на все публичные URL */
-        'default_og_image' => 'assets/img/seo/og-cover.jpg',
+        'default_og_image' => 'assets/img/seo/og-preview.jpg',
         /** Должны совпадать с реальным файлом (сейчас 1200×630). При замене — обнови размеры / .env */
         'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 1200),
         'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 630),
-        /** Имя сайта в Open Graph */
-        'og_site_name' => env('SEO_OG_SITE_NAME', 'Falkin Lab'),
+        /** Серая строка над title в превью — не дублировать имя из title */
+        'og_site_name' => env('SEO_OG_SITE_NAME', 'falkinlab.ru'),
         /** Полные HTTPS URL для sameAs в JSON-LD (опционально) */
         'same_as_threads' => env('SEO_SAME_AS_THREADS'),
         'same_as_instagram' => env('SEO_SAME_AS_INSTAGRAM'),

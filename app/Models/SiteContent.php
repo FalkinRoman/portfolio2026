@@ -31,8 +31,8 @@ class SiteContent extends Model
         }
 
         return static::create([
-            'site_title' => 'Фалькин Роман — Falkin Lab',
-            'meta_description' => 'Falkin Lab: веб, мобильные приложения, CRM и AI от идеи до запуска. Кейсы, процесс и условия на сайте.',
+            'site_title' => 'Фалькин Роман — портфолио',
+            'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, CRM, продукты, MVP.',
             'home' => self::defaultHome(),
         ]);
     }

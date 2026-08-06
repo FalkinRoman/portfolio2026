@@ -246,8 +246,8 @@ return [
     'seo' => [
         'og_locale_ru' => 'ru_RU',
         'og_locale_en' => 'en_US',
-        'home_title' => 'Roman Falkin — Falkin Lab | Web, Mobile, CRM, AI',
-        'home_description' => 'Falkin Lab: web, mobile, CRM and AI from idea to launch. Real case studies, clear process, personal reply.',
+        'home_title' => 'Roman Falkin — Web & Mobile Developer | Portfolio',
+        'home_description' => 'Web and mobile developer (React, React Native, Laravel): landing pages, CRM, products, MVPs.',
     ],
 
     'pricing_points' => [
