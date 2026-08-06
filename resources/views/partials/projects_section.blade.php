@@ -11,6 +11,7 @@
         @continue(!$project->publicUrl($project->card_image))
         <a class="project-card" href="{{ route('project.show', $project) }}">
           <img src="{{ $project->publicUrl($project->card_image) }}" alt="{{ $project->display('name') }}" />
+          @php($cardBlurb = $project->cardBlurb())
           <div class="project-chip">
             <span class="project-logo">
               @if($project->publicUrl($project->logo_image))
@@ -19,7 +20,12 @@
                 <img src="{{ $project->publicUrl($project->card_image) }}" alt="" />
               @endif
             </span>
-            <span class="project-name">{{ $project->display('name') }}</span>
+            <span class="project-name-wrap">
+              <span class="project-name">{{ $project->display('name') }}</span>
+              @if($cardBlurb !== '')
+                <span class="project-subline">{{ $cardBlurb }}</span>
+              @endif
+            </span>
           </div>
         </a>
         @endforeach

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'slug', 'name', 'name_en', 'tagline', 'tagline_en', 'meta_client', 'meta_client_en',
+        'slug', 'name', 'name_en', 'tagline', 'card_blurb', 'tagline_en', 'card_blurb_en', 'meta_client', 'meta_client_en',
         'meta_service', 'meta_service_en', 'meta_date', 'meta_date_en',
         'overview_p1', 'overview_p1_en', 'overview_p2', 'overview_p2_en', 'overview_p3', 'overview_p3_en',
         'features', 'features_en', 'accent_line', 'accent_line_en',
@@ -57,6 +57,26 @@ class Project extends Model
         }
 
         return $this->getAttribute($base);
+    }
+
+    /** Короткая подпись на карточке проекта (чип). */
+    public function cardBlurb(): string
+    {
+        $blurb = trim((string) ($this->display('card_blurb') ?? ''));
+        if ($blurb !== '') {
+            return $blurb;
+        }
+
+        $tag = trim((string) ($this->display('tagline') ?? ''));
+        if ($tag === '') {
+            return '';
+        }
+
+        if (mb_strlen($tag) <= 72) {
+            return $tag;
+        }
+
+        return rtrim(mb_substr($tag, 0, 69)).'…';
     }
 
     public function scopePublished(Builder $q): Builder

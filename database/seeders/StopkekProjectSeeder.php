@@ -23,6 +23,8 @@ class StopkekProjectSeeder extends Seeder
             'name_en' => 'stopKEK',
             'tagline' => 'Экосистема компьютерного клуба: бронь, оплата, QR, замки и защита ПК — без очереди у администратора.',
             'tagline_en' => 'Computer club ecosystem: booking, payments, QR unlock, smart locks and PC protection — no front-desk queue.',
+            'card_blurb' => 'Управление игровым клубом',
+            'card_blurb_en' => 'Computer club management',
             'meta_client' => 'стопКЕК / компьютерный клуб',
             'meta_client_en' => 'stopKEK / computer club',
             'meta_service' => "iOS + Android\nадмин-панель бизнеса\nElectron · IoT-замки · платежи",

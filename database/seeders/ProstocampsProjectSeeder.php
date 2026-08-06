@@ -27,6 +27,8 @@ class ProstocampsProjectSeeder extends Seeder
             'name_en' => 'prosto.camps',
             'tagline' => 'Онлайн-платформа йога-кэмпов: расписание, бронирование, оплата и личный кабинет участника.',
             'tagline_en' => 'Online platform for yoga camps: schedule, booking, payments, and participant accounts.',
+            'card_blurb' => 'Платформа йога-кэмпов и поездок',
+            'card_blurb_en' => 'Yoga camps and travel platform',
             'meta_client' => 'PROSTO',
             'meta_client_en' => 'PROSTO',
             'meta_service' => "Веб-платформа\r\nоплата и билеты\r\nадминка и аналитика",

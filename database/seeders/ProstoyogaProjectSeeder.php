@@ -27,6 +27,8 @@ class ProstoyogaProjectSeeder extends Seeder
             'name_en' => 'prosto.yoga',
             'tagline' => 'Видео-курс йоги с личными кабинетами, оплатой и админ-панелью.',
             'tagline_en' => 'Yoga video course with personal accounts, payments and admin panel.',
+            'card_blurb' => 'Видеокурс с личным кабинетом',
+            'card_blurb_en' => 'Video course with member accounts',
             'meta_client' => 'prosto.yoga',
             'meta_client_en' => 'prosto.yoga',
             'meta_service' => "Лендинг + LMS\nличный кабинет\nплатежи и CRM",

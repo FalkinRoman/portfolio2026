@@ -23,6 +23,8 @@ class LumProjectSeeder extends Seeder
             'name_en' => 'Lum',
             'tagline' => 'Ребрендинг и цифровизация вилл на Шри-Ланке: новая стилистика, сайт-система и админка под рост.',
             'tagline_en' => 'Rebrand and digitalization of Sri Lanka villas: new visual language, expandable site system and full CMS.',
+            'card_blurb' => 'Сеть вилл на Шри-Ланке · бронирование',
+            'card_blurb_en' => 'Sri Lanka villas · booking',
             'meta_client' => 'Lum / Ahangama, Sri Lanka',
             'meta_client_en' => 'Lum / Ahangama, Sri Lanka',
             'meta_service' => "Ребрендинг + UI\nсайт-экосистема\nCMS · бронь · магазин",

@@ -66,8 +66,8 @@ class SiteContent extends Model
                 ],
                 'projects_chrome' => [
                     'chip' => 'Projects',
-                    'h2' => "Shipped to production,\ntuned for growth",
-                    'lead' => 'From landing pages to products: code, speed, and support',
+                    'h2' => "Real products.\nReal results.",
+                    'lead' => 'From landing pages to complex systems — work already running in business',
                 ],
                 'process' => [
                     'chip' => 'Process',
@@ -231,8 +231,8 @@ class SiteContent extends Model
             ],
             'projects_chrome' => [
                 'chip' => 'Проекты',
-                'h2' => "Собрано в прод,\nзаточено на рост",
-                'lead' => 'От лендингов до продукта: код, скорость и поддержка',
+                'h2' => "Реальные продукты.\nРеальные результаты.",
+                'lead' => 'От лендингов до сложных систем — то, что уже в работе у бизнеса',
             ],
             'process' => [
                 'chip' => 'Процесс',

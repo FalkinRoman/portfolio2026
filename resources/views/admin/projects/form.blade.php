@@ -40,6 +40,11 @@
       <textarea id="tagline" name="tagline" rows="2">{{ old('tagline', $project->tagline) }}</textarea>
     </div>
     <div class="admin-field">
+      <label for="card_blurb">Подпись на карточке (коротко, что за проект)</label>
+      <input id="card_blurb" type="text" name="card_blurb" maxlength="180" value="{{ old('card_blurb', $project->card_blurb) }}" placeholder="Напр.: Управление игровым клубом" />
+      <p class="admin-field__hint">Показывается под названием на главной и в каталоге.</p>
+    </div>
+    <div class="admin-field">
       <label for="sort_order">Порядок сортировки</label>
       <input id="sort_order" type="number" name="sort_order" value="{{ old('sort_order', $project->sort_order ?? 0) }}" />
     </div>
@@ -93,6 +98,10 @@
     <div class="admin-field">
       <label for="tagline_en">Подзаголовок (EN)</label>
       <textarea id="tagline_en" name="tagline_en" rows="2">{{ old('tagline_en', $project->tagline_en) }}</textarea>
+    </div>
+    <div class="admin-field">
+      <label for="card_blurb_en">Card blurb (EN)</label>
+      <input id="card_blurb_en" type="text" name="card_blurb_en" maxlength="180" value="{{ old('card_blurb_en', $project->card_blurb_en) }}" placeholder="e.g. Computer club management" />
     </div>
     <div class="admin-field">
       <label for="meta_client_en">Клиент (EN)</label>

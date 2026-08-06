@@ -14,7 +14,7 @@
           </div>
           @endif
           <h3>{{ __('site.testimonials.clients_h') }}</h3>
-          <p>{{ __('site.testimonials.clients_p') }}</p>
+          <p>{!! __('site.testimonials.clients_p_html') !!}</p>
         </div>
         @if(($reviews ?? collect())->isNotEmpty())
         <div class="testimonial-shell">

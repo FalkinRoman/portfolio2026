@@ -27,6 +27,8 @@ class KindleProjectSeeder extends Seeder
             'name_en' => 'Kindle',
             'tagline' => 'Telegram-бот и dating-приложение с тарифами, оплатой и сильной операционной админкой.',
             'tagline_en' => 'Telegram bot and dating app with subscriptions, payments, and operations-focused admin tools.',
+            'card_blurb' => 'Приложение знакомств и Telegram-бот',
+            'card_blurb_en' => 'Dating app and Telegram bot',
             'meta_client' => 'Kindle / social product',
             'meta_client_en' => 'Kindle / social product',
             'meta_service' => "Telegram Bot + Web/Mobile\r\nплатежи и подписки\r\nадминка и аналитика",

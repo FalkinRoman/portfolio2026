@@ -47,8 +47,8 @@ return [
 
     'projects' => [
         'chip' => 'Projects',
-        'h2' => "Shipped to prod,\nbuilt to scale",
-        'lead' => 'From landing pages to full products: code, speed, and support',
+        'h2' => "Real products.\nReal results.",
+        'lead' => 'From landing pages to complex systems — work already running in business',
         'view_all' => 'All projects',
         'view_all_hover' => 'Open catalog',
     ],
@@ -74,6 +74,7 @@ return [
         'lead' => 'From clients who shipped ideas as working products in production',
         'clients_h' => 'Who I’ve worked with',
         'clients_p' => 'Teams choose a clear process, realistic timelines, and accountability',
+        'clients_p_html' => 'Teams choose a clear process,<br class="br-mobile"> realistic timelines, and accountability',
         'prev' => 'Previous testimonial',
         'next' => 'Next testimonial',
         't1_name' => 'Danira Parimbetova',

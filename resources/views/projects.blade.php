@@ -160,9 +160,16 @@
                 <img src="{{ $project->publicUrl($project->card_image) }}" alt="" />
               @endif
             </span>
+            @php($cardBlurb = $project->cardBlurb())
             <span class="project-name-wrap">
               <span class="project-name">{{ $name }}</span>
-              <span class="project-subline">{{ $service !== '' ? $service : $tag }}</span>
+              @if($cardBlurb !== '')
+                <span class="project-subline">{{ $cardBlurb }}</span>
+              @elseif($service !== '')
+                <span class="project-subline">{{ \Illuminate\Support\Str::of($service)->before("\n")->trim() }}</span>
+              @elseif($tag !== '')
+                <span class="project-subline">{{ $tag }}</span>
+              @endif
             </span>
           </div>
         </a>

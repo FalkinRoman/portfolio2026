@@ -27,6 +27,8 @@ class BeatLineProjectSeeder extends Seeder
             'name_en' => 'BeatLine',
             'tagline' => 'Лирика в ритме трека — файлы для стриминга без хаоса.',
             'tagline_en' => 'Lyrics in track rhythm — streaming-ready files without chaos.',
+            'card_blurb' => 'Редактор лирики для стримингов',
+            'card_blurb_en' => 'Lyrics editor for streaming',
             'meta_client' => 'BeatLine / музыкальные команды',
             'meta_client_en' => 'BeatLine / music teams',
             'meta_service' => "Веб-платформа\nредактор лирики\nинтеграция DSP",
