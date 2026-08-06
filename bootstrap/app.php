@@ -11,6 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        /* до StartSession: array-driver + без Set-Cookie для TG/WA crawlers */
+        $middleware->web(prepend: [
+            \App\Http\Middleware\SocialCrawlerFriendly::class,
+        ]);
         /* после StartSession — иначе $request->session() падает */
         $middleware->web(append: [
             \App\Http\Middleware\SetLocale::class,

@@ -20,7 +20,10 @@
 <title>{{ $title }}</title>
 <meta name="description" content="{{ \Illuminate\Support\Str::limit(strip_tags($desc), 320) }}">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{{-- canonical на / без query может утащить Telegram в пустой кэш корня; ботам не отдаём --}}
+@unless(request()->attributes->get('social_crawler'))
 <link rel="canonical" href="{{ $canonical }}">
+@endunless
 <meta name="author" content="{{ config('portfolio.seo.brand_name') }}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ $siteName }}">
