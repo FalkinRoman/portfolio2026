@@ -8,8 +8,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
 /**
- * стопКЕК: экосистема компьютерного клуба (iOS/Android, админка, замки, Electron).
- * Медиа опциональны: если есть fixtures/stopkek — копируются; иначе картинки оставляем null (добавить в админке).
+ * стопКЕК — актуальные медиа из админки (card/banner/logo + 5 gallery).
+ * Фикстуры: database/seeders/fixtures/stopkek/
  */
 class StopkekProjectSeeder extends Seeder
 {
@@ -68,6 +68,8 @@ class StopkekProjectSeeder extends Seeder
 
         $fixtureBase = database_path('seeders/fixtures/stopkek');
         if (! is_dir($fixtureBase)) {
+            $this->command?->warn('stopkek fixtures missing: '.$fixtureBase);
+
             return;
         }
 
@@ -88,24 +90,22 @@ class StopkekProjectSeeder extends Seeder
 
         $galleryRel = [];
         $galleryDir = $fixtureBase.'/gallery';
-        if (is_dir($galleryDir)) {
-            foreach (range(1, 12) as $i) {
-                $stem = sprintf('%02d', $i);
-                try {
-                    $resolved = $this->resolveFixtureFile($galleryDir, $stem);
-                } catch (\RuntimeException) {
-                    break;
-                }
-                File::copy($resolved['path'], $destRoot.'/gallery/'.$resolved['filename']);
-                $galleryRel[] = 'projects/'.$id.'/gallery/'.$resolved['filename'];
+        foreach (range(1, 12) as $i) {
+            $stem = sprintf('%02d', $i);
+            try {
+                $resolved = $this->resolveFixtureFile($galleryDir, $stem);
+            } catch (\RuntimeException) {
+                break;
             }
+            File::copy($resolved['path'], $destRoot.'/gallery/'.$resolved['filename']);
+            $galleryRel[] = 'projects/'.$id.'/gallery/'.$resolved['filename'];
         }
 
         $project->update([
             'card_image' => 'projects/'.$id.'/'.$rootNames['card'],
             'logo_image' => 'projects/'.$id.'/'.$rootNames['logo'],
             'banner_image' => 'projects/'.$id.'/'.$rootNames['banner'],
-            'gallery_images' => $galleryRel,
+            'gallery_images' => $galleryRel !== [] ? $galleryRel : null,
         ]);
     }
 }

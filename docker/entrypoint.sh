@@ -12,20 +12,24 @@ mkdir -p storage/framework/sessions \
   public
 
 # том portfolio_public перекрывает public/ — принудительно синкаем ассеты из образа
-if [ -d /opt/public-dist ]; then
-  for item in /opt/public-dist/*; do
-    [ -e "$item" ] || continue
-    name=$(basename "$item")
-    [ "$name" = "storage" ] && continue
-    if [ -d "$item" ]; then
-      mkdir -p "public/$name"
-      # содержимое каталога, не «public/assets/assets»
-      cp -a "$item"/. "public/$name"/
-    else
-      cp -a "$item" "public/$name"
+    if [ -d /opt/public-dist ]; then
+      for item in /opt/public-dist/*; do
+        [ -e "$item" ] || continue
+        name=$(basename "$item")
+        [ "$name" = "storage" ] && continue
+        if [ -d "$item" ]; then
+          mkdir -p "public/$name"
+          # содержимое каталога, не «public/assets/assets»
+          cp -a "$item"/. "public/$name"/
+        else
+          cp -a "$item" "public/$name"
+        fi
+      done
+      # устаревшие превью услуг (branding/framer/logos) — сносим с тома
+      rm -f public/assets/img/services/branding-*.png \
+        public/assets/img/services/framer-*.png \
+        public/assets/img/services/logos-*.png 2>/dev/null || true
     fi
-  done
-fi
 
 # том только на database/data — sqlite здесь; старый путь подхватываем один раз
 if [ -f database/database.sqlite ] && [ ! -f database/data/database.sqlite ]; then
