@@ -249,24 +249,53 @@
     });
   }
 
-  /* Hero intro choreography (header -> pill -> title lines -> sub -> cta -> carousel) */
+  /* Hero intro choreography: splash → header → pill → title → sub → cta → carousel */
   var heroIntro = document.querySelector(".hero-intro");
+  var labSplash = document.getElementById("labSplash");
   if (heroIntro) {
     var body = document.body;
 
+    function startHeroIntro() {
+      body.classList.add("intro-run");
+      body.classList.remove("intro-pending");
+      setTimeout(function () {
+        body.classList.remove("intro-run");
+        body.classList.add("intro-done");
+      }, 3200);
+    }
+
+    function finishSplashThenIntro() {
+      if (!labSplash) {
+        startHeroIntro();
+        return;
+      }
+      labSplash.classList.add("is-leaving");
+      setTimeout(function () {
+        labSplash.classList.add("is-gone");
+        body.classList.remove("lab-splash-active");
+        requestAnimationFrame(function () {
+          requestAnimationFrame(startHeroIntro);
+        });
+      }, 720);
+    }
+
     if (!reduceMotion) {
       body.classList.add("intro-pending");
-      requestAnimationFrame(function () {
+      if (labSplash) {
+        body.classList.add("lab-splash-active");
         requestAnimationFrame(function () {
-          body.classList.add("intro-run");
-          body.classList.remove("intro-pending");
-          setTimeout(function () {
-            body.classList.remove("intro-run");
-            body.classList.add("intro-done");
-          }, 3200);
+          requestAnimationFrame(function () {
+            labSplash.classList.add("is-in");
+            setTimeout(finishSplashThenIntro, 1950);
+          });
         });
-      });
+      } else {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(startHeroIntro);
+        });
+      }
     } else {
+      if (labSplash) labSplash.classList.add("is-gone");
       body.classList.add("intro-done");
     }
   }

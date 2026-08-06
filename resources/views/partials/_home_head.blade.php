@@ -1,7 +1,28 @@
 @php
   $H = asset('assets/img/home');
   $carouselBase = app()->isLocale('ru') ? asset('assets/img/home/carousel-ru') : $H;
+  $splashWords = preg_split('/\s+/u', trim(__('site.hero.splash_name')), -1, PREG_SPLIT_NO_EMPTY) ?: [];
 @endphp
+    <div class="lab-splash" id="labSplash" aria-hidden="true">
+      <div class="lab-splash__veil" aria-hidden="true"></div>
+      <div class="lab-splash__inner">
+        <p class="lab-splash__name">
+          @foreach($splashWords as $wi => $word)
+            <span class="lab-splash__word" style="--w: {{ $wi }}">{{ $word }}</span>
+          @endforeach
+        </p>
+        <p class="lab-splash__tag">{{ __('site.hero.splash_tag') }}</p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        try {
+          if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          document.body.classList.add("lab-splash-active", "intro-pending");
+        } catch (e) {}
+      })();
+    </script>
+
     <canvas class="mouse-trace-canvas" aria-hidden="true"></canvas>
     <div class="hero-bg" aria-hidden="true">
       <img src="{{ $H }}/hero-bg.png" alt="" width="1440" height="900" />
