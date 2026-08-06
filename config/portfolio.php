@@ -8,7 +8,7 @@ return [
         'site_title' => 'Фалькин Роман — портфолио',
         'meta_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, CRM, продукты, MVP.',
         /** Превью для Telegram, WhatsApp, Max, VK (public/...) — одна картинка на все публичные URL */
-        'default_og_image' => 'assets/img/seo/og-preview.jpg',
+        'default_og_image' => 'assets/img/seo/og.jpg',
         /** Должны совпадать с реальным файлом (сейчас 1200×630). При замене — обнови размеры / .env */
         'og_image_width' => (int) env('SEO_OG_IMAGE_WIDTH', 1200),
         'og_image_height' => (int) env('SEO_OG_IMAGE_HEIGHT', 630),
