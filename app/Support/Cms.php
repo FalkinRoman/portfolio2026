@@ -74,9 +74,22 @@ class Cms
             return $path;
         }
         if (str_starts_with($path, 'assets/')) {
-            return asset($path);
+            $url = asset($path);
+            $absolute = public_path($path);
+            if (is_file($absolute)) {
+                $url .= '?v='.filemtime($absolute);
+            }
+
+            return $url;
         }
 
-        return '/storage/'.ltrim(str_replace('\\', '/', $path), '/');
+        $relative = ltrim(str_replace('\\', '/', $path), '/');
+        $url = '/storage/'.$relative;
+        $absolute = storage_path('app/public/'.$relative);
+        if (is_file($absolute)) {
+            $url .= '?v='.filemtime($absolute);
+        }
+
+        return $url;
     }
 }
