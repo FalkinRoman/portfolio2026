@@ -23,11 +23,11 @@ return [
 
     'hero' => [
         'review' => '100+ happy clients',
-        'title_l1' => 'I build products',
-        'title_l2' => 'that work the way',
-        'title_l3' => 'you do',
-        'sub_l1_html' => 'I craft digital experiences that engage users,',
-        'sub_l2' => 'and every screen earns its place',
+        'title_l1' => 'I build web and mobile',
+        'title_l2' => 'products that grow',
+        'title_l3' => 'your business',
+        'sub_l1_html' => 'Landing pages, apps, MVPs and integrations —',
+        'sub_l2' => 'from brief to production in 2–12 weeks',
         'cta_default' => 'View projects',
         'cta_hover' => 'Browse work',
         'cta_aria' => 'View projects',
