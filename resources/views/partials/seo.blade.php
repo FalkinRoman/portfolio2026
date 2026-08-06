@@ -1,7 +1,9 @@
 @php
   $title = $seoTitle ?? __('site.seo.home_title');
   $desc = $seoDescription ?? __('site.seo.home_description');
+  // canonical без query — для SEO; og:url = полный URL, чтобы ?v= ломал кэш Telegram
   $canonical = url()->current();
+  $ogUrl = url()->full();
   $ogPath = config('portfolio.seo.default_og_image');
   $og = $seoOgImage ?? asset($ogPath);
   $og = \Illuminate\Support\Str::of($og)->before('?')->toString();
@@ -24,7 +26,7 @@
 <meta property="og:site_name" content="{{ $siteName }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($desc), 300) }}">
-<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:url" content="{{ $ogUrl }}">
 <meta property="og:locale" content="{{ $localeMain }}">
 <meta property="og:locale:alternate" content="{{ $localeAlt }}">
 <meta property="og:image" content="{{ $og }}">
