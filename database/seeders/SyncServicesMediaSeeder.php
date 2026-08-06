@@ -7,8 +7,11 @@ use App\Support\Cms;
 use Illuminate\Database\Seeder;
 
 /**
- * Обновляет только блок услуг (картинки CRM/AI/1С и т.д.) из дефолтов —
- * не трогает остальные секции CMS в БД.
+ * Сбрасывает пути картинок услуг на дефолтные assets/img/services/*.
+ * Не трогает остальные секции CMS.
+ *
+ * Внимание: кастомные upload'ы из админки (cms/services/...) будут заменены
+ * на файлы из public/assets/img/services — держи там актуальные PNG.
  */
 class SyncServicesMediaSeeder extends Seeder
 {

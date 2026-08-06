@@ -11,13 +11,19 @@ mkdir -p storage/framework/sessions \
   database/data \
   public
 
-# том portfolio_public перекрывает public/ — докидываем ассеты из образа (storage не трогаем)
+# том portfolio_public перекрывает public/ — принудительно синкаем ассеты из образа
 if [ -d /opt/public-dist ]; then
   for item in /opt/public-dist/*; do
     [ -e "$item" ] || continue
     name=$(basename "$item")
     [ "$name" = "storage" ] && continue
-    cp -a "$item" "public/"
+    if [ -d "$item" ]; then
+      mkdir -p "public/$name"
+      # содержимое каталога, не «public/assets/assets»
+      cp -a "$item"/. "public/$name"/
+    else
+      cp -a "$item" "public/$name"
+    fi
   done
 fi
 
