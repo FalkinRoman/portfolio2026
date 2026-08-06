@@ -1222,6 +1222,22 @@ body.intro-done .hero-intro .hero-title-line::after {
   transition: none;
 }
 
+/* Desktop / tablet: контролируемые переносы саба (Telegram Mini Apps, «которые»…) */
+@media (min-width: 721px) {
+  .hero-sub {
+    max-width: min(38rem, 92%);
+    line-height: 1.45;
+  }
+
+  .hero-sub-line {
+    overflow: visible;
+  }
+
+  .hero-sub-line__inner {
+    text-wrap: pretty;
+  }
+}
+
 .hero-sub-line::after {
   content: "";
   position: absolute;
