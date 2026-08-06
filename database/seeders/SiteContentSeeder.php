@@ -13,8 +13,8 @@ class SiteContentSeeder extends Seeder
         $row = SiteContent::query()->first();
         if ($row) {
             $row->home = SiteContent::defaultHome();
-            $row->site_title = $row->site_title ?: 'Фалькин Роман — портфолио';
-            $row->meta_description = 'Веб и мобильная разработка · Team Lead FullStack · Noi Studio';
+            $row->site_title = $row->site_title ?: 'Фалькин Роман — Falkin Lab';
+            $row->meta_description = 'Falkin Lab: веб, мобильные приложения, CRM и AI от идеи до запуска. Кейсы, процесс и условия на сайте.';
             $row->save();
         } else {
             SiteContent::current();

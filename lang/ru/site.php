@@ -244,8 +244,8 @@ return [
     'seo' => [
         'og_locale_ru' => 'ru_RU',
         'og_locale_en' => 'en_US',
-        'home_title' => 'Фалькин Роман — Web & Mobile Developer | Портфолио',
-        'home_description' => 'Разработчик веб и мобильных приложений (React, React Native, Laravel): лендинги, продукты, MVP. Кейсы в проде, понятный процесс.',
+        'home_title' => 'Фалькин Роман — Falkin Lab | Веб, мобайл, CRM, AI',
+        'home_description' => 'Falkin Lab: веб, мобильные приложения, CRM и AI от идеи до запуска. Реальные кейсы, понятный процесс, ответ лично.',
     ],
 
     'pricing_points' => [
