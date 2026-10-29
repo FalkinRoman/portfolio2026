@@ -58,6 +58,7 @@
     <div class="admin-field">
       <label for="meta_client">Клиент</label>
       <input id="meta_client" type="text" name="meta_client" value="{{ old('meta_client', $project->meta_client) }}" />
+      <p class="admin-field__hint">Для кейса указывайте продукт / организацию / бренд. ФИО, фото и иные ПДн физлица не публикуйте без отдельного согласия — это не следует из факта разработки проекта.</p>
     </div>
     <div class="admin-field">
       <label for="meta_service">Услуга (можно с переносом строки)</label>

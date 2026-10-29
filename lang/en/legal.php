@@ -3,8 +3,8 @@
 return [
     'common' => [
         'back_home' => 'Back to home',
-        'footer_privacy' => 'Privacy',
-        'footer_pd' => 'Personal data',
+        'footer_privacy' => 'Privacy policy',
+        'footer_pd' => 'Personal data processing policy',
         'updated' => 'Last updated: :date.',
     ],
 

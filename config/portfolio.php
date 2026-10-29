@@ -22,12 +22,13 @@ return [
 
     /**
      * Реквизиты Оператора (ИП) для юр. документов и футера (152-ФЗ).
+     * Не подставлять SEO_OG_SITE_NAME / домен — оператор это ИП, не сайт.
      */
     'legal' => [
-        'operator_name' => env('LEGAL_OPERATOR_NAME', env('SEO_OG_SITE_NAME', 'Фалькин Роман Юрьевич')),
+        'operator_name' => env('LEGAL_OPERATOR_NAME', 'Фалькин Роман Юрьевич'),
         'operator_inn' => env('LEGAL_INN'),
         'operator_ogrnip' => env('LEGAL_OGRNIP'),
-        'policy_updated' => env('LEGAL_POLICY_UPDATED', '03.08.2026'),
+        'policy_updated' => env('LEGAL_POLICY_UPDATED', '29.10.2026'),
     ],
 
     /**

@@ -5,6 +5,11 @@
 @section('body')
 <div class="admin-card">
   <h1>{{ $mode === 'create' ? 'Новый отзыв' : 'Редактировать: '.$review->name }}</h1>
+  <p class="admin-field__hint" style="margin:0 0 1rem;max-width:42rem;line-height:1.45;opacity:.85">
+    Публикация ФИО, фото, должности и текста отзыва — это распространение персональных данных.
+    Публикуйте только при наличии подтверждённого согласия субъекта (или иного законного основания).
+    Наличие отзыва «в переписке» само по себе не доказывает согласие на публичное размещение.
+  </p>
   <form method="post" action="{{ $mode === 'create' ? route('admin.reviews.store') : route('admin.reviews.update', $review) }}" enctype="multipart/form-data">
     @csrf
     @if($mode === 'edit') @method('put') @endif

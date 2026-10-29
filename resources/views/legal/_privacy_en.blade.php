@@ -1,15 +1,18 @@
 @php
   $email = config('portfolio.admin_email');
-  $legalName = config('portfolio.legal.operator_name') ?: config('portfolio.seo.brand_name');
+  $legalName = config('portfolio.legal.operator_name') ?: 'Фалькин Роман Юрьевич';
   $inn = config('portfolio.legal.operator_inn');
   $ogrnip = config('portfolio.legal.operator_ogrnip');
   $updated = config('portfolio.legal.policy_updated') ?: now()->format('d.m.Y');
+  $host = parse_url(url('/'), PHP_URL_HOST) ?: 'falkinlab.ru';
 @endphp
 
 <h1 class="legal-doc__h1">Privacy policy</h1>
 <p class="legal-doc__meta">{{ __('legal.common.updated', ['date' => $updated]) }}</p>
 
-<p>This policy describes how information is handled when you use the website at <strong>{{ parse_url(url('/'), PHP_URL_HOST) ?? 'this site' }}</strong> (the “Site”) operated by sole proprietor (ИП) <strong>{{ $legalName }}</strong> (the “Operator”).</p>
+<p>This policy describes how information is handled when you use the website at <strong>{{ $host }}</strong> (the “Site”) operated by sole proprietor (ИП) <strong>{{ $legalName }}</strong> (the “Operator”).</p>
+
+<p><strong>Note:</strong> {{ $host }} is the Operator’s website. The personal data operator is ИП {{ $legalName }}, not the domain name.</p>
 
 <p>For personal data processing details, see the <a class="legal-doc__a" href="{{ route('legal.personal_data') }}">Personal data processing policy</a>. If you contact us from Russia, processing is primarily governed by Federal Law No. 152-FZ. If this English text conflicts with the Russian version, the Russian version prevails for Russian users.</p>
 
