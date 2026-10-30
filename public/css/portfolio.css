@@ -3572,8 +3572,10 @@ body.intro-done .hero-intro .hero-sub-line::after {
 }
 
 .footer-bottom--split {
-  flex-wrap: wrap;
-  gap: 10px 20px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
   justify-content: center;
 }
 
@@ -3581,6 +3583,7 @@ body.intro-done .hero-intro .hero-sub-line::after {
   width: auto;
   flex: 0 1 auto;
   margin: 0;
+  text-align: center;
 }
 
 .footer-requisites {
@@ -3590,6 +3593,7 @@ body.intro-done .hero-intro .hero-sub-line::after {
   letter-spacing: 0.01em;
   color: var(--text-muted);
   opacity: 0.78;
+  text-align: center;
 }
 
 .footer-requisites__dot {
@@ -3599,17 +3603,19 @@ body.intro-done .hero-intro .hero-sub-line::after {
 }
 
 .footer-legal {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 6px 10px;
   row-gap: 0.35rem;
-  max-width: min(100%, 36rem);
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
   font-size: 13px;
-  line-height: 1.3;
+  line-height: 1.45;
   opacity: 0.88;
-  text-align: right;
+  text-align: center;
 }
 
 .footer-legal__a {
